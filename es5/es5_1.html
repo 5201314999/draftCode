@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Array 练习</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script>
+        // "use strict"
+        var arr = new Array(6);
+        arr[1] = 1;
+        arr[2] = 2;
+        arr[4] = 4;
+        console.log(arr);
+        var arr2 = arr.map(function (value, index, arr) {
+            return value * 2;
+        });
+        console.log(arr2);
+
+        var url = "http://www.baidu.com";
+        // alert(encodeURI(url));
+        // alert(encodeURIComponent(url));
+        var tt = {
+            name: 'jiongrong',
+            age: 18
+        };
+        console.log('tt' + JSON.stringify(tt));
+
+        console.log(eval('(' + JSON.stringify(tt) + ')'));
+        let book = {
+            year: 2004,
+            edition: 1
+        };
+        Object.defineProperty(book, 'year', {
+            configurable: true,
+            value: 2005,
+            writable: false,
+            enumerable: false
+        });
+        // book.year=2018;
+        console.log(book);
+
+        //作用域变量访问的问题。
+        var myname = 12;
+        function func() {
+            // alert(myname);   //undefined
+            var myname = "aa";
+            //alert(myname);
+        }
+        func();
+        var cc;
+        // alert(typeof func);
+
+        function func() {
+            return{
+                name: "Batman"
+            }
+        }
+        // alert(func());
+
+      
+        //函数声明  函数表达式  区别
+        
+        var dd=(function() {
+            this.name="aaa";
+            var that=this;
+            return {
+                add:function(){
+                    return that.name;
+                }
+            }
+        })();
+
+       var tt=dd.add();
+        alert(tt);
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
