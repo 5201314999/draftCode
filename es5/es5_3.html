@@ -1,14 +1,14 @@
-<html><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Examples</title>
+<title>函数高级技巧测试例子。可作为下次ppt 内容。</title>
 <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <script>
+    // 跨浏览器事件兼容处理
     var EventUtil={
         addHandler:function(e,type,handler){
             if(e.addEventListener){
@@ -21,15 +21,75 @@
                 e['on'+type]=handler;
             }
         },
-        
-
         removeHandler:function(e,type,handler){
+            if(e.removeEventListener){
+                e.removeEventListener(type,handler);
+            }
+            else if(e.detachEvent){
+                e.detachEvent('on'+type,handler);
+            }
+            else{
+                e['on'+type]=null;
+            }
+        }
+
+         
+    };
+    window.onload=function(){
+        // frames['richedit'].document.designMode='on';
+    };
+
+    //惰性载入函数,估计用得不多
+
+    var  t=2;
+    function lazyLoadFunc(){
+        if(t==1){
+             lazyLoadFunc=function(){
+                console.log(1);
+            };
+        }
+        else if(t==2){
+             lazyLoadFunc=function(){
+                console.log(2);
+            };
+        }
+        else{
 
         }
+        return lazyLoadFunc();
+    }
+    lazyLoadFunc();
+
+    lazyLoadFunc();
+
+
+    //函数绑定 ,主要是代码中存在this 的情况下会出现 this 绑定到我们不想要的对象上面。所以需要彻底明白this 的各种绑定规则。
+    var handler={
+        message:'Event handled',
+        handleClick:function(event){
+            console.log(this);
+            alert(this.message);
+        }
     };
+    
+    // setTimeout(function(){
+    //     handler.handleClick();
+    //     },3000);
+
+
+    //自己实现绑定规则,里面那个是闭包
+    function bind(fn,context){
+        return function(){
+            fn.apply(context,arguments);
+        }
+    }
+    setTimeout(bind(handler.handleClick,handler),2000);
 </script>
 </head>
 <body>
-    
+   <div style="border:1px solid red;width:400px;height:400px;" contenteditable></div>
+   <iframe>
+
+   </iframe>
 </body>
-</html></html>
+</html>
