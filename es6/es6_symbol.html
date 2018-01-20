@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding for the document -->
+    <meta charset="utf-8">
+    <!-- Instruct Internet Explorer to use its latest rendering engine -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Viewport for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!-- Meta Description -->
+    <meta name="description" content="Description of the page less than 150 characters">
+
+    <title>symbol 练习</title>
+    <script>
+        // symbol 值初始化。除了看不可以做任何操作。只是一种描述
+        function run1() {
+            let s=Symbol();
+            console.log(typeof s);
+            console.log(s);
+
+            s=Symbol('symbolname');
+            console.log(typeof s);
+            console.log(s);
+        }
+       // run1();
+
+        /**
+         *  symbol 值作为对象属性名,每个symbol 都是唯一的，所以不会发生属性覆盖的问题。
+         */
+        function run2() {
+            var name=Symbol('name');
+            let a={};
+            //first
+             /*
+            let a={};
+            a['name']='jiongrong';
+            console.log(a['name']);
+            a['name']='other';
+            console.error(a['name']);*/
+            //second 不常见的写法。
+            //打印出来是undefined ？
+            Object.defineProperty(a,name,{value:'Symbol'});
+            console.log(a['name']);
+
+
+        }
+        run2();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

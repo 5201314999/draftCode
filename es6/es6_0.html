@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> es6 块作用域let,const </title>
+    <script>
+        //瞬间解决了以前由于词法作用域导致的5个都是5的情况
+        for(let i=0;i<5;i++){
+                setTimeout(function(){
+                    console.log(i);
+                },5);
+        }
+        const a=10;
+        console.log(a);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构赋值的用处</title>
+    <script>
+        //遍历map
+        function run1(){
+            const map=new Map();
+            map.set('name','fanjiongrong');
+            map.set('age',24);
+            //这些方法其实跟java 是类似，吸收过来的把，ie 不支持，尴尬吧。
+            for(let[key,value] of map){
+                console.log('key:'+key+','+'value:'+value);
+            }
+        }
+        //输入模块的指定方法
+        function run2(){
+            const { SourceMapConsumer, SourceNode } = require("source-map");
+        }
+        run1();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -78,12 +78,25 @@
 
 
     //自己实现绑定规则,里面那个是闭包
-    function bind(fn,context){
-        return function(){
-            fn.apply(context,arguments);
-        }
+    // function bind(fn,context){
+    //     return function(){
+    //         fn.apply(context,arguments);
+    //     }
+    // }
+    // setTimeout(bind(handler.handleClick,handler),2000);
+
+
+    //函数间继承的写法。不够理解
+    function parent(){
+        this.name='parent';
     }
-    setTimeout(bind(handler.handleClick,handler),2000);
+    function child(){
+        this.age=11;
+    }
+    child.prototype=Object.create(parent.prototype);
+    var cc=new child();
+    console.log(child.prototype.constructor);
+    console.log(cc.name);
 </script>
 </head>
 <body>

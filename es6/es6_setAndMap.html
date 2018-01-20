@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding for the document -->
+    <meta charset="utf-8">
+    <!-- Instruct Internet Explorer to use its latest rendering engine -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Viewport for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!-- Meta Description -->
+    <meta name="description" content="Description of the page less than 150 characters">
+
+    <title>set 和 map 基础核心使用,类比java 用法很容易理解</title>
+    <script>
+        //初始化
+        function run1(){
+            const s=new Set();
+            [2,3,5,4,5,2,2].forEach(x=>s.add(x));
+            for(let i of s){
+                console.log(i);
+            }
+            const b = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+            console.log(b.size);
+        }
+       // run1();
+
+        //备注：=== 基本值比较中不同的是 NaN 不等于自身
+
+
+        // 这点就垃圾了，set 也有这些 keys()，values()，entries() 都是同个值.
+
+        // 快速深克隆的方法
+        function run2(){
+            let a=new Set([1,2,3,4,4,5]);
+            let b=[...a];
+            console.log('a===b is'+a===b);
+            console.log(b);
+            b.forEach(x=>{console.log(x);console.log('ieee');});
+        }
+
+      //  run2();
+
+        // set 中的并集，交集，差集 ，filter，map ,这个是数组有的方法。set 也有
+        function run3(){
+            let a=new Set([1,2,3,4,4,5]);
+            let b=new Set([1,5,6,8]);
+
+            //并集
+            let c=new Set([...a,...b]);
+            console.log(c);
+
+            //交集
+            let d=new Set([...a].filter(x=>b.has(x)));
+            console.log(d);
+
+            //差集
+            let e=new Set([...a].filter(x=>!b.has(x)));
+            console.log(e);
+
+        }
+        run3();
+    </script>
+</head>
+<body>
+
+</body>
+</html>
