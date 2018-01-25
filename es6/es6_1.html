@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>promise 练习</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+    //新建一个promise 实例后 然后使用then
+    function timeout(ms){
+        return new Promise((resolved,rejected)=>{
+            if(ms>500){
+                setTimeout(rejected,ms);
+            }
+            else{
+                setTimeout(resolved,ms);
+            }
+        });
+    }
+    // timeout(1000).then((value)=>{
+    //     console.log(100);
+    // },(value)=>{
+    //     console.log(200);
+    // });
+
+    function test2(ms){
+        return new Promise((resolved,rejected)=>{
+            setTimeout(rejected,ms,'done');
+        });
+    }
+    // test2(2000).then(null,(value)=>{
+    //     console.log(value);
+    // });
+
+    //测试函数绑定传值的新方法,可以作为ppt 使用
+    var handler={
+        age:'11',
+        handlerClick(name){
+            console.log('name:'+name+this.age);
+        }
+    }
+    setTimeout(handler.handlerClick,1000,'jiongrong');
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

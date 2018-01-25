@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串的扩展部分练习</title>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script>
+        //JavaScript内部，字符以UTF-16的格式储存，每个字符固定为2个字节。
+        // 对于那些需要4个字节储存的字符（Unicode码点大于0xFFFF的字符）
+        // ，JavaScript会认为它们是两个字符。
+        function run1() {
+            console.log('\u{1F680}' === '\uD83D\uDE80');
+            let a='123';
+            console.log(a.codePointAt(1));
+        }
+        //ES6引入了模板字符串
+        function run2(){
+            var dd={
+                data:'es6 template'
+            };
+            var el=document.getElementById('test');
+            el.append(`
+                There are ${dd.data}
+            `);
+        }
+        //tagged template 标签模板
+
+        run1();
+        run2();
+
+    </script>
+
+</body>
+</html>

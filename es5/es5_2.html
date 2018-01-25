@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>es5 对象与原型继承</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+        // function  func(){
+
+        // }
+        // console.log('func.prototype.constructor===func:'+(func.prototype.constructor===func));
+        
+        // var a=new func();
+        // console.log('Object.getPrototypeOf(a)===func.prototype:'+(Object.getPrototypeOf(a)===func.prototype));
+        // console.log('func.prototype.isPrototypeOf(a):'+(func.prototype.isPrototypeOf(a)));
+        // console.log('a.__proto__===func.prototype:'+(a.__proto__===func.prototype));
+
+
+        // console.log('a.hasOwnProperty("constructor"):'+(a.hasOwnProperty('constructor')));
+        
+        // console.log(Object.prototype);
+
+        
+        
+
+
+        // var c={
+
+        // };
+        // console.log(c.__proto__===Object.prototype);
+
+        //增强模块模式 ,闭包，this，私有变量，块作用域
+        (function(){
+            var _age="tt";
+            var _name="jiongrong";
+            var print=function(){
+                return false;
+            };
+            var obj=new Object();
+            obj.country="china";
+            obj.sayAll=function(){
+                console.log(_age+_name+this.country);
+                return print();
+            };
+            window.obj=obj;
+        })(window);
+    
+       console.log(obj.sayAll());
+
+
+      window.onload=function(){
+    //    //ie事件
+    //     (function dd(){
+    //         var tt=document.getElementById('test');
+    //         tt.attachEvent('onclick',function(event){
+    //                 alert('测试');
+    //                console.log(window.event);
+
+    //         });
+    //     })();
+        //chrome
+        (function dd(){
+            var tt=document.getElementById('test');
+            tt.addEventListener('click',function(event){
+                    alert('测试');
+                  console.log(window.event);
+                   console.log(event);
+            },false);
+        })();
+
+        var b=false;
+       alert(b!=null&&1);
+
+       console.log(!null);
+
+    }
+        
+    
+</script>
+</head>
+<body>
+        <span id="test">点击</span>
+</body>
+</html>
