@@ -1,640 +1,656 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
-<title>Examples</title>
-<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
-<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-<script >
-    /**
- * @class OCXComm
- * ocx控件操作函数
- */
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+	<title>Examples</title>
+	<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	 crossorigin="anonymous"></script>
+	<script>
+		/**
+	 * @class OCXComm
+	 * ocx控件操作函数
+	 */
 
-var OCXComm = function(id,ocxObj)
-{
-	this.id = id;
-	this.ocxObj = ocxObj;
-	this.using = false;
-};
+		var OCXComm = function (id, ocxObj) {
+			this.id = id;
+			this.ocxObj = ocxObj;
+			this.using = false;
+		};
 
-OCXComm.prototype.setUsing = function () {
-    if (this != null) {
-        this.using = true;
-    }
-};
-OCXComm.prototype.setFree = function () {
-    if (this != null) {
-    	this.using = false;
-    }
-};
+		OCXComm.prototype.setUsing = function () {
+			if (this != null) {
+				this.using = true;
+			}
+		};
+		OCXComm.prototype.setFree = function () {
+			if (this != null) {
+				this.using = false;
+			}
+		};
 
-OCXComm.prototype.setOcxObj = function(ocxObj)
-{
-	this.ocxObj = ocxObj;
-};
+		OCXComm.prototype.setOcxObj = function (ocxObj) {
+			this.ocxObj = ocxObj;
+		};
 
-OCXComm.prototype.login = function(platIp,platPort,userName,userPwd)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	var ret = this.ocxObj.Login(platIp,platPort,userName,userPwd);
-	return ret;
-};
+		OCXComm.prototype.login = function (platIp, platPort, userName, userPwd) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			var ret = this.ocxObj.Login(platIp, platPort, userName, userPwd);
+			return ret;
+		};
 
-OCXComm.prototype.getVersion = function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.GetVersion();
-};
+		OCXComm.prototype.getVersion = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.GetVersion();
+		};
 
-OCXComm.prototype.playRealVideo = function(platId,devId,chnId,chnType)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.using = true;
-	var ret = this.ocxObj.PlayRealVideo(platId,devId,chnId,chnType);
-	return ret;
-};
+		OCXComm.prototype.playRealVideo = function (platId, devId, chnId, chnType) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.using = true;
+			var ret = this.ocxObj.PlayRealVideo(platId, devId, chnId, chnType);
+			return ret;
+		};
 
-OCXComm.prototype.closeRealVideo = function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.CloseRealVideo();
-	this.using = false;
-};
+		OCXComm.prototype.closeRealVideo = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.CloseRealVideo();
+			this.using = false;
+		};
 
-//云镜控制
-OCXComm.prototype.pTZControl = function(platId,devId,chnId,chnType,start,res,speed)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	var ret = this.ocxObj.PTZControl(platId,devId,chnId,chnType, start, res, speed);
-	return ret;
-};
+		//云镜控制
+		OCXComm.prototype.pTZControl = function (platId, devId, chnId, chnType, start, res, speed) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			var ret = this.ocxObj.PTZControl(platId, devId, chnId, chnType, start, res, speed);
+			return ret;
+		};
 
-OCXComm.prototype.setPTZPreset = function(platId,devId,chnId,chnType,OperateType,nPresetIndex,sPresetName)//需预设点，流程暂未实现
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	var ret = this.ocxObj.SetPTZPreset(platId,devId,chnId,chnType,OperateType,nPresetIndex,sPresetName);
-	return ret;
-};
+		OCXComm.prototype.setPTZPreset = function (platId, devId, chnId, chnType, OperateType, nPresetIndex, sPresetName)//需预设点，流程暂未实现
+		{
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			var ret = this.ocxObj.SetPTZPreset(platId, devId, chnId, chnType, OperateType, nPresetIndex, sPresetName);
+			return ret;
+		};
 
-//录像播放
-OCXComm.prototype.playRecordVideo = function(szNodeId,sFileID,OperateType,RecordType)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.PlayRecordVideo(szNodeId,sFileID,OperateType,RecordType);
-	this.using = true;
-};
-//录像控制
-OCXComm.prototype.recordPlayCtrl= function(nCtrlType,lParam,hParam)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	return this.ocxObj.RecordPlayCtrl(nCtrlType,lParam,hParam);
-};
+		//录像播放
+		OCXComm.prototype.playRecordVideo = function (szNodeId, sFileID, OperateType, RecordType) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.PlayRecordVideo(szNodeId, sFileID, OperateType, RecordType);
+			this.using = true;
+		};
+		//录像控制
+		OCXComm.prototype.recordPlayCtrl = function (nCtrlType, lParam, hParam) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			return this.ocxObj.RecordPlayCtrl(nCtrlType, lParam, hParam);
+		};
 
-OCXComm.prototype.getPlayProgress= function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	var ret = this.ocxObj.GetPlayProgress();
-	return ret;
-};
+		OCXComm.prototype.getPlayProgress = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			var ret = this.ocxObj.GetPlayProgress();
+			return ret;
+		};
 
-OCXComm.prototype.startLocalRecord= function(sFileName,sBelongtoDomainID,nRecordType)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.StartLocalRecord(sFileName,sBelongtoDomainID,nRecordType);
-};
+		OCXComm.prototype.startLocalRecord = function (sFileName, sBelongtoDomainID, nRecordType) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.StartLocalRecord(sFileName, sBelongtoDomainID, nRecordType);
+		};
 
-OCXComm.prototype.stopLocalRecord= function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.StopLocalRecord();
-};
+		OCXComm.prototype.stopLocalRecord = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.StopLocalRecord();
+		};
 
-//语音监听
-OCXComm.prototype.voiceListening= function(OperateType)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.VoiceListening(OperateType);
-};
+		//语音监听
+		OCXComm.prototype.voiceListening = function (OperateType) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.VoiceListening(OperateType);
+		};
 
-OCXComm.prototype.setListeningVolumn= function(nVol)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.SetListeningVolumn(nVol);
-};
+		OCXComm.prototype.setListeningVolumn = function (nVol) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.SetListeningVolumn(nVol);
+		};
 
-OCXComm.prototype.voiceTalk= function(platId,devId,chnId,chnType,OperateType)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	this.ocxObj.VoiceTalk(platId,devId,chnId,chnType,OperateType);
-};
+		OCXComm.prototype.voiceTalk = function (platId, devId, chnId, chnType, OperateType) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			this.ocxObj.VoiceTalk(platId, devId, chnId, chnType, OperateType);
+		};
 
-//图像抓拍
-OCXComm.prototype.capturePicture= function(sPicPath)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	var ret = this.ocxObj.CapturePicture(sPicPath);
-	return ret;
-};
+		//图像抓拍
+		OCXComm.prototype.capturePicture = function (sPicPath) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			var ret = this.ocxObj.CapturePicture(sPicPath);
+			return ret;
+		};
 
 
 
-//未实现接口
-OCXComm.prototype.queryServiceInfo= function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-};
+		//未实现接口
+		OCXComm.prototype.queryServiceInfo = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+		};
 
-OCXComm.prototype.deviceOperate= function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-};
+		OCXComm.prototype.deviceOperate = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+		};
 
-OCXComm.prototype.setPlanRecord= function()
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-};
+		OCXComm.prototype.setPlanRecord = function () {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+		};
 
-OCXComm.prototype.downloadRecordFile= function(sFileID, sNodeID, nStorageType, nDownloadMode,  nRecordType,  sBelongDomaindID, sFileName, sStartTime)
-{
-	if(this.ocxObj == null)
-	{
-		alert("OCX对象尚未初始化");
-		return false;
-	}
-	var ret = this.ocxObj.DownloadRecordFile(sFileID, sNodeID, nStorageType, nDownloadMode, nRecordType, sBelongDomaindID, sFileName, sStartTime);
-	//alert(sFileName)
-	return ret;
-};
+		OCXComm.prototype.downloadRecordFile = function (sFileID, sNodeID, nStorageType, nDownloadMode, nRecordType, sBelongDomaindID, sFileName, sStartTime) {
+			if (this.ocxObj == null) {
+				alert("OCX对象尚未初始化");
+				return false;
+			}
+			var ret = this.ocxObj.DownloadRecordFile(sFileID, sNodeID, nStorageType, nDownloadMode, nRecordType, sBelongDomaindID, sFileName, sStartTime);
+			//alert(sFileName)
+			return ret;
+		};
 
-OCXComm.prototype.LoginServer = function(platip,platPort,username,pwd){
-	var res = this.ocxObj.LoginServer(platip,platPort,username,pwd);
-	return res;
-};
-
-OCXComm.prototype.getCurrentWinID = function(){
-	var wIndex = this.ocxObj.getCurrentWinID();
-	return wIndex;
-};
-
-OCXComm.prototype.startPicMonitor = function(wIndex,channelNo,param,title){
-	var res = this.ocxObj.startPicMonitor(wIndex,channelNo,param,title,false);
-	return res;
-};
-
-OCXComm.prototype.stopPicMonitor = function(){
-	var wIndex = this.getCurrentWinID();
-	this.ocxObj.stopPicMonitor(wIndex,"",false);
-};
-
-OCXComm.prototype.startPicMonitorForGIS = function(channelNo,title){
-	var res = this.ocxObj.startPicMonitor(-1,channelNo,1,title,true);
-	return res;
-};
-
-OCXComm.prototype.stopPicMonitorForGIS = function(channelNo){
-	this.ocxObj.stopPicMonitor(-1,channelNo,true);
-};
-
-OCXComm.prototype.setScreenMode = function(nSplit){
-	this.ocxObj.setScreenMode(nSplit);
-};
-
-/**
- *指定分屏窗口
- * @param index
- */
-OCXComm.prototype.focusTargetView = function(index){
-	this.ocxObj.focusTargetView(index);
-};
-
-/**
- * 获取当前OCX分屏模式，即分屏数
- */
-OCXComm.prototype.getScreenMode = function(){
-	return this.ocxObj.getScreenMode();
-};
-
-/**
-全屏
-*/
-OCXComm.prototype.setFullScreen = function(flag){
-	this.ocxObj.setFullScreen(flag||true);
-};
-
-/**
-关窗所有窗口
-*/
-OCXComm.prototype.stopAllPicMonitors = function(){
-	this.ocxObj.stopAllPicMonitors();
-};
-
-/**
-时间轴数据查询
-*/
-OCXComm.prototype.queryTimelineData = function(beginTime,endTime,cameraID,flag){
-	this.ocxObj.queryTimelineData(beginTime, endTime, cameraID, flag);
-};
-
-/**
-设备更新通知 
-*/
-OCXComm.prototype.updateDeviceInfo = function(operationCode,deviceID){
-	this.ocxObj.updateDeviceInfo(operationCode,deviceID);
-};
-
-/**
-组织更新通知 
-*/
-OCXComm.prototype.updateOrgInfo = function(operationCode,orgID){
-	try{
-		this.ocxObj.updateOrgInfo(operationCode,orgID);
-	}catch(e){}
-
-};
-
-/**
-*用户更新消息通知
-**/
-OCXComm.prototype.updateUserInfo = function(operationCode,userID){
-	this.ocxObj.updateUserInfo(operationCode,userID);
-};
-
-/**
-*布控更新消息通知
-*/
-OCXComm.prototype.updateSurveyInfo = function(operationCode){
-	this.ocxObj.updateSurveyInfo(operationCode);
-};
-
-
-/**
-*服务更新消息通知
-*/
-OCXComm.prototype.updateServerInfo = function(operationCode,serverID,serverType){
-	this.ocxObj.updateServerInfo(operationCode,serverID,serverType);
-};
-
-/**
-*OCX设置缓存大小
-*/
-OCXComm.prototype.setCacheSize = function(cacheSize){
-	this.ocxObj.setCacheSize(cacheSize);
-};
-
-/**
-*OCX缓冲清空
-*/
-OCXComm.prototype.setCacheCleanInteval = function(cachecleanInteval){
-	this.ocxObj.setCacheCleanInteval(cachecleanInteval);
-};
-
-/**
- * 判断图片下载是否正在进行
- * @param pictureUrlList
- */
-OCXComm.prototype.isDownloading = function(){
-	return this.ocxObj.isDownloading();
-};
-
-/**
- * 批量下载图片
- * @param pictureUrlList
- */
-OCXComm.prototype.downloadPictures = function(pictureUrlList){
-	return this.ocxObj.downloadPictures(pictureUrlList);
-};
-
-/**
- * 取消图片下载
- */
-OCXComm.prototype.cancelDownload = function(){
-	this.ocxObj.cancelDownload();
-};
-
-/**
- * 用户自定义图片保存路径
- */
-OCXComm.prototype.getLocalFolderPath = function(){
-	return this.ocxObj.getLocalFolderPath();
-};
-
-/**
- * 公告新增或更新通知OCX
- */
-OCXComm.prototype.updateNoticeInfo = function(){
-	//传入code，识别为公告通知
-	this.ocxObj.updateNoticeInfo(25);
-};
-
-/**
- * 得到ocx 版本号
- */
-OCXComm.prototype.getVersion = function(){
-	return this.ocxObj.getVersion();
-};
-/**
- * 退出ocx
- */
-OCXComm.prototype.exit = function(){
-	return this.ocxObj.exit();
-};
-/**
- * 功能权限改变处理
- */
-OCXComm.prototype.updateUserRightsInfo=function(operationCode,userID){
-	return this.ocxObj.updateUserRightsInfo(operationCode, userID);
-};
-/**
- * 获取下级域迁移数据
- * @param operationCode
- * @param domainID
- */
-OCXComm.prototype.getDomainInfo=function(operationCode,domainID){
-	this.ocxObj.getDomainInfo(operationCode, domainID);
-};
-/**
- * 下级域组织更新通知
- */
-OCXComm.prototype.updateTreeInfo=function(operationCode,domainID){
-	this.ocxObj.updateTreeInfo(operationCode,domainID);
-};
-OCXComm.prototype.updateDomainInfo=function(operationCode,domainID){
-	this.ocxObj.updateDomainInfo(operationCode,domainID);
-	
-};
-/**
- * 积分阀值更新
- */
-OCXComm.prototype.updateIntegralThreshold=function(operationCode){
-	this.ocxObj.updateIntegralThreshold(operationCode);
-	
-};
-
-/**
- * 区间测速配置
- */
-OCXComm.prototype.addRegionThreshold=function(operationCode,id){ //新增
-	//alert("oper="+operationCode+"id="+id);
-	this.ocxObj.updateRegion(operationCode,  id);
-};
-OCXComm.prototype.modifyRegionThreshold=function(operationCode,id){ //修改
-	//alert("oper="+operationCode+"id="+id);
-	this.ocxObj.updateRegion(operationCode,  id);
-};
-OCXComm.prototype.delRegionThreshold=function(operationCode,id){ //删除
-	//alert("oper="+operationCode+"id="+id);
-	this.ocxObj.updateRegion(operationCode,  id);
-};
-/**
- *告警设置更新 
- */ 
-OCXComm.prototype.updateAlarmSettings=function(operationCode){
-	return this.ocxObj.updateAlarmSettings(operationCode);
-};
-/**
- * 重启设备
- */
-OCXComm.prototype.rebootDevice = function(ipAddr, devicePort, deviceType, username, password,deviceID){
-	this.ocxObj.rebootDevice(ipAddr, devicePort, deviceType, username, password,deviceID);
-};
-/**
- * 恢复出厂设置
- */
-OCXComm.prototype.restoreFactorySettings = function(ipAddr, devicePort, deviceType, username, password,deviceID){
-	this.ocxObj.restoreFactorySettings(ipAddr, devicePort, deviceType, username, password,deviceID);
-};
-/**
- * 红名单更新
- */
-OCXComm.prototype.updateWhiteList = function(operationType,id){
-	this.ocxObj.updateWhiteList(26,operationType,id);
-};
-/**
- * 获取本地图片Size
- */
-OCXComm.prototype.getImageSize = function(imageFilePath){
-	return this.ocxObj.getImageSize(imageFilePath);
-};
-/**
- * 新加布控上报
- */
-OCXComm.prototype.refreshSurvey = function(){
-	this.ocxObj.refreshSurvey(54, -1);
-};
-
-/**
- * 布控告警签收
- */
-OCXComm.prototype.signWantedAlarm = function(msg){
-	this.ocxObj.signWantedAlarm(33,msg);
-};
-
-
-this.hasLogin = false;
-	this.platip = '192.168.12.221';
-	this.platPort = '9001';
-	this.username = 'admin';
-	this.pwd = '21232f297a57a5a743894a0e4a801fc3';
-	this.ocxComm = null;
-	var OCX_VERSION = "1.1.6.21086";
-    //var channelno='${deviceID}'+"$"+('${channelNum}'-1);//通过后台获取
-    var channelno='1042$0';
-    var devname='东向西';
-    
-	var state=0;
-	var flag=true;
-    var num = 0;
-    
-
-    //起始调用
-	$(window).load(function() {
-//初始化OCX
-		this.loadingOCX();
-		if (this.ocxComm) {
-			document.getElementById("player").appendChild(this.ocxComm.ocxObj);
-		}
-		 state=loginMonitorPlat();//登录状态
-	        var i = setInterval(function() {
-	        	num++;
-	            if (state > 0){
-	            	startPicMonitor(channelno,devname);
-	                clearInterval(i);
-	            }else if(num>3){
-	            	alert("未正常连接卡口设备！");
-	            	clearInterval(i);
-	            }
-	        }, 1000);	 		
-	}); 
-
-	//启动视频监控器
-function startPicMonitor(channelNo, title) {
-		currentCameraID = channelNo;
-		if (this.ocxComm) {
-			var wIndex = this.getActiveWindowIndex();
-			var res = this.ocxComm.startPicMonitor(wIndex, channelNo, 1, title);
-		}
-	}	
-
-//加载OCX
-function loadingOCX() {
-	var ocxObject = window.document.createElement("object");
-	ocxObject.width = "100%";
-	ocxObject.height = "100%";
-	ocxObject.classid = "CLSID:E815F406-5CAD-4D50-A400-1309C0158B51";
-	ocxObject.id = "ocx"; // >唯一标识
-	try {
-		this.ocxComm = new OCXComm(ocxObject.id, ocxObject);
-		var ocxVersion = this.ocxComm.getVersion();
-	} catch (e) {
-		this.ocxComm = null;
-		 alert("图片监控控件未安装，请点击右上角的链接下载安装！");
-		OCX_VERSION = null;
-		return;
-	}
-	if (ocxVersion < OCX_VERSION) {// 已经安装的ocx版本过低
-		 alert("图片监控控件版本过旧，请点击右上角的链接下载安装最新版本！");
-	}	
-	this.ocxComm.setScreenMode(1);
-}
-
-//获取登录状态
-function loginMonitorPlat() {	
-	if (!this.hasLogin) {
-		if (this.ocxComm) {
-			var res = this.ocxComm.LoginServer(this.platip, this.platPort, this.username, this.pwd);
-			this.hasLogin = true;
+		OCXComm.prototype.LoginServer = function (platip, platPort, username, pwd) {
+			var res = this.ocxObj.LoginServer(platip, platPort, username, pwd);
 			return res;
-		}					
-	}
-	return 0;
-}
+		};
 
-//停止监控
-function stopPicMonitor() {
-		if (this.ocxComm) {
-			this.ocxComm.stopPicMonitor();			
+		OCXComm.prototype.getCurrentWinID = function () {
+			var wIndex = this.ocxObj.getCurrentWinID();
+			return wIndex;
+		};
+
+		OCXComm.prototype.startPicMonitor = function (wIndex, channelNo, param, title) {
+			var res = this.ocxObj.startPicMonitor(wIndex, channelNo, param, title, false);
+			return res;
+		};
+
+		OCXComm.prototype.stopPicMonitor = function () {
+			var wIndex = this.getCurrentWinID();
+			this.ocxObj.stopPicMonitor(wIndex, "", false);
+		};
+
+		OCXComm.prototype.startPicMonitorForGIS = function (channelNo, title) {
+			var res = this.ocxObj.startPicMonitor(-1, channelNo, 1, title, true);
+			return res;
+		};
+
+		OCXComm.prototype.stopPicMonitorForGIS = function (channelNo) {
+			this.ocxObj.stopPicMonitor(-1, channelNo, true);
+		};
+
+		OCXComm.prototype.setScreenMode = function (nSplit) {
+			this.ocxObj.setScreenMode(nSplit);
+		};
+
+		/**
+		 *指定分屏窗口
+		 * @param index
+		 */
+		OCXComm.prototype.focusTargetView = function (index) {
+			this.ocxObj.focusTargetView(index);
+		};
+
+		/**
+		 * 获取当前OCX分屏模式，即分屏数
+		 */
+		OCXComm.prototype.getScreenMode = function () {
+			return this.ocxObj.getScreenMode();
+		};
+
+		/**
+		全屏
+		*/
+		OCXComm.prototype.setFullScreen = function (flag) {
+			this.ocxObj.setFullScreen(flag || true);
+		};
+
+		/**
+		关窗所有窗口
+		*/
+		OCXComm.prototype.stopAllPicMonitors = function () {
+			this.ocxObj.stopAllPicMonitors();
+		};
+
+		/**
+		时间轴数据查询
+		*/
+		OCXComm.prototype.queryTimelineData = function (beginTime, endTime, cameraID, flag) {
+			this.ocxObj.queryTimelineData(beginTime, endTime, cameraID, flag);
+		};
+
+		/**
+		设备更新通知 
+		*/
+		OCXComm.prototype.updateDeviceInfo = function (operationCode, deviceID) {
+			this.ocxObj.updateDeviceInfo(operationCode, deviceID);
+		};
+
+		/**
+		组织更新通知 
+		*/
+		OCXComm.prototype.updateOrgInfo = function (operationCode, orgID) {
+			try {
+				this.ocxObj.updateOrgInfo(operationCode, orgID);
+			} catch (e) { }
+
+		};
+
+		/**
+		*用户更新消息通知
+		**/
+		OCXComm.prototype.updateUserInfo = function (operationCode, userID) {
+			this.ocxObj.updateUserInfo(operationCode, userID);
+		};
+
+		/**
+		*布控更新消息通知
+		*/
+		OCXComm.prototype.updateSurveyInfo = function (operationCode) {
+			this.ocxObj.updateSurveyInfo(operationCode);
+		};
+
+
+		/**
+		*服务更新消息通知
+		*/
+		OCXComm.prototype.updateServerInfo = function (operationCode, serverID, serverType) {
+			this.ocxObj.updateServerInfo(operationCode, serverID, serverType);
+		};
+
+		/**
+		*OCX设置缓存大小
+		*/
+		OCXComm.prototype.setCacheSize = function (cacheSize) {
+			this.ocxObj.setCacheSize(cacheSize);
+		};
+
+		/**
+		*OCX缓冲清空
+		*/
+		OCXComm.prototype.setCacheCleanInteval = function (cachecleanInteval) {
+			this.ocxObj.setCacheCleanInteval(cachecleanInteval);
+		};
+
+		/**
+		 * 判断图片下载是否正在进行
+		 * @param pictureUrlList
+		 */
+		OCXComm.prototype.isDownloading = function () {
+			return this.ocxObj.isDownloading();
+		};
+
+		/**
+		 * 批量下载图片
+		 * @param pictureUrlList
+		 */
+		OCXComm.prototype.downloadPictures = function (pictureUrlList) {
+			return this.ocxObj.downloadPictures(pictureUrlList);
+		};
+
+		/**
+		 * 取消图片下载
+		 */
+		OCXComm.prototype.cancelDownload = function () {
+			this.ocxObj.cancelDownload();
+		};
+
+		/**
+		 * 用户自定义图片保存路径
+		 */
+		OCXComm.prototype.getLocalFolderPath = function () {
+			return this.ocxObj.getLocalFolderPath();
+		};
+
+		/**
+		 * 公告新增或更新通知OCX
+		 */
+		OCXComm.prototype.updateNoticeInfo = function () {
+			//传入code，识别为公告通知
+			this.ocxObj.updateNoticeInfo(25);
+		};
+
+		/**
+		 * 得到ocx 版本号
+		 */
+		OCXComm.prototype.getVersion = function () {
+			return this.ocxObj.getVersion();
+		};
+		/**
+		 * 退出ocx
+		 */
+		OCXComm.prototype.exit = function () {
+			return this.ocxObj.exit();
+		};
+		/**
+		 * 功能权限改变处理
+		 */
+		OCXComm.prototype.updateUserRightsInfo = function (operationCode, userID) {
+			return this.ocxObj.updateUserRightsInfo(operationCode, userID);
+		};
+		/**
+		 * 获取下级域迁移数据
+		 * @param operationCode
+		 * @param domainID
+		 */
+		OCXComm.prototype.getDomainInfo = function (operationCode, domainID) {
+			this.ocxObj.getDomainInfo(operationCode, domainID);
+		};
+		/**
+		 * 下级域组织更新通知
+		 */
+		OCXComm.prototype.updateTreeInfo = function (operationCode, domainID) {
+			this.ocxObj.updateTreeInfo(operationCode, domainID);
+		};
+		OCXComm.prototype.updateDomainInfo = function (operationCode, domainID) {
+			this.ocxObj.updateDomainInfo(operationCode, domainID);
+
+		};
+		/**
+		 * 积分阀值更新
+		 */
+		OCXComm.prototype.updateIntegralThreshold = function (operationCode) {
+			this.ocxObj.updateIntegralThreshold(operationCode);
+
+		};
+
+		/**
+		 * 区间测速配置
+		 */
+		OCXComm.prototype.addRegionThreshold = function (operationCode, id) { //新增
+			//alert("oper="+operationCode+"id="+id);
+			this.ocxObj.updateRegion(operationCode, id);
+		};
+		OCXComm.prototype.modifyRegionThreshold = function (operationCode, id) { //修改
+			//alert("oper="+operationCode+"id="+id);
+			this.ocxObj.updateRegion(operationCode, id);
+		};
+		OCXComm.prototype.delRegionThreshold = function (operationCode, id) { //删除
+			//alert("oper="+operationCode+"id="+id);
+			this.ocxObj.updateRegion(operationCode, id);
+		};
+		/**
+		 *告警设置更新 
+		 */
+		OCXComm.prototype.updateAlarmSettings = function (operationCode) {
+			return this.ocxObj.updateAlarmSettings(operationCode);
+		};
+		/**
+		 * 重启设备
+		 */
+		OCXComm.prototype.rebootDevice = function (ipAddr, devicePort, deviceType, username, password, deviceID) {
+			this.ocxObj.rebootDevice(ipAddr, devicePort, deviceType, username, password, deviceID);
+		};
+		/**
+		 * 恢复出厂设置
+		 */
+		OCXComm.prototype.restoreFactorySettings = function (ipAddr, devicePort, deviceType, username, password, deviceID) {
+			this.ocxObj.restoreFactorySettings(ipAddr, devicePort, deviceType, username, password, deviceID);
+		};
+		/**
+		 * 红名单更新
+		 */
+		OCXComm.prototype.updateWhiteList = function (operationType, id) {
+			this.ocxObj.updateWhiteList(26, operationType, id);
+		};
+		/**
+		 * 获取本地图片Size
+		 */
+		OCXComm.prototype.getImageSize = function (imageFilePath) {
+			return this.ocxObj.getImageSize(imageFilePath);
+		};
+		/**
+		 * 新加布控上报
+		 */
+		OCXComm.prototype.refreshSurvey = function () {
+			this.ocxObj.refreshSurvey(54, -1);
+		};
+
+		/**
+		 * 布控告警签收
+		 */
+		OCXComm.prototype.signWantedAlarm = function (msg) {
+			this.ocxObj.signWantedAlarm(33, msg);
+		};
+
+
+		this.hasLogin = false;
+		this.platip = '192.168.12.222';
+		this.platPort = '9001';
+		this.username = 'admin';
+		this.pwd = '21232f297a57a5a743894a0e4a801fc3';
+		this.ocxComm = null;
+		var OCX_VERSION = "1.1.6.21086";
+		//var channelno='${deviceID}'+"$"+('${channelNum}'-1);//通过后台获取
+		var channelno = '1042$0';
+		var devname = '东向西';
+
+		var state = 0;
+		var flag = true;
+		var num = 0;
+
+
+		//起始调用
+		$(window).load(function () {
+			//初始化OCX
+			this.loadingOCX();
+			if (this.ocxComm) {
+				document.getElementById("player").appendChild(this.ocxComm.ocxObj);
+			}
+			state = loginMonitorPlat();//登录状态
+			var i = setInterval(function () {
+				num++;
+				if (state > 0) {
+					startPicMonitor(channelno, devname);
+					clearInterval(i);
+				} else if (num > 3) {
+					alert("未正常连接卡口设备！");
+					clearInterval(i);
+				}
+			}, 1000);
+		});
+
+		//启动视频监控器
+		function startPicMonitor(channelNo, title) {
+			currentCameraID = channelNo;
+			if (this.ocxComm) {
+				var wIndex = this.getActiveWindowIndex();
+				var res = this.ocxComm.startPicMonitor(wIndex, channelNo, 1, title);
+			}
 		}
-	}
+
+		//加载OCX
+		function loadingOCX() {
+			var ocxObject = window.document.createElement("object");
+			ocxObject.width = "100%";
+			ocxObject.height = "100%";
+			ocxObject.classid = "CLSID:E815F406-5CAD-4D50-A400-1309C0158B51";
+			ocxObject.id = "ocx"; // >唯一标识
+			ocxObject.addEventListener('OnWantedAlarm', function (data) {
+				console.log(data);
+			});
+			try {
+				this.ocxComm = new OCXComm(ocxObject.id, ocxObject);
+				var ocxVersion = this.ocxComm.getVersion();
+			} catch (e) {
+				this.ocxComm = null;
+				alert("图片监控控件未安装，请点击右上角的链接下载安装！");
+				OCX_VERSION = null;
+				return;
+			}
+			if (ocxVersion < OCX_VERSION) {// 已经安装的ocx版本过低
+				alert("图片监控控件版本过旧，请点击右上角的链接下载安装最新版本！");
+			}
+			this.ocxComm.setScreenMode(1);
+		}
+
+		//获取登录状态
+		function loginMonitorPlat() {
+			if (!this.hasLogin) {
+				if (this.ocxComm) {
+					var res = this.ocxComm.LoginServer(this.platip, this.platPort, this.username, this.pwd);
+					this.hasLogin = true;
+					return res;
+				}
+			}
+			return 0;
+		}
+
+		//停止监控
+		function stopPicMonitor() {
+			if (this.ocxComm) {
+				this.ocxComm.stopPicMonitor();
+			}
+		}
 
 
-function getActiveWindowIndex() {
-	if (this.ocxComm) {
-		return this.ocxComm.getCurrentWinID();
-	}
-	return -1;
-}
+		function getActiveWindowIndex() {
+			if (this.ocxComm) {
+				return this.ocxComm.getCurrentWinID();
+			}
+			return -1;
+		}
+
+		window.unload=function(){
+			if(this.ocxComm){
+				this.stopPicMonitor();
+			}
+		}
+
+	</script>
+	<script type="text/javascript" for="ocx" event="OnWantedAlarm(data)">
+		console.log('scriptOnWantedAlarm');
+		console.log(data);
+		// wantedAlarmInfoCollection.add(data);
+	</script>
+	<script type="text/javascript" for="ocx" event="OnDpAlarm(data)">
+		console.log('scriptOnDpAlarm');
+		console.log(data);
+
+	</script>
+	<script type="text/javascript" for="ocx" event="OnCombinedAlarm(data)">
+		console.log('scriptOnDpAlarmOnCombinedAlarm');
+		console.log(data);
 
 
-//提高性能而已
-var c={};
-(function(window,c){
-    window.a='jiongorng';
-    c.c="xiaoqing";
-})(typeof window!=='undefined'?window:this,c);
+		// 	function OnWantedAlarm(data){
+		// 	console.log(data);
+		// }
 
+		// function OnDpAlarm(data){
+		// 	console.log('OnDpAlarm');
+		// 	console.log(data);
+		// }
 
-console.log(window.a);
-console.log(c.c);
+	</script> -->
+	<script>
+		// setTimeout(function(){
+		// 	debugger
+		// 	document.getElementById("ocx").attachEvent('OnDpAlarm', function (data) {
+		// 	console.log('OnDpAlarm');
+		// 	console.log(data);
+		// 	});
+		// },10000);
 
-var operateObj={
-    name:'jiongrong'
-};
-operateObj.loadingOcx = function () {
-    alert(this.name);
-};
+		window.onload=function(){
+				window.addEventListener('OnDpAlarm',function(){
+				console.log('OnDpAlarm');
+				console.log(data);
+			});
+		};
 
-operateObj.loadingOcx();
+		// $(function () {
+		// 	$('#ocx')[0].attachEvent('OnDpAlarm',function(){
+		// 		console.log('OnDpAlarm');
+		// 		console.log(data);
+		// 	});
+		// });
 
-</script>
-<style>
-    #player{
-        width:400px;
-        height:400px;
-        border: 1px solid #ff0000;
-    }
-</style>
+	</script>
+	<script type="text/javascript" for="ocx" event="CarInfoUpdated(jsonCarInfo)">
+		var car = eval("("+jsonCarInfo+")");//转换为json对象
+		if(channelno==car.cameraId){
+		var row ={
+				captureTime:car.captureTime,
+				carNum:car.carNum,
+				carType:car.carType,
+				carNumColor:car.carNumColor,
+				captureLocation:car.captureLocation,
+				laneNo:car.laneNo,
+				carSpeed:car.carSpeed,
+				carDirect:car.carDirect
+			};
+		console.log('CarInfoUpdated');
+		console.log(JSON.stringify(row));
+ 	}
+</script> 
+	<style>
+		#player {
+			width: 400px;
+			height: 400px;
+			border: 1px solid #ff0000;
+		}
+	</style>
 </head>
+
 <body>
-    <div id="player"></div>
+	<div id="player"></div>
 </body>
+
 </html>
