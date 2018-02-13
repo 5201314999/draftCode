@@ -35,9 +35,34 @@
             cursor: pointer;
         }
     </style>
+            .imgWrapper{
+                position: relative;
+            }
+    
+            #showLogo{
+                width: 180px;
+                height:180px;
+                z-index: 1000;
+                border: 1px solid #eee;
+            }
+            #logo{
+                opacity: 0;
+                position: absolute;
+                left: 0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                z-index: 1500;
+            }
+        </style>
 </head>
 
 <body>
+    <script>
+        "use strict"
+        t = "a";
+        alert(t);    
+   </script>
     <form name="form" id="form" enctype="multipart/form-data">
         <div class="imgWrapper" title="点击上传图片">
             <input type="file" id="logo" name="logo" onChange="logoShow(this.value)"accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
@@ -87,7 +112,7 @@
             return url;
 
         }  
-    </script>
+        </script>
 </body>
 
 </html>

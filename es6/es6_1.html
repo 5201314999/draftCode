@@ -46,6 +46,63 @@
     
 
 
+    // promise 实现ajax 请求操作。
+    const getJSON=function(url){
+        let promise=new Promise((resolved,rejected)=>{
+            var handler=function(){
+                if(this.readyStatus!=4){
+                    return;
+                }
+                if(this.status==200){
+                    resolved(this.response);
+                }
+                else{
+                    rejected(new Error(this.statusText));
+                }
+            }
+            var client=new XMLHttpRequest();
+            client.open('GET',url);
+            client.onreadystatechange=handler();
+            client.responseType='json';
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+        });
+        return promise;
+    }
+
+    getJSON('http://www.baidu.com').then((data)=>{
+        console.log(data);
+    },(data)=>{
+        console.log(data);
+    });
+
+
+    //链式then catch 
+    getJSON('post.js').then(
+        newUrl=>{
+        return getJSON(newUrl);
+    }).then(
+        data=>{console.log('resolved')},
+        data=>{console.log('rejected')};
+    );
+
+
+    //常用写法。
+
+    getJSON('post.js').then(
+        newUrl=>{
+        return getJSON(newUrl);
+    }).then(
+        data=>{console.log('resolved')},
+    ).catch(
+        error=>console.log('error');
+    )
+        
+
+
+
+
+
 
 
 
