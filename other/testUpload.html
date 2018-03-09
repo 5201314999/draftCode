@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>webuploader ie9 上传</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <link href="http://cdn.staticfile.org/webuploader/0.1.5/webuploader.css" type="style/sheet"/>
+    <style>
+       .i-upload-div{
+           border:1px solid red;
+       } 
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.js"></script>
+    <script src="http://cdn.staticfile.org/webuploader/0.1.5/webuploader.js"></script>
+    <script>
+        var obj = {
+            initUploadLoader:function(){
+                if (this.uploader) this.uploader.destroy();
+                this.uploader = WebUploader.create({
+                    auto: false,
+                    swf: "http://cdn.staticfile.org/webuploader/0.1.5/Uploader.swf",
+                    // server: serverUrl + "/vcdp/gis/positionMarkInfo/sysconfig/addNewLogo",
+                    pick: "#logoPicker",
+                    formData: {
+                        logoName: ""
+                    },
+                    accept: {
+                        title: "Images",
+                        extensions: "gif,jpg,jpeg,bmp,png",
+                        mimeTypes: "image/gif,image/jpg,image/jpeg,image/bmp,image/png"
+                    },
+                    fileNumLimit: 1
+                });
+                var that = this;
+                // 当有文件添加进来的时候
+                this.uploader.on("fileQueued", function (file) {
+                    // 创建缩略图
+                    // 如果为非图片文件，可以不用调用此方法。
+                    // thumbnailWidth x thumbnailHeight 为 100 x 100
+                    that.uploader.makeThumb(
+                        file,
+                        function (error, src) {
+                            if (error) {
+                                //   $img.replaceWith("<span>不能预览</span>");
+                                return;
+                            }
+                            that.uploadLogoSrc = src;
+                        },
+                        100,
+                        100
+                    );
+                });
+                //分块发送前触发
+                this.uploader.on("uploadBeforeSend", function (object, data, header) {
+                    data.logoName = that.uploadSystemName;
+                });
+                this.uploader.on(
+                    "uploadSuccess",
+                    function (file, response) {
+                        if (response.state.code === 200) {
+                            this.$Message.success(response.data);
+                            this.setLogo();
+                        } else {
+                            this.$Message.error(response.data);
+                        }
+                    }.bind(this)
+                );
+                // 文件上传失败，显示上传出错。
+                this.uploader.on("uploadError", function (file) {
+                    console.log('uploadError');
+                });
+                this.uploader.on("uploadComplete", function (file) {
+                    that.uploader && that.uploader.reset();
+                });
+            }
+        };
+        window.onload=function(){
+           obj.initUploadLoader();
+        };
+    </script>
+</head>
+
+<body>
+    <div class="i-upload-div">
+        <p>
+          <img :src="uploadLogoSrc" alt="上传图标" />
+        </p>
+        <div id="logoPicker">选择图片</div>
+      </div>
+</body>
+
+</html>
