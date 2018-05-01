@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>闭包closure</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+</head>
+
+<body>
+    <script>
+        // for (var i = 0; i <= 5; i++) {
+        //     (function (i) {
+        //         setTimeout(function timer() {
+        //             console.log(i)
+        //         }, i * 1000)
+        //     })(i)
+        // }
+        //
+        // function a(){
+        //     var name='jiongrong';
+        //     return function(){
+        //         console.log(name);
+        //     }
+        // }
+        // var b=a();
+        // b();
+
+        //模块模式
+
+        var singleton=(function(){
+            var _pivateVal='jiongrong';
+
+            function _privateMethod(){
+              console.log('privateMethod');
+            }
+
+            function a(){
+              console.log('a');
+            }
+            return {
+                publicVal:10,
+                publicMethod:a
+            }
+        })();
+        singleton.publicMethod();
+    </script>
+</body>
+
+</html>

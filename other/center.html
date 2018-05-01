@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直水平居中</title>
+</head>
+<body>
+    <style>
+         .outter1{
+           position: relative;
+           width:400px;
+           height:400px;
+           border:1px solid blue;
+         }
+         /*前提是要知道宽高*/
+         .inner1{
+           position: absolute;
+           width:200px;
+           height:200px;
+           top:50%;
+           left:50%;
+           margin-left:-100px;
+           margin-top:-100px;
+           background: red;
+         }
+    </style>
+    <div class="outter1">
+      <div class="inner1">
+
+      </div>
+    </div>
+
+    <style>
+        .outter2{
+            display: table-cell;
+            width: 300px;
+            height:300px;
+            vertical-align: middle;
+            text-align: center;
+            border:1px solid blue;
+        }
+        .inner2{
+          display: inline-block;
+          width:100px;
+          height:100px;
+          background: red;
+        }
+    </style>
+    <div class="outter2">
+      <span class="inner2">
+
+      </span>
+    </div>
+
+    <style>
+        .outter3{
+          height:300px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border:1px solid blue;
+        }
+        .inner3{
+          /*flex:1;*/
+          width:100px;
+          height:100px;
+          background: red;
+          margin:auto;
+        }
+
+    </style>
+    <div class="outter3">
+      <div class="inner3">
+
+      </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型</title>
+</head>
+<body>
+  <script>
+
+    function Parent(){
+      this.name='parent';
+    }
+
+    function Child(){
+        Parent.apply(this);
+    }
+
+    Child.prototype=Parent.prototype;
+    Child.prototype=new Parent();
+    Child.prototype=Object.
+  </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>3列布局实现方法，（圣杯布局，双飞翼布局思路）</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <style>
+        article{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>头部</header>
+    <style>
+        .layout1 {
+            min-width: 650px;
+        }
+
+        .layout1 section {
+            min-height: 130px;
+        }
+
+        .left {
+            float: left;
+            width: 300px;
+            background: red;
+        }
+
+        .main {
+            position: relative;
+            background: yellow;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+
+        .right {
+            float: right;
+            width: 300px;
+            background: green;
+        }
+    </style>
+    <div class="container layout1">
+        <section class="left">我就看看不说话</section>
+        <section class="right">我就听听不说话</section>
+        <section class="main">
+            <h1>浮动布局</h1>
+            <p>这是浮动布局解决方案这是浮动布局解决方案这是浮动布局解决方案这是浮动布局解决方案这是浮动布局解决方案</p>
+        </section>
+    </div>
+
+    <style>
+        .layout2 {
+            min-height: 130px;
+            position: relative;
+        }
+
+        .layout2-left {
+            position: absolute;
+            left: 0;
+            width: 300px;
+        }
+
+        .layout2-right {
+            position: absolute;
+            right: 0;
+            width: 300px;
+        }
+
+        .layout2-main {
+            position: absolute;
+            left: 300px;
+            right: 300px;
+        }
+    </style>
+    <div class="layout2">
+        <section class="layout2-left">我就看看绝对定位不说话</section>
+        <section class="layout2-main">
+            <h1>绝对定位</h1>
+            <p>这是绝对定位解决方案这是绝对定位解决方案这是绝对定位解决方案这是浮动布局解决方案这是浮动布局解决方案</p>
+        </section>
+        <section class="layout2-right">我就听听绝对定位不说话</section>
+    </div>
+
+    <style>
+        .layout3 {
+            display: flex;
+        }
+
+        .layout3-left {
+            width: 300px;
+            background: red;
+        }
+
+        .layout3-main {
+            background: yellow;
+            flex: 1;
+        }
+
+        .layout3-right {
+            width: 300px;
+            background: green;
+        }
+    </style>
+    <article class="layout3">
+        <section class="layout3-left">我就看看不说话</section>
+        <section class="layout3-main">
+            <h1>flex 布局</h1>
+            <p>flex布局。。。。。。。。。。。。。。。啊1111111111111.11111</p>
+        </section>
+        <section class="layout3-right">我就听听不说话</section>
+    </article>
+
+    <style>
+        .layout4{
+            display:grid;
+            grid-template-rows: 100px;
+            grid-template-columns: 300px auto 300px;
+        }
+        .layout4-left {
+            width: 300px;
+            background: red;
+        }
+
+        .layout4-main {
+            background: yellow;
+        }
+
+        .layout4-right {
+            width: 300px;
+            background: green;
+        }
+    </style>
+    <article class="layout4">
+        <section class="layout4-left">我就看看不说话</section>
+        <section class="layout4-main">
+            <h1>grid 布局</h1>
+            <p>grid 布局。。。。。。。。。。。。。。。啊1111111111111.11111</p>
+        </section>
+        <section class="layout4-right">我就听听不说话</section>
+    </article>
+    <style>
+        .clearfix{
+            background:springgreen;
+        }
+        .clearfix:after{
+            content:'';
+            height:0;
+            display: block;
+            clear: both;
+            visibility: hidden;
+        }
+        .clearfix section{
+            float: left;
+            width:100px;
+            height:100px;
+            background: tomato;
+        }
+    </style>
+    <article class="clearfix">
+        <section>
+
+        </section>
+    </article>
+    <footer>尾部</footer>
+</body>
+</html>

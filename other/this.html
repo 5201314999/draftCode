@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>this demo</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+</head>
+
+<body>
+    <script>
+        function func() {
+            this.name = '11';
+            var a = {
+                name: 'test',
+                copyname: this.name
+            };
+            return a.copyname;
+        }
+
+        //隐式绑定
+        function func1(){
+            function test() {
+                console.log(this.a)
+            }
+
+            var obj = {
+                a: 2,
+                test: test
+            };
+
+            var foo = obj.test;
+
+            var a = 4;
+
+            foo(); // 4
+        }
+
+
+          //new 绑定
+          function Obj(){
+            this.name='gosun';
+          }
+          var obj=new Obj();
+
+          console.log(obj.name);
+
+    </script>
+</body>
+
+</html>
