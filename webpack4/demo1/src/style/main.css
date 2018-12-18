@@ -1,0 +1,13 @@
+@font-face{
+    font-family: 'iconfont';
+    src:url('./font/iconfont.eot') format('eot');
+    font-weight:600;
+    font-style:normal;
+}
+
+body{
+    font-family: 'iconfont';
+    font-size:20px;
+
+    /* background:url('../images/loading.png'); */
+}
