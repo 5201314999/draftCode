@@ -7,14 +7,14 @@ module.exports = {
 
     // JavaScript 执行入口文件
     entry: {
-        app: './src/dynamicawait.js',
+        app: './src/lazyLoad.js',
         // anoter: './src/moduleB.js'
     },
     output: {
         // 把所有依赖的模块合并输出到一个 bundle.js 文件
-        filename: '[name].bundle.js',
+        filename: '[name].[contenthash].bundle.js',
         //非入口chunck 的名称
-        chunkFilename: '[name].bundle.js',
+        chunkFilename: '[name].[contenthash].bundle.js',
         // 输出文件都放到 dist 目录下
         path: path.resolve(__dirname, './dist'),
         // mode：'development',
@@ -71,4 +71,17 @@ module.exports = {
     //         chunks: 'all'
     //     }
     // }
+    //抽离出公共的模块,利用长效缓存
+    optimization:{
+        runtimeChunk:'single',
+        splitChunks:{
+            cacheGroups:{
+                vender:{
+                    test:/[\\/]node_modules[\\/]/,
+                    name:'vendors',
+                    chunks:'all'
+                }
+            }
+        }
+    }
 };
