@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>数组去重</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+        const unique=(arr)=>{
+            arr=Array.from(new Set(arr));
+            arr=[...new Set(arr)];
+            
+        };
+
+        const unique2=(arr)=>{
+           const res=[],temp={};
+           arr.forEach((e,i)=>{
+            if(!temp[e]){
+                temp[e]=e;
+                res.push(e)
+            };
+           });
+           return res;
+        }
+
+        const unique3=(arr) =>{
+            const map=new Map();
+            arr.filter(a=>{return !map.has(a)&&map.set(a,1)});
+        };
+        console.log(unique3([1,2,3,4,5,5,5]));
+        
+       
+    </script>
+</body>
+</html>

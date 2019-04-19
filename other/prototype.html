@@ -1,23 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>原型</title>
+  <meta charset="UTF-8">
+  <title>原型</title>
 </head>
+
 <body>
   <script>
-
-    function Parent(){
-      this.name='parent';
+    
+    function Parent() {
+      this.name = 'parent';
+      this.books=[1,2];
     }
 
-    function Child(){
-        Parent.apply(this);
+    function Child() {
+      Parent.apply(this);
     }
+    Child.prototype=Object.create(Parent);
+  
+    const a=new Child();
+    
+    const b=new Child();
+    
+  
 
-    Child.prototype=Parent.prototype;
-    Child.prototype=new Parent();
-    Child.prototype=Object.
+    // Child.prototype = Parent.prototype;
+    // Child.prototype = new Parent();
+    // Child.prototype.constructor = Child;
+
+    const person = {
+      isHuman: false,
+      printIntroduction: function () {
+        console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+      }
+    };
+
+    const me = Object.create(person);  
+
+    me.name = "Matthew"; // "name" is a property set on "me", but not on "person"
+    me.isHuman = true; // inherited properties can be overwritten
+
+    me.printIntroduction();
+
+
+
   </script>
 </body>
+
 </html>
