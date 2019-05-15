@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>渐变色实现半圆,css 骚操作 clip-path,box-shadow,background</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+    .container{
+        display:flex;
+    }
+    .main{
+        width:400px;
+        height:300px;
+        background:red;
+        margin:auto;
+        border-radius:20px;
+        background:radial-gradient(circle at 50% 160%,#fff 0,#fff 60%,red 60%,red 100%);
+    }
+    .box-shdadow {
+    position: relative;
+    border: 1px solid #000;
+    overflow: hidden;
+    }
+    .box-shdadow::before {
+        content: "";
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        top: 330px;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background: #fff;
+        box-shadow: 0 0 0 200px #000;
+    }
+
+    body {
+  background: linear-gradient(90deg, #fff, #bbb);
+}
+
+div {
+  position: relative;
+  width: 20vw;
+  height: 8vw;
+  margin: 1vw auto;
+  border-radius: 1vmin;
+  overflow: hidden;
+  line-height: 8vw;
+  color: #fff;
+  text-align: center;
+}
+
+.shadow::before {
+  position: absolute;
+  content: "";
+  top: -2vw;
+  left: -2vw;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  box-shadow: 0 0 0 25vw #e91e63;
+  z-index: -1;
+  -webkit-animation: shadowmove 10s infinite;
+          animation: shadowmove 10s infinite;
+}
+
+.shadow2::before {
+  position: absolute;
+  content: "";
+  top: -2vw;
+  left: -2vw;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  box-shadow: 0 0 0 15vw #e91e63;
+  z-index: -1;
+}
+.shadow2::after {
+  position: absolute;
+  content: "";
+  bottom: -2vw;
+  right: -2vw;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  box-shadow: 0 0 0 15vw #e91e63;
+  z-index: -1;
+}
+
+@-webkit-keyframes shadowmove {
+  0% {
+    background: #e91e63;
+    box-shadow: 0 0 0 0 #e91e63;
+  }
+  10% {
+    background: transparent;
+    box-shadow: 0 0 0 0 #e91e63;
+  }
+  50% {
+    background: transparent;
+    box-shadow: 0 0 0 25vw #e91e63;
+  }
+}
+
+@keyframes shadowmove {
+  0% {
+    background: #e91e63;
+    box-shadow: 0 0 0 0 #e91e63;
+  }
+  10% {
+    background: transparent;
+    box-shadow: 0 0 0 0 #e91e63;
+  }
+  50% {
+    background: transparent;
+    box-shadow: 0 0 0 25vw #e91e63;
+  }
+}
+.linear {
+  background-size: 100% 100%;
+  background-image: radial-gradient(circle at 0 0, transparent 0, transparent 2vw, #03A9F5 2vw);
+  background-repeat: no-repeat;
+}
+
+.linear2 {
+  background-size: 70% 70%;
+  background-image: radial-gradient(circle at 100% 100%, transparent 0, transparent 2vw, #03A9F5 2vw), radial-gradient(circle at 0 0, transparent 0, transparent 2vw, #03A9F5 2vw), radial-gradient(circle at 100% 0, transparent 0, transparent 2vw, #03A9F5 2vw), radial-gradient(circle at 0 100%, transparent 0, transparent 2vw, #03A9F5 2vw);
+  background-repeat: no-repeat;
+  background-position: right bottom, left top, right top, left bottom;
+}
+
+
+    
+    
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="main"></div>
+        <div class="box-shdadow"></div>
+    </div>
+<!-- 
+    <div class="shadow">使用阴影的扩散半径实现内切圆角</div>
+    <div class="shadow2">阴影实现缺点，单个标签最多是2边</div>
+    <div class="linear">使用径向渐变实现内切圆角</div>
+    <div class="linear2">径向渐变实现内切圆角可以是4边</div> -->
+
+</body>
+</html>

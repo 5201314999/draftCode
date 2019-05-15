@@ -13,7 +13,6 @@ async function selectAllData() {
 async function getData() {
     let dataList = await selectAllData();
     console.log(dataList);
-
 }
 
 getData();
