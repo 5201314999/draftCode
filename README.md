@@ -1,5 +1,5 @@
 <p align="center">
-    <font size="18" color="#3788ee">basic demo</font>
+    <font size="26" color="#3788ee" fontWeight="600">basic demo</font>
 </p>
 
 ## froward
