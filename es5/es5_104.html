@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>基础js 训练</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script>
+      1;
+      // let A=function(){
+      //     A.a=function(){
+      //         console.log(1);
+      //     }
+      // }
+      // A.a=function(){
+      //     console.log(2);
+      // }
+      // // A.a();
+      // A();
+      // A.a();
+      // A.name='B';
+      // console.log(A.name);
+
+      // 事件循环和任务队列
+      // function A(){
+      //     console.timeEnd('timer');
+      //     console.log(1);
+      // }
+      // function B(){
+      //     console.timeEnd('timer2');
+      // }
+      // console.time('timer');
+      // console.time('timer2');
+      // setTimeout(A,2000);
+
+      // setTimeout(B,4000);
+      // for(let i=2;i<1000;i++){
+      //     console.log(i);
+      // }
+      // console.log();
+
+      //1345672（暂时没完全看懂顺序）
+      // new Promise((resolve,reject)=>{
+      //     console.log(1);
+      //     setTimeout(()=>{
+      //         console.log(2);
+      //     },0);
+      //     resolve();
+      //     new Promise((resolve,reject)=>{
+      //         console.log(3);
+      //         resolve();
+      //     }).then(()=>{
+      //         console.log(4);
+      //     });
+      // }).then(()=>{
+      //     console.log(5);
+      //     new Promise((resolve,reject)=>{
+      //         console.log(6);
+      //         setTimeout(resolve,3000);
+      //     }).then(()=>{
+      //         console.log(7);
+      //     });
+      // });
+
+      // new Promise((resolve,reject)=>{
+      //     console.log(8);
+      //     new Promise((resolve,reject)=>{
+      //         resolve();
+      //     }).then(()=>{
+      //         console.log(9);
+      //     }).then(()=>{
+      //         console.log(10);
+      //     })
+      // })
+
+      //new Promise 是否一定要显式调用resolve,是的, then 返回一个promise 对象
+
+    //   new Promise((resolve,reject)=>{
+    //       console.log(1);
+    //       resolve();
+    //   }).then(()=>{
+    //       console.log(2);
+    //       reject();
+    //   }).then(()=>{
+    //       console.log(3);
+    //   }).catch(err=>{
+    //       console.log(err);
+    //   })
+
+    //   new Promise((resolve, reject) => {
+    //     console.log(1);
+    //     setTimeout(() => {
+    //       console.log(2);
+    //     }, 0);
+      
+    //     new Promise((resolve, reject) => {
+    //       console.log(3);
+    //       resolve();
+    //     })
+    //       .then(() => {
+    //         console.log(4);
+    //       })
+    //       .then(() => {
+    //         console.log(9);
+    //       })
+    //       .then(() => {
+    //         console.log(10);
+    //       })
+    //       .then(() => {
+    //         console.log(11);
+    //       });
+    //     resolve()
+    //   }).then(() => {
+    //     console.log(5);
+    //     new Promise((resolve, reject) => {
+    //       console.log(6);
+    //       resolve();
+    //     })
+    //       .then(() => {
+    //         console.log(7);
+    //       })
+    //       .then(() => {
+    //         console.log(12);
+    //       }).catch(err=>{
+    //           console.error(err);
+    //       })
+    //   });
+
+    // new Promise((resolve) => {
+    //     console.log("1");
+    //     setTimeout(() => {
+    //         resolve(2);
+    //     });
+    // }).then((val) => {
+    //     console.log(val);
+    //     return "3";
+    // }).then((val) => {
+    //     console.log(val);
+    //     return "4";
+    // }).then((val) => {
+    //     console.log(val);
+    // });
+
+    //  var test='a';
+    //  function change(){
+    //    console.log(test);
+    //    var test='b';
+    //    console.log(test);
+    //  }
+    //  change();
+    
+    //10*10 
+    for(var i=0;i<10;i++){
+      setTimeout(()=>{
+        console.log(i)
+      },1000);
+    }
+    // 0-9
+    for(let i=0;i<10;i++){
+      setTimeout(()=>{
+        console.log(i)
+      },1000);
+    }
+    //0-9
+    for(var i=0;i<10;i++){
+      setTimeout(console.log(i),1000);
+    }
+
+
+    // var name="dd";
+    // (function(){
+    //   if(typeof name==='undefined'){
+    //     // var name='goobye';
+    //     console.log(name);
+    //   }
+    //   else{
+    //     console.log('sb'); 
+    //   }
+    // })();
+
+    </script>
+  
+  </head>
+  <body>
+    <!-- //0.5px 图片 -->
+
+    <div class="line">
+
+    </div>
+  </body>
+</html>

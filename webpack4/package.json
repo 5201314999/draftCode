@@ -1,0 +1,33 @@
+{
+  "name": "webpackdemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "example1": "npx webpack --config config/config1.js",
+    "example2": "npx webpack --config config/config2.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  },
+  "browerslist": [
+    "iOS >= 7",
+    "Android >= 4.1",
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

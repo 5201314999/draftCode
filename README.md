@@ -1,7 +1,13 @@
-# draftCode
-只是自己平时测试一些基础知识点的代码收集
+<p align="center">
+    <font size="18" color="#3788ee">basic demo</font>
+</p>
 
-虽然只是一些简单的demo，但是对于复习，回顾只是比较有帮助，webpack 配置 则可以直接拿来复制使用。
+## froward
+help me review or replay
 
+## modules
+* css 
+* es5
+* webpack4 
 
 
