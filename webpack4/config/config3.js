@@ -15,10 +15,28 @@ module.exports = {
   output: {
     filename: "static/js/[name].[contenthash:8].js", 
     path: path.resolve(__dirname, "../dist/example3"), //打包目录
-    publicPath:'/example3', //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example3
+    publicPath:'/example3/', //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example3
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: [
+          // "style-loader",  // css 加入js文件中
+          {
+            loader:MiniCssExtractPlugin.loader,// 单独分离css 文件
+          }, 
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2, //指定css-loader处理前最多可以经过的loader个数,设为1 好像也没区别
+              modules:false,// 是否开启css 模块化
+              sourceMap: process.env.NODE_ENV==='development'?true:false,
+            } 
+          },
+          "postcss-loader", //autoprefixer 
+        ]
+      },
       {
         test: /\.(scss|sass)$/,
         exclude: /node_modules/,
@@ -45,10 +63,42 @@ module.exports = {
           loader:'url-loader',
           options:{
             limit:2000,  //超出的图片默认用file-loader 处理，可以使用其他的loader处理
-            name: '/static/images/[name].[hash:7].[ext]',
+            name: '[name].[hash:7].[ext]',
+            outputPath:'static/images',
           }
         }]
-      }
+      },
+      {
+        test:/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use:[
+          {
+            loader:'url-loader',
+            options:{
+              limit:8000,
+              name:'[name].[hash:7].[ext]',
+              outputPath:'static/media'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'static/fonts/[name].[hash:7].[ext]'
+        }
+      },
+      // {
+      //   use:[
+      //     {
+      //       loader:require.resolve('file-loader'),
+      //       options:{
+      //         name:'static/json'
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   plugins: [

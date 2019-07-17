@@ -1,4 +1,4 @@
-# webpack4 复习
+# webpack4 配置实践
 
 ## example1 html-webpack-plugin 处理
 
@@ -17,5 +17,12 @@
 6. 模块化[可选] 
 7. 响应式单位转化[可选] 
 
-## example3 assets 处理 （简单）
-1. json，img 编译，优化
+## example3 assets 处理
+
+1. json,xml,img,font,video 加载(涉及到pulblicPath 的配置，分根目录和子目录），优化 
+2. 雪碧图合成。 使用场景， 使用图标特别重复的，例如腾讯新闻，网易新闻，悬浮时样式切换
+3. svg 处理
+
+4. 弄清`正则表达式/svg 知识点/字体图标库`，参照 `font/demo_index.html` 说明
+
+`注意` ： json 不需要其他的loader 
