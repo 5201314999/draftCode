@@ -2,6 +2,9 @@
 body{
     display: flex;
     div{
-        background: url('..');
+        width:400px;
+        height:400px;
+        background: url('../assets/img/baoma.jpg') no-repeat ;
+        background-size:100%;
     }
 }

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");  //替代 3.0 e
 const OptimizeCssAssetsPlugin=require("optimize-css-assets-webpack-plugin");  //压缩css
 const path = require("path");
 
-// 掌握 optimization 配置，跟mode 模式有关 ,      理解output publicPath（这点暂时不明白）
+// 掌握 optimization 配置，跟mode 模式有关 ,  publicPath（已明白）
 module.exports = {
   mode: "production",
   entry: {

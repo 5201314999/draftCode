@@ -4,15 +4,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");  //替代 3.0 e
 const OptimizeCssAssetsPlugin=require("optimize-css-assets-webpack-plugin");  //压缩css
 const path = require("path");
 
+ //定义环境变量，实际应读取不同config 文件，
+ process.env.NODE_ENV="development";
+
 module.exports = {
-  mode: "production",
+  mode: process.env.NODE_ENV,
   entry: {
     index: path.resolve(__dirname, "../examples/example3/src/index.js")
   },
   output: {
-    filename: "js/[name].[contenthash:8].js", 
-    path: path.resolve(__dirname, "../dist/example3/static"), //打包目录
-    publicPath:''
+    filename: "static/js/[name].[contenthash:8].js", 
+    path: path.resolve(__dirname, "../dist/example3"), //打包目录
+    publicPath:'/example3', //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example3
   },
   module: {
     rules: [
@@ -28,19 +31,21 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 2, //指定css-loader处理前最多可以经过的loader个数,设为1 好像也没区别
-              modules:false // 是否开启css 模块化
+              modules:false,// 是否开启css 模块化
+              sourceMap: process.env.NODE_ENV==='development'?true:false,
             } 
           },
           "postcss-loader", //autoprefixer 
           "sass-loader"
         ]
-      },{
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         use:[{
           loader:'url-loader',
           options:{
-            limit:2000,
-
+            limit:2000,  //超出的图片默认用file-loader 处理，可以使用其他的loader处理
+            name: '/static/images/[name].[hash:7].[ext]',
           }
         }]
       }
@@ -61,10 +66,10 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].css",  //基于output path
-      chunkFilename: "css/[id].css"  //分片
+      filename: "static/css/[name].css",  //基于output path
+      chunkFilename: "static/css/[id].css"  //分片
     }),
     new OptimizeCssAssetsPlugin() //mode:development 也会起作用
-  ],
-  }
-};
+  ]
+  };
+
