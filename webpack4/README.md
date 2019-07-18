@@ -29,3 +29,10 @@
 `注意` ： json 不需要其他的loader 
 
 遗留，雪碧图使用问题，可以合成，但是@import '~' 报错
+
+## example4 splitchunk 处理
+
+1. js 编译 （babel、ts)
+2. 公共模块识别
+3. 分割
+4. 压缩混淆
