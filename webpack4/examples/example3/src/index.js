@@ -2,7 +2,7 @@ import './style/main.scss';  //路径很重要，不要用 style/ 这种相对�
 
 import video from './assets/media/video.mp4';
 
-import user from './common/user';
+import user from './common/user.json';
 
 import './assets/font/iconfont.css';
 
@@ -18,6 +18,12 @@ vdom.id='example4';
 vdom.src=video;
 
 document.body.appendChild(vdom);
+
+const aa=document.createElement('div');
+vdom.controls=true;
+vdom.id='example5';
+
+document.body.appendChild(aa);
 
 const c=[1];
 console.log(c[1]);
