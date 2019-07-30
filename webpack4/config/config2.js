@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");  //替代 3.0 e
 const OptimizeCssAssetsPlugin=require("optimize-css-assets-webpack-plugin");  //压缩css
 const path = require("path");
 
-// 掌握 optimization 配置，跟mode 模式有关 ,  publicPath（已明白）
+// 掌握 optimization 配置，根据 mode 模式执行不同的优化 ,  publicPath（已明白）
 module.exports = {
   mode: "development",
   entry: {
@@ -65,33 +65,13 @@ module.exports = {
       filename: "static/css/[name].css", 
       chunkFilename: "static/css/[id].css"  //分片
     }),
-    new OptimizeCssAssetsPlugin() //mode:development 也会起作用
+  
   ],
-  // optimization:{
-  //   // minimizer:[
-  //   //   new OptimizeCssAssetsPlugin()
-  //   // ],
-  //   splitChunks: {
-  //     chunks: 'async',
-  //     minSize: 100,
-  //     maxSize: 0,
-  //     minChunks: 1,
-  //     maxAsyncRequests: 5,
-  //     maxInitialRequests: 3,
-  //     automaticNameDelimiter: '~',
-  //     automaticNameMaxLength: 30,
-  //     name: true,
-  //     cacheGroups: {
-  //       vendors: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         priority: -10
-  //       },
-  //       default: {
-  //         minChunks: 2,
-  //         priority: -20,
-  //         reuseExistingChunk: true
-  //       }
-  //     }
-  //   }
-  // }
+  optimization:{
+    minimize:true, //默认production 才为true  
+    minimizer:[
+      new OptimizeCssAssetsPlugin()
+    ]
+
+  }
 };

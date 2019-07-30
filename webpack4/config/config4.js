@@ -16,27 +16,27 @@ const resolve=(pathStr)=>{
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    index: path.resolve(__dirname, "../examples/example4/src/index.js")
+    app: ['@babel/polyfill',path.resolve(__dirname, "../examples/example4/src/index.js")]
   },
   output: {
     filename: "static/js/[name].[contenthash:8].js",
     path: path.resolve(__dirname, "../dist/example4"), //打包目录
-    publicPath: "/example4/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4
+    publicPath: "/example4/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/
   },
   resolve: {
-    extensions: ["js", "json"],
+    extensions: [".js", ".json"], //默认值 
     alias: {
       "@": path.resolve(__dirname, "../examples/example4/src"),
       "@css": path.resolve(__dirname, "../examples/example4/src/style")
     },
-    modules: [path.resolve(__dirname, "../dist/examples/example4/static/ico")]
+    modules: [path.join(__dirname,'..','node_modules'),path.resolve(__dirname, "../dist/examples/example4/static/ico")]
   },
   module: {
     rules: [
-    //   {
-    //     test: /\.js$/,
-    //     use: ["babel-loader"]
-    //   },
+      {
+        test: /\.js$/,
+        use: ["babel-loader"]
+      },
       {
         test: /\.css$/,
         use: [
@@ -164,5 +164,31 @@ module.exports = {
         padding: 4 //每张小图的补白,避免雪碧图中边界部分的bug
       }
     })
-  ]
+  ],
+  //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不是很好，懂80%） ,使用 splitChunk（chunkgrop, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
+  optimization:{
+    sideEffects: false, //是否进行无效模块删除， npm 库可以在package.json 设置 说明该模块是否能被tree -shaking
+    splitChunks:{
+      chunks:'all', //'async' 只作用于异步模块 ，'initial' 对同步模块
+      minSize:30, //合并前模块文件的体积
+      minChunks:1, //最少被引用次数
+      maxAsyncRequests:5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',//自动命名连接符
+      cacheGroups:{
+        vendors:{
+          test:/[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {  //非第三方公共模块
+          minChunks: 2, 
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    },
+    runtimeChunk:{
+      name:'manifest'
+    }
+  }
 };
