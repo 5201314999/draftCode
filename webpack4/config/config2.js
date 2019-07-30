@@ -6,7 +6,7 @@ const path = require("path");
 
 // 掌握 optimization 配置，跟mode 模式有关 ,  publicPath（已明白）
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: {
     index: path.resolve(__dirname, "../examples/example2/src/index.js")
   },
@@ -14,11 +14,11 @@ module.exports = {
     filename: "static/js/[name].[contenthash:8].js", 
     path: path.resolve(__dirname, "../dist/example2"), //打包目录
     publicPath:''
-  },
+  },  
   module: {
     rules: [
       {
-        test: /\.(scss|sass)$/,
+        test: /\.(s(c|a)ss)$/,
         exclude: /node_modules/,
         use: [
           // "style-loader",  // css 加入js文件中
@@ -28,11 +28,19 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              importLoaders: 2, //指定css-loader处理前最多可以经过的loader个数,设为1 好像也没区别
+              importLoaders: 3, //指定css-loader处理前最多可以经过的loader个数,设为1 好像也没区别
               modules:false // 是否开启css 模块化
             } 
           },
-          "postcss-loader", //autoprefixer 
+          'postcss-loader',
+          // {
+          //   loader:'postcss-loader', //autoprefixer
+          //   options:{
+          //     plugins:()=>require('autoprefixer')({
+          //       browsers: ['last 5 version', '>1%', 'ios 7']
+          //     })
+          //   }
+          // }, 
           "sass-loader"
         ]
       }

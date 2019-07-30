@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "example1": "npx webpack --config config/config1.js",
-    "example2": "npx webpack --config config/config2.js",
-    "example3": "npx webpack --config config/config3.js",
-    "example4": "npx webpack --config config/config4.js"
+    "example1": "npx webpack --config config/config1.js && http-server dist",
+    "example2": "npx webpack --config config/config2.js && http-server dist",
+    "example3": "npx webpack --config config/config3.js && http-server dist",
+    "example4": "npx webpack --config config/config4.js && http-server dist"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,7 +33,7 @@
     "webpack-cli": "^3.3.6",
     "webpack-spritesmith": "^1.0.1"
   },
-  "browerslist": [
+  "browserslist": [
     "iOS >= 7",
     "Android >= 4.1",
     "> 1%",
