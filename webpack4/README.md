@@ -58,9 +58,13 @@ yarn `example[number]`   for example, yarn example1
 
 `注意`: 如何兼容不同模块规范,原生支持cjs，兼容AMD 和 ES HARMONY
 
-## example5 自定义loader
+## example5 编写loader
 
 loader支持链式调用，所以开发上需要严格遵循“单一职责”原则，即每个loader只负责自己需要负责的事情：将输入信息进行处理，并输出为下一个loader可识别的格式。
 
 初步写了一个 把tmpl.html 转成js 的loader， 转完之后不知道用来干嘛，从网上学习的，后面再说。汗！
+
+## example6 编写plugin
+
+插件能够 钩入（hook) webpack 触发的关键事件。让用户触及webpack 编译过程。
 

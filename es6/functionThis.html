@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      扩展运算符/arguments 严格访问非严格别名模式下/this 上下文测试题
+    </title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script>
+      // 测试1
+      function sum(...res) {
+        return res.reduce((sum, e) => {
+          return (sum += e);
+        }, 0);
+      }
+      console.log(sum(10, 12, 13));
+      // 测试1
+
+    //   this 函数上下文，哪个对象调用的,区别于执行上下文（函数的信息）
+      // 测试2
+      //严格模式
+      function getA(a) {
+        "use strict";
+        arguments[0] = 15;
+        console.log(a);
+      }
+      //非严格模式
+      function getB(b) {
+        arguments[0] = 15;
+        console.log(b);
+      }
+      getA(1);
+      getB(1);
+      // 测试2
+
+      // 测试3
+      let objA = {
+        whoAmI: function() {
+          return this;
+        }
+      };
+      console.log(`objA.whoAmI()===objA:${objA.whoAmI() === objA}`);
+      let objB = {
+        whoAmI: objA.whoAmI
+      };
+      console.log(`objB.whoAmI()===objB:${objA.whoAmI() === objA}`);
+
+      let identify = objB.whoAmI;
+      console.log(`identify():${identify()}`);
+      console.log(`objB.whoAmI.call(objA):${objB.whoAmI.call(objA) === objA}`);
+      // 测试3
+
+      //测试4
+      function A() {
+        this.whoAmI = () => this;
+      }
+      objA = new A();
+      console.log(`objA.whoAmI()===objA:${objA.whoAmI() === objA}`);
+
+      objB = {
+        whoAmI: objA.whoAmI
+      };
+      console.log(`objB.whoAmI()===objB:${objB.whoAmI() === objB}`); //实际指向objA,箭头函数指向创建时的函数上下文
+      //测试4
+
+      //测试5
+        function A(){
+            this.whoAmI=function(){
+                return this;
+            }.bind(this);
+        }
+        
+        objA=new A();
+        console.log(`objA.whoAmI()===objA:${objA.whoAmI() === objA}`);
+        objB={
+            whoAmI:objA.whoAmI
+        }
+        console.log(`objB.whoAmI()===objB:${objB.whoAmI() === objB}`); //实际指向objA,箭头函数指向创建时的函数上下文
+
+      //测试5
+    </script>
+  </head>
+  <body></body>
+</html>
