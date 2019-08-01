@@ -16,23 +16,33 @@ const resolve=(pathStr)=>{
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    app: ['@babel/polyfill',path.resolve(__dirname, "../examples/example4/src/index.js")]
+    app: [path.resolve(__dirname, "../examples/example5/src/index.js")]
   },
   output: {
     filename: "static/js/[name].[contenthash:8].js",
-    path: path.resolve(__dirname, "../dist/example4"), //打包目录
-    publicPath: "/example4/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/
+    path: path.resolve(__dirname, "../dist/example5"), //打包目录
+    publicPath: "/example5/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example5/
   },
   resolve: {
     extensions: [".js", ".json"], //默认值 
     alias: {
-      "@": path.resolve(__dirname, "../examples/example4/src"),
-      "@css": path.resolve(__dirname, "../examples/example4/src/style")
+      "@": path.resolve(__dirname, "../examples/example5/src"),
+      "@css": path.resolve(__dirname, "../examples/example5/src/style")
     },
-    modules: [path.join(__dirname,'..','node_modules'),path.resolve(__dirname, "../dist/examples/example4/static/ico")]
+    modules: [path.join(__dirname,'..','node_modules'),path.resolve(__dirname, "../dist/examples/example5/static/ico")]
+  },
+  // 用于loader,lib 自己编写的loader
+  resolveLoader:{
+    modules: ['node_modules','lib']
   },
   module: {
     rules: [
+      {
+        test:/\.tpl\.html$/,
+        use:[{
+            loader:"html-template-loader",
+        }]
+      },
       {
         test: /\.js$/,
         use: ["babel-loader"]
@@ -77,7 +87,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        exclude: path.resolve(__dirname, "../examples/example4/src/assets/ico"),
+        exclude: path.resolve(__dirname, "../examples/example5/src/assets/ico"),
         use: [
           {
             loader: "url-loader",
@@ -91,7 +101,7 @@ module.exports = {
       },
       {
         test:/\.svg$/,
-        include:resolve('../examples/example4/src/icons'),
+        include:resolve('../examples/example5/src/icons'),
         use:{
             loader:'svg-sprite-loader',
             options:{
@@ -128,7 +138,7 @@ module.exports = {
       filename: "index.html",
       template: path.resolve(
         __dirname,
-        "../examples/example4/public/index.html"
+        "../examples/example5/public/index.html"
       ),
       minify: {
         removeComments: true,
@@ -143,16 +153,16 @@ module.exports = {
     new OptimizeCssAssetsPlugin(), //mode:development 也会起作用
     new SpritesmithPlugin({
       src: {
-        cwd: path.resolve(__dirname, "../examples/example4/src/assets/ico"),
+        cwd: path.resolve(__dirname, "../examples/example5/src/assets/ico"),
         glob: "*.png" //正则匹配，照着填即可
       },
       //设置导出的sprite图及对应的样式文件，必选项
       target: {
         image: path.resolve(
           __dirname,
-          "../dist/example4/static/img/sprite.png"
+          "../dist/example5/static/img/sprite.png"
         ),
-        css: path.resolve(__dirname, "../dist/example4/static/img/sprite.scss")
+        css: path.resolve(__dirname, "../dist/example5/static/img/sprite.scss")
       },
       //设置sprite.png的引用格式，会自己加入sprite.css的头部
       apiOptions: {

@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      inject:true, //注入js 的控制
+      inject:true, //注入js 位置的控制
       favicon: path.resolve(__dirname, "../examples/example1/src/assets/favicon.ico"), 
       title: "注入标题",  
       filename: "home.html",
@@ -26,9 +26,9 @@ module.exports = {
       ),
       chunks: ["home"],
       minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeComments: true,  //移除注释
+        collapseWhitespace: true, //删除空格
+        removeAttributeQuotes: true //删除html 属性的“”
       }
     }),
     new HtmlWebpackPlugin({

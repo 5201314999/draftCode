@@ -7,7 +7,8 @@
     "example1": "npx webpack --config config/config1.js && http-server dist",
     "example2": "npx webpack --config config/config2.js && http-server dist",
     "example3": "npx webpack --config config/config3.js && http-server dist",
-    "example4": "npx webpack --config config/config4.js && http-server dist"
+    "example4": "npx webpack --config config/config4.js && http-server dist",
+    "example5": "npx webpack --config config/config5.js && http-server dist"
   },
   "dependencies": {
     "throttle-debounce": "^2.1.0"
