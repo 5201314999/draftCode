@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>防抖函数，节流函数的封装测试</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <style>
+        #test {
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.65);
+            color: red;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <input type="text" id="test"> -->
+    <div id="test"></div>
+    <script>
+        'use strict';
+        function throttle(fn, delay) {
+            let lastDate = 0, timeout;
+            let context = this;
+            // console.log(context);
+            return (...args)=> {
+                console.log(args);
+                let nowDate = + new Date();
+                if (nowDate - lastDate >= delay) {
+                    lastDate = nowDate;
+                    fn.apply(context,args);
+                }
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    fn.appl(context,args);
+                }, delay);
+            }
+        }
+        let obj = {
+            funA: function () {
+                let funB=throttle((event,a)=>{
+                    console.log(a);
+                    console.log('借宿');
+                },2000);
+                document.getElementById('test').addEventListener('mousemove',function(){
+                    funB(event,'222');
+                });
+                
+            }
+        }
+        obj.funA();
+    </script>
+
+</body>
+
+</html>

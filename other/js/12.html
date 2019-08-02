@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <style>
+        #test {
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.65);
+            color: red;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="test"></div>
+    <!-- <script>
+            let count=0,timeout;
+            document.getElementById('test').addEventListener('mousemove',()=>{
+                clearTimeout(timeout);
+                timeout=setTimeout(()=>{
+                   document.getElementById('test').innerText=count++;
+                },100);
+            });
+        </script> -->
+    <script>
+        let count = 0, timeout, lastTime = 0, res = '';
+        document.addEventListener('mousemove', throttle(()=>{
+            document.getElementById('test').innerText=res;
+        },1000));
+        function throttle(fn, delay) {
+                let lastTime=0;
+                const now = +new Date();
+                if (now - lastTime > distance) {
+                    lastTime = now;
+                    return fn.apply(cont); 
+                }
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                   return fn;
+                }, delay);
+            }
+    </script>
+</body>
+
+</html>
+
+
+
+// });

@@ -3,20 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>js引擎注册标识符，js 边解析边执行，其实是分2个阶段的，第一个阶段是注册标识符，第2阶段执行</title>
+<title>创建词法环境中，js引擎注册标识符，js 边解析边执行，其实有先扫描的，我一开始理解错了以为是全部注册完再执行，其实let,const 不是，执行到那一句才注册</title>
 <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <script>
-    console.log(bb);
-    console.log(cc);
+    console.log(bb);  //成功
+    console.log(dd); //报错
+    console.log(cc); //报错
     const a=function(){
         console.log('a');
     }
+    function B(){
+        var dd=11;
+    }
     var bb=5;
-    let cc=6;  //注册形参，默认值 ，然后注册函数声明  ，然后注册函数外。let，const ,当前var ， 块时注册块内部let，const ，注册标示符没完全理解
+    let cc;  //注册形参，默认值 ，然后查询函数声明,var 变量，
 
+    
 </script>
 </head>
 <body>

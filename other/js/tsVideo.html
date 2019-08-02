@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+  
+<script type="text/javascript">
+
+var player = jwplayer("player");
+
+player.setup({
+    playlist: './test.ts',
+    controls: false
+});
+
+var playBtn = document.getElementById('play');
+var pauseBtn = document.getElementById('pause');
+
+playBtn.addEventListener('click', function() {
+  player.play(true);
+});
+
+pauseBtn.addEventListener('click', function() {
+  player.pause(true);
+});
+
+</script>
+</head>
+<body>
+    <video controls src="./test.ts" width="300px" height="300px"></video>
+    <video controls src="./MyVideo_2.mp4" width="300px" height="300px"></video>
+    <div class="player-options">
+        <a class="btn md blue" id="play">Play Video</a>
+        <a class="btn md red" id="pause">Pause Video</a>
+      </div>
+</body>
+</html>

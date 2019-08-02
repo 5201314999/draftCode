@@ -1,0 +1,1523 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>富连网 - </title>
+
+<meta name="keywords" content="富连网" />
+<meta name="description" content="富连网 " />
+<meta name="generator" content="Discuz! X3.3" />
+<meta name="author" content="Discuz! Team and Comsenz UI Team" />
+<meta name="copyright" content="2001-2012 Comsenz Inc." />
+<meta name="MSSmartTagsPreventParsing" content="True" />
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<base href="https://szbbs.sznews.com/" /><link rel="stylesheet" type="text/css" href="data/cache/style_3_common.css?x3M" /><script src="static/webjs/jquery-1.8.3.js" type="text/javascript"></script>
+<script type="text/javascript">var STYLEID = '3', STATICURL = 'static/', IMGDIR = 'static/image/common', VERHASH = 'x3M', charset = 'utf-8', discuz_uid = '0', cookiepre = 'EwhU_2132_', cookiedomain = '', cookiepath = '/', showusercard = '1', attackevasive = '', disallowfloat = '', creditnotice = '1|金币|金', defaultstyle = '', REPORTURL = 'aHR0cDovL3N6YmJzLnN6bmV3cy5jb20vcG9ydGFsLnBocA==', SITEURL = 'https://szbbs.sznews.com/', JSPATH = 'static/js/',CSSPATH = 'data/cache/style_', DYNAMICURL = '';</script>
+<script src="static/js/common.js?x3M" type="text/javascript"></script>
+
+<meta name="application-name" content="富连网" />
+<meta name="msapplication-tooltip" content="富连网" />
+<meta name="msapplication-task" content="name=富连网;action-uri=https://szbbs.sznews.com/portal.php;icon-uri=https://szbbs.sznews.com/static/image/common/portal.ico" /><meta name="msapplication-task" content="name=论坛;action-uri=https://szbbs.sznews.com/forum.php;icon-uri=https://szbbs.sznews.com/static/image/common/bbs.ico" />
+<meta name="msapplication-task" content="name=;action-uri=https://szbbs.sznews.com/home.php;icon-uri=https://szbbs.sznews.com/static/image/common/home.ico" /><script src="static/js/portal.js?x3M" type="text/javascript"></script>
+<link rel="stylesheet" href="./template/sznews/style/base.css?x3M" />
+<link rel="stylesheet" href="./template/sznews/style/common.css?x3M" />
+<link rel="stylesheet" href="./template/sznews/style/forum.css?x3M" />
+<!--<script src="./template/sznews/js/jquery-1.8.2.min.js?x3M" type="text/javascript"></script>-->
+
+<!-- 非公共头部 -->
+<script src="./template/sznews/js/footer-img.js?x3M" type="text/javascript"></script>
+<script src="./template/sznews/js/common.js?x3M" type="text/javascript"></script>
+<script src="./template/sznews/js/focus-jt.js?x3M" type="text/javascript"></script>
+<script src="./template/sznews/js/jdt-lt.js?x3M" type="text/javascript"></script>
+<script src="./template/sznews/js/jquery.rightIndex.1.0.js?x3M" type="text/javascript"></script>
+<script src="./template/sznews/js/jquery.toTop.1.0.js?x3M" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+//底部滚动图初始化
+M.footerImg.init();
+//模拟下拉初始化
+M.selected.init();
+//返回顶部
+jQuery('#backbar').toTop({});
+/** 右侧索引滚动 **/
+jQuery('#rightIndex').rightIndex({topEle : jQuery('.forum-l')});
+
+//家庭页情感攻略模块 图片滚动
+M.emotionImg.init({animateTime : 300});
+//论坛 （光影-图画） table数据转ul数据
+/** 焦点图数据填充到结构 **/
+var focusTemplate = [
+,'<div class="f_out" data-type="box">'
+,'<a data-type="link" target="_blank">'
+,'<img data-type="img" />'
+,'<div class="picintro">'
+,'<h2 data-type="title"></h2>'
+,'<p data-type="describe"></p>'
+,'</div>'
+,'<div class="txtbg"></div>'
+,'</a>'
+,'</div>'
+].join('');
+//template为模板，type为焦点图类型
+M.focusTable2Ul.init({template1 : focusTemplate , type : 1});
+/** 焦点图事件绑定 **/
+FeatureList(".f_list2", {
+"onclass": "noopdiv",
+"offclass": "opdiv",
+"pause_on_act": "mouseover",
+"interval": 5000,
+"speed": 5
+  	});
+
+/** 焦点图数据填充到结构 **/
+var boxTemplate = [
+,'<li>'
+,'<a data-type="link" target="_blank">'
+,'<img data-type="img" />'
+,'</a>'
+,'</li>'
+].join(''),
+textTemplate = [
+,'<li>'
+,'<h2 data-type="title">'
+,'<a data-type="link"></a>'
+,'</h2>'
+,'<p data-type="describe"><a target="_blank" class="jy-xqa">详情&gt;&gt;</a></p>'
+,'</li>'
+].join(''),
+icoTemplate = [
+,'<li>'
+,'<img data-type="img" />'
+,'</li>'
+].join('');
+//template为模板，type为焦点图类型
+M.focusTable2Ul.init({template1 : boxTemplate , templateText : textTemplate , templateIco : icoTemplate , type : 3 ,number : 7
+});
+/** 焦点图2事件绑定 **/
+frfocusChange();
+});
+</script>
+</head><body>
+
+<!--/////  首页css start  ///////-->
+<link href="/static/webcss/global.css?x3M" rel="stylesheet" type="text/css"/>
+<link href="/static/webcss/layout.css?x3M" rel="stylesheet" type="text/css"/>
+<!--/////  首页css end  ///////-->
+
+<!--/////  diy-header start  ///////-->
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+
+    
+<!--/////  diy-header  end  ///////-->
+
+
+
+
+
+<!--/////  首页html start  ///////-->
+<style id="diy_style" type="text/css"></style>
+<div class="site-nav">
+    <div class="web clearfix">
+        <div class="y">
+            <style>
+                .site-nav a{
+                    margin-top: 2px; height: 25px;
+                }
+            </style>
+                    </div>
+        <div class="fl">
+            <a href="http://www.sznews.com/" target="_blank">富连网首页</a><em>|</em><a target="_blank" href="http://yuqing.sznews.com">舆情</a><em>|</em><a href="http://www.sznews.com/news/node_11671.htm" target="_blank">评论</a><em>|</em><a href="forum-2657-1.html" target="_blank">活动</a><em>|</em><a target="_blank" href="forum.php?mobile=yes">手机版</a>
+        </div>
+        <div class="fr">
+            <a onclick="setHomepage('');" href="javascript:;">设为首页</a><em>|</em><a target="_blank" href="shortcut.php">推到桌面</a><em>|</em><a onclick="addFavorite('', '富连网论坛');return false;" target="_blank" href="javascript:;">加入收藏</a><em>|</em><a target="_blank" href="https://szbbs.sznews.com/forum.php">栏目地图</a><em>|</em><a target="_blank" href="https://szbbs.sznews.com/forum.php?mod=forumdisplay&amp;fid=182">版务处理</a>
+        </div>
+        <div class="tel fr">
+            报料电话：83518877
+        </div>
+    </div>
+</div>
+<div class="sit-imglist web">
+    <ul class="clearfix">
+        <!--[diy=diyads-1]--><div id="diyads-1" class="area"><div id="frameQGA5Bx" class="cl_frame_bm frame move-span cl frame-1"><div id="frameQGA5Bx_left" class="column frame-1-c"><div id="frameQGA5Bx_left_temp" class="move-span temp"></div><div id="portal_block_1013" class="cl_block_bm block move-span"><div id="portal_block_1013_content" class="dxb_bc"><li>
+            <a href="http://www.sznews.com/zhuanti/node_231324.htm" target="_blank">
+                <img src="data/attachment/block/2c/2c1eaa337d64670b46a318c9eb2235ff.jpg?x3M"/>
+            </a>
+        </li><li>
+            <a href="http://www.sznews.com/zhuanti/node_239622.htm" target="_blank">
+                <img src="data/attachment/block/6b/6b9ab4236c76f08c01ba3303b84150fa.jpg?x3M"/>
+            </a>
+        </li><li>
+            <a href="http://www.sznews.com/zhuanti/node_232644.htm" target="_blank">
+                <img src="data/attachment/block/bc/bc1f4d957db4ff417565acc2230a0308.jpg?x3M"/>
+            </a>
+        </li></div></div></div></div></div><!--[/diy]-->
+    </ul>
+</div>
+
+<div class="header">
+    <div class="web">
+        <div class="clearfix">
+            <a target="_blank" href="" class="logo fl"><img src="https://dev-authority-service.tvflnet.com/images/index_logo.png"/></a>
+
+            <div class="search-box celarfix fl">
+                <form id="scbar_form" method="post" autocomplete="off" onsubmit="searchFocus($('scbar_txt'))" action="/search.php?searchsubmit=yes" target="_blank">
+                    <input type="hidden" name="mod" id="scbar_mod" value="forum" />
+                    <input type="hidden" name="formhash" value="e5342781" />
+                    <input type="hidden" name="srchtype" value="title" />
+                    <input type="hidden" name="srhfid" value="" />
+                    <input type="hidden" name="srhlocality" value="portal::index" />
+                    <label class="clearfix">
+                        <input name="srchtxt" class="text" type="text" id="scbar_txt" value="" placeholder="请输入搜索内容" autocomplete="off" x-webkit-speech speech />
+                    </label>
+                    <button name="searchsubmit" class="submit" type="submit" id="scbar_btn" value="true"></button>
+                </form>
+            </div>
+
+            <div class="Szinformation fr clearfix">
+                <span class="date">
+                    <script type="text/javascript" language="javascript">
+                        <!--
+                        var enabled = 0;
+                        today = new Date();
+                        var day;
+                        var date;
+                        var centry ;
+                        if(today.getDay()==0)     day = "星期日"
+                        if(today.getDay()==1)     day = "星期一"
+                        if(today.getDay()==2)     day = "星期二"
+                        if(today.getDay()==3)     day = "星期三"
+                        if(today.getDay()==4)     day = "星期四"
+                        if(today.getDay()==5)     day = "星期五"
+                        if(today.getDay()==6)     day = "星期六"
+                        centry="";
+                        if  (today.getFullYear()<2000 )  centry = "19" ;
+                        date1 = centry + (today.getFullYear())  + "-" + (today.getMonth() + 1 ) + "-" + today.getDate() + "  " ;
+                        date2 = "" +  day ;
+                        document.write( date1+date2);
+                        -->
+                    </script>
+                </span>
+                <span id="local_city" class="address"></span>
+                <span id="local_weater"></span>
+            </div>
+        </div>
+        <div class="navlistst">
+            <ul class="clearfix">
+                <li>
+                    <a target="_blank" href="/forum.php?mod=guide&amp;view=new" class="cur">最新</a>
+                </li>
+                <li>
+                    <a target="_blank" href="/forum.php?mod=guide&amp;view=digest">精华</a>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=160">我说富连网事</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13674" >社保一点通</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2652" >便民信息站</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13645" >保障房专区</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=2" >图说富连网</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2626" >义工之家</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=195" >法律援助</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13517" >企业园地</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=3" >报料</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=16" >表扬</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=1" >问政</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=5" >交通</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=6" >住房</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=7" >教育</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=11" >医疗</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=13" >治安</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=14" >环保</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=17" >食品 </a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=19" >户籍</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=21" >经济</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=23" >规划</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=476" >政务</a></h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=160&amp;filter=typeid&amp;typeid=8" >职场</a></h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=171">天下事</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1647" >广东论坛</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1646" >纵论天下</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13513" >军事大观</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1918" >时事评论</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=218" >记者在线</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1902" >大学校园</a> </h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=1925">家庭·生活</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2636" >鹏城家事</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1620" >养儿育女</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1621" >美食厨房</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=202" >宠物花草</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1035" >投资理财</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1622" >家居装修</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13518" >养生保健</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1864" >学车用车</a> </h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=174">情感·交友</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=161" >心情故事</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=179" >似水流年</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=180" >友缘天地 </a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13582" >长者乐园</a> </h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=1924">户外·体育</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1861" >户外驴友</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2631" >旅游休闲</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13574" >骑行之友</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2632" >体育运动</a> </h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=1923">摄影·音乐</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=173" >摄影沙龙 </a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=194" >影音贴吧</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=162" >美图一族 </a> </h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=1293">阅读·文艺</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=169" >书香艺趣</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13519" >绘画书法 </a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1652" >历史长河</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1904" >收藏鉴赏</a> </h3>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=1926">娱乐·时尚</a>
+                    <div class="secMenu" >
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13514" >娱乐八卦</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=158" >电脑数码</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1649" >时尚潮流</a> </h3>
+                        <h3><a target="_blank" href="http://game.sznews.com/" >游戏频道</a> </h3>
+
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=196">同乡会馆</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=201" >老乡总版</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1630" >荆楚大地</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1294" >湘聚鹏城</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=198" >潮汕之家</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=199" >客家围屋</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13618" >东北乡亲</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1295" >巴蜀雄风</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1480" >水韵江苏 </a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1310" >钱塘浙江</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1382" >江西客栈</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1575" >八桂广西</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2645" >安徽人家</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=200" >港人聚点</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1306" >彩云之南</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1389" >陕西乡党 </a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13573" >儒雅齐鲁 </a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2665" >河洛中原  </a> </h3>
+
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank" href="forum.php?gid=1921">商务交易</a>
+                    <div class="secMenu">
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1901" >租房售房</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=189" >招聘求职</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=13515" >教育培训</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1619" >二手市场</a> </h3>
+                        <h3><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=1903" >网上超市</a> </h3>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="web mainbody" id="content">
+    <div class="Deepheadlines clearfix">
+        <div class="left fl">
+            <!--[diy=diy2]--><div id="diy2" class="area"><div id="frameTx95Iv" class="cl_frame_bm frame move-span cl frame-1"><div id="frameTx95Iv_left" class="column frame-1-c"><div id="frameTx95Iv_left_temp" class="move-span temp"></div><div id="portal_block_1002" class="cl_block_bm block move-span"><div id="portal_block_1002_content" class="dxb_bc"><div class="commonRotation">
+                <ul><li><a href="thread-3764484-1-1.html" target="_blank"><img src="data/attachment/block/db/db04614fcf2b31f4c7c3d9e090a22bcc.jpg?x3M"><p>富连网蓝</p></a></li><li><a href="thread-3764211-1-1.html" target="_blank"><img src="data/attachment/block/55/55b773b14ef2835781b20cc55f4c94ca.jpg?x3M"><p>公益人像摄影沙龙</p></a></li><li><a href="thread-3760367-1-1.html" target="_blank"><img src="data/attachment/block/a8/a8bd1210696ffb6e3ca8aad6efca373e.jpg?x3M"><p>富连网人才公园随拍</p></a></li><li><a href="thread-3761627-1-1.html" target="_blank"><img src="data/attachment/block/e5/e54320b6ff94657b0b71eb444fe36c90.jpg?x3M"><p>甘孜色达人文</p></a></li><li><a href="thread-3762033-1-1.html" target="_blank"><img src="data/attachment/block/08/083464febe7ad92d6ffd106ac1a92a23.jpg?x3M"><p>富连网文博宫</p></a></li></ul>
+                <div class="commonRotationdot"></div>
+                <span class="commonRotationleft"></span>
+                <span class="commonRotationright"></span>
+            </div></div></div></div></div></div><!--[/diy]-->
+        </div>
+        <div class="right fr">
+            <!--[diy=diysztt]--><div id="diysztt" class="area"><div id="frameJeBmMR" class="cl_frame_bm frame move-span cl frame-1"><div id="frameJeBmMR_left" class="column frame-1-c"><div id="frameJeBmMR_left_temp" class="move-span temp"></div><div id="portal_block_1003" class="cl_block_bm block move-span"><div id="portal_block_1003_content" class="dxb_bc"><dl>
+                <dt>
+                    <a href="thread-3763190-1-1.html" target="_blank"><font style="font-weight: 900;">应立法禁止在公路上乞讨，存严重的安全隐患</font></a>
+                </dt>
+                <dd>
+                    治理：<a href="thread-3744840-1-1.html"target="_blank">[违停一年没人治理的小路] <a href="thread-3757383-1-1.html"target="_blank">[红绿灯如同虚设隐患很大]</a><br>
+效率：<a href="thread-3758955-1-1.html"target="_blank">[东滨路匝道工程延误太久] <a href="thread-3761802-1-1.html"target="_blank">[坂银通道为何还遥遥无期]</a>
+                </dd>
+            </dl><dl>
+                <dt>
+                    <a href="thread-3759683-1-1.html" target="_blank"><font style="font-weight: 900;">把谢师宴摆到成人娱乐场所，这真的合适吗？</font></a>
+                </dt>
+                <dd>
+                    社情：<a href="thread-3744365-1-1.html"target="_blank">[深户孩子为何要抽签上学] <a href="thread-3748765-1-1.html"target="_blank">[公办高中学位越来越紧缺]</a><br>
+声音：<a href="thread-3761076-1-1.html"target="_blank">[大学图书馆谢绝儿童入馆] <a href="thread-3737311-1-1.html"target="_blank">[强烈要求降低普高录取率]</a>
+                </dd>
+            </dl><dl>
+                <dt>
+                    <a href="thread-3759064-1-1.html" target="_blank"><font style="font-weight: 900;">投诉一段坏了四个月的路灯，该去哪里投诉呢</font></a>
+                </dt>
+                <dd>
+                    问政：<a href="thread-3756211-1-1.html"target="_blank">[是谁阻拦了深户夫妻随迁] <a href="thread-3757236-1-1.html"target="_blank">[饭店油烟管排放影响居民]</a><br>
+管理：<a href="thread-3756358-1-1.html"target="_blank">[中英街假货横行无处投诉] <a href="thread-3759310-1-1.html"target="_blank">[恶犬伤人是城市管理短板]</a>
+                </dd>
+            </dl></div></div></div></div></div><!--[/diy]-->
+        </div>
+    </div>
+
+    <div class="CityOfShenzhen clearfix">
+        <div class="left fl">
+            <h3 class="Title clearfix">
+                <img src="/static/webimages/icon2.png"/>
+                富连网城事
+                <span class="more fr"><a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=160" >更多+</a></span>
+            </h3>
+            <!--[diy=diyszcs]--><div id="diyszcs" class="area"><div id="framei0jj44" class="cl_frame_bm frame move-span cl frame-1"><div id="framei0jj44_left" class="column frame-1-c"><div id="framei0jj44_left_temp" class="move-span temp"></div><div id="portal_block_1004" class="cl_block_bm block move-span"><div id="portal_block_1004_content" class="dxb_bc"><div class="listst">
+                <ul><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=1" target="_blank">市政</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3763702" target="_blank">这条梅林的便民路，路灯啥时候可以亮起</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=6" target="_blank">住房</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3764124" target="_blank">来深十年的夫妇，因租不起房而选择离开</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=1" target="_blank">规划</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3762532" target="_blank">富连网的公共饮水设施，应该学习一下重庆</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=0" target="_blank">问政</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3763183" target="_blank">响应号召买新能源汽车，却发现充电很难</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=5" target="_blank">交通</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3763927" target="_blank">1500米的路堵了一个小时，该重新规划了</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=6" target="_blank">住房</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3762783" target="_blank">安置精神残疾问题搞得一地鸡毛，谁的错</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=3" target="_blank"><font color=#CC6699>报料</font></a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3763165" target="_blank">在停车场却被贴罚单？说违停在别的地方</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=0" target="_blank">环境</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3760942" target="_blank">怀疑隔壁公司在偷排废气，该找哪里投诉</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=3" target="_blank"><font color=#CC6699>报料</font></a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3760910" target="_blank">白马里的厕所专门对不在这上班的人收费</a>
+                    </li><li class="clearfix">
+                        <a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=1" target="_blank">关爱</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3760073" target="_blank">这家爱心素菜馆，因合同到期将面临关门</a>
+                    </li></ul>
+            </div></div></div></div></div></div><!--[/diy]-->
+        </div>
+        <div class="middle fl">
+            <h3 class="Title clearfix">
+                <img src="/static/webimages/icon3.png"/>
+                热点话题
+                <span class="more fr"><a target="_blank" href="forum.php?mod=guide&amp;view=hot" >更多+</a></span>
+            </h3>
+            <!--[diy=diyrdht]--><div id="diyrdht" class="area"><div id="framels5Nht" class="cl_frame_bm frame move-span cl frame-1"><div id="framels5Nht_left" class="column frame-1-c"><div id="framels5Nht_left_temp" class="move-span temp"></div><div id="portal_block_1005" class="cl_block_bm block move-span"><div id="portal_block_1005_content" class="dxb_bc"><div class="listst">
+                <ul><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=8"  target="_blank">职场</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3762833" target="_blank">毕业三年总结：学历重要还是能力重要？</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=766"  target="_blank">原创</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3762116" target="_blank">做好眼前的事，珍惜眼前的人，活在当下</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=97"  target="_blank">心语</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3760966" target="_blank">望着那么多套房子，没有一套是属于自己</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=169&filter=typeid&typeid=32"  target="_blank"><font color=blue>诗词</font></a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3762630" target="_blank">自咏：勤动老躯神气爽， 常开笑口杞忧抛</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=98"  target="_blank">随笔</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3762143" target="_blank">梦想有一天回到家乡，修建那村头的小学</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=169&filter=typeid&typeid=32"  target="_blank"><font color=blue>诗词</font></a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3757803" target="_blank">七律：小院婷婷娇玉娘，徘徊月下曼舒张</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=1861&filter=typeid&typeid=375"  target="_blank">驴友游记</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3756925" target="_blank">陪你望九天明月，下湾仔捉蟹和露营</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=1621&filter=typeid&typeid=359"  target="_blank">美食文化</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3758329" target="_blank">潮汕的特色小食，绝对让你不虚此行</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=766"  target="_blank">原创</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3756756" target="_blank">我期待一场倾盆的大雨，消去人间的狂妄</a>
+                    </li><li class="clearfix">
+                        <a href="	forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=97"  target="_blank">心语</a> | 
+                        <a href="	forum.php?mod=viewthread&tid=3759449" target="_blank">在歌声里感叹着人世间亲情的冷漠与凄然</a>
+                    </li></ul>
+            </div></div></div></div></div></div><!--[/diy]-->
+        </div>
+
+
+        <!--////////  登录模块  start  //////-->
+        <div class="right fl">
+            <h3 class="Title">登录窗口</h3>
+            <div class="SignIn">
+                                 <script src="static/js/logging.js?x3M" type="text/javascript"></script>
+                 <form method="post" autocomplete="off" id="lsform" action="member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes" onSubmit="return lsSubmit();">
+                    <span id="return_ls" style="display:none"></span>
+                    <label>
+                        <input id="ls_username" name="username"  class="loginname" type="text" placeholder="用户名"/>
+                    </label>
+                    <label>
+                        <input id="ls_password" name="password"  class="loginmima" type="password" placeholder="" />
+                    </label>
+                    <div class="remember clearfix">
+                        <a target="_blank" href="https://uc.sznews.com:443/default.php?m=forgetpwd" >忘记密码</a>
+                        <label class="check"><input type="checkbox" id="ls_cookietime" name="cookietime" value="2592000">自动登录</label>
+                    </div>
+                    <div class="Btn clearfix">
+                        <input class="loginBt fl" type="submit" value="登  录">
+                        <a target="_blank" href="https://uc.sznews.com:443/default.php?m=reg" ><input class="zhuce fr" type="button" value="注 册"></a>
+                        <input type="hidden" name="quickforward" value="yes" />
+                        <input type="hidden" name="handlekey" value="ls" />
+                    </div>
+                </form>
+                            </div>
+
+            <div class="Interactive">
+                <div class="Titlefriend">
+                                            <span class="t-left">论坛最新动态</span>
+                        <span class="more"><a href="home.php?mod=space&amp;do=home&amp;view=all" target="_blank">更多+</a></span>
+                                        </div>
+                                    <div class="friend_list">
+                                                    <div class="dt"><a href="home.php?mod=space&uid=13342174" target="_blank"    >莱了就是富连网人</a> 回复了 <a href="home.php?mod=space&uid=10340989" target="_blank"   >小仙女脸朝地</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154067&ptid=3764779" target="_blank"   >奇葩家庭打网约车：后排不系安全带，前排男子耍酒疯打坏挡风玻璃</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=13342174" target="_blank"    >莱了就是富连网人</a> 回复了 <a href="home.php?mod=space&uid=13341596" target="_blank"   >无人机</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154062&ptid=3764696" target="_blank"   >登良站D口这些电动车的遮阳棚太吓人了</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=12706900" target="_blank"    >gongash</a> 回复了 <a href="home.php?mod=space&uid=13070885" target="_blank"   >candiceinsz</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154055&ptid=3744365" target="_blank"   >买房十年的深户孩子还要抽签上学！可悲可叹！！！！</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=11259789" target="_blank"    >anp168</a> 回复了 <a href="home.php?mod=space&uid=13341596" target="_blank"   >无人机</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154038&ptid=3764696" target="_blank"   >登良站D口这些电动车的遮阳棚太吓人了</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=13342925" target="_blank"    >阿拉索</a> 发表了新话题</div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=13338098" target="_blank"    >横财神</a> 发表了新话题</div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10841695" target="_blank"    >孖辫妹</a> 回复了 <a href="home.php?mod=space&uid=910330" target="_blank"   >szwtyh</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154018&ptid=3764176" target="_blank"   >万能的网友，这是什么果果啊？</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=11259789" target="_blank"    >anp168</a> 回复了 <a href="home.php?mod=space&uid=13330430" target="_blank"   >一子解双征</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154010&ptid=3663531" target="_blank"   >关于富连网直辖、规划深沪经济走廊的倡议</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10841695" target="_blank"    >孖辫妹</a> 回复了 <a href="home.php?mod=space&uid=13334051" target="_blank"   >liusm</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23154005&ptid=3762536" target="_blank"   >请尊重一下老外</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10841695" target="_blank"    >孖辫妹</a> 回复了 <a href="home.php?mod=space&uid=10105900" target="_blank"   >苏湖热</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153996&ptid=3764124" target="_blank"   >富连网，请让我能租得起房</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=13079060" target="_blank"    >wqc0316</a> 回复了 <a href="home.php?mod=space&uid=13342859" target="_blank"   >wzmaodong</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153993&ptid=3764368" target="_blank"   >富连网的国资泊车位，对外地人来说就是个坑。在不知道富连网泊车规则的情况下，轻易的被交警贴罚单。</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10841695" target="_blank"    >孖辫妹</a> 回复了 <a href="home.php?mod=space&uid=11460135" target="_blank"   >富连网大胡子</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153989&ptid=3761294" target="_blank"   >深南香蜜立交进展缓慢，这是要“烂尾”的节奏么？（市交委已回应）</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10841695" target="_blank"    >孖辫妹</a> 回复了 <a href="home.php?mod=space&uid=910330" target="_blank"   >szwtyh</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153980&ptid=3763396" target="_blank"   >盒马鲜生扩张，岁宝百货即将消失！（岁宝百货已回应）</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10565321" target="_blank"    >wys_sans</a> 回复了 <a href="home.php?mod=space&uid=13308685" target="_blank"   >窜天猴</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153971&ptid=3763119" target="_blank"   >和平里小区幼儿园闲置4年，说是九月开学，现在装修都还没搞完，装修时间这么紧，会不会影响小孩的健康？</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10841695" target="_blank"    >孖辫妹</a> 回复了 <a href="home.php?mod=space&uid=10502278" target="_blank"   >15128208</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153965&ptid=3764398" target="_blank"   >房地产税来袭</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=10628622" target="_blank"    >wsj197</a> 回复了 <a href="home.php?mod=space&uid=10089128" target="_blank"   >sashhg1</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153961&ptid=3760015" target="_blank"   >快来修剪深南大道隔离带的树木吧，严重影响车行安全了（富连网市城管局已回应）</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=12781564" target="_blank"    >bigbobo</a> 回复了 <a href="home.php?mod=space&uid=13341596" target="_blank"   >无人机</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153954&ptid=3764696" target="_blank"   >登良站D口这些电动车的遮阳棚太吓人了</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=11259789" target="_blank"    >anp168</a> 回复了 <a href="home.php?mod=space&uid=10165228" target="_blank"   >sz_lwm2008</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153953&ptid=3763807" target="_blank"   >买房承担公摊面积合理吗？专家：应推广套内面积</a></div>
+                                                    <div class="dt"><a href="home.php?mod=space&uid=12781564" target="_blank"    >bigbobo</a> 回复了 <a href="home.php?mod=space&uid=10409446" target="_blank"   >szoy</a> 的话题 <a href="forum.php?mod=redirect&goto=findpost&pid=23153940&ptid=3764320" target="_blank"   >如果楼市再下一道猛药怎么样?那吃这螃蟹吗?</a></div>
+                                            </div>
+                            </div>
+        </div>
+        <!--////////  登录模块  end  //////-->
+
+    </div>
+
+    <div class="sit-imglist2">
+        <ul class="clearfix">
+            <!--[diy=diyads-2]--><div id="diyads-2" class="area"><div id="framei6B3E7" class="cl_frame_bm frame move-span cl frame-1"><div id="framei6B3E7_left" class="column frame-1-c"><div id="framei6B3E7_left_temp" class="move-span temp"></div><div id="portal_block_1014" class="cl_block_bm block move-span"><div id="portal_block_1014_content" class="dxb_bc"><li>
+            <a href="http://www.sznews.com/zhuanti/node_183966.htm" target="_blank">
+                <img src="data/attachment/block/42/422cc3e33087d85fff2191c1fc2bb65b.jpg?x3M"/>
+            </a>
+        </li><li>
+            <a href="https://szbbs.sznews.com/thread-3598775-1-1.html" target="_blank">
+                <img src="data/attachment/block/84/84f8502f36dae75188e97da52f1a8dab.jpg?x3M"/>
+            </a>
+        </li><li>
+            <a href="http://www.sznews.com/2014/Jubao.html" target="_blank">
+                <img src="data/attachment/block/b4/b4381b90297f2a184eea524cef778d70.jpg?x3M"/>
+            </a>
+        </li></div></div></div></div></div><!--[/diy]-->
+        </ul>
+    </div>
+
+    <div class="TopicCircle item" id="item1">
+        <h3 class="Title clearfix">
+            <img src="/static/webimages/icon4.png"/>
+            话题圈
+            <span class="text">富连网论坛热点话题，点击订阅</span>
+            <span class="more fr"><a target="_blank" href="forum.php?mod=collection&amp;op=all" ><img src="/static/webimages/fabu.png"/>创建属于自己的话题圈</a></span>
+        </h3>
+        <!--[diy=diyhtq]--><div id="diyhtq" class="area"><div id="frameaW3EXH" class="cl_frame_bm frame move-span cl frame-1"><div id="frameaW3EXH_left" class="column frame-1-c"><div id="frameaW3EXH_left_temp" class="move-span temp"></div><div id="portal_block_1006" class="cl_block_bm block move-span"><div id="portal_block_1006_content" class="dxb_bc"> <ul class="clearfix"><li>
+                <a href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=417" target="_blank">
+                    <dl class="imgbox">
+                        <dd><img src="data/attachment/block/35/35992b86a3f38a92421ef7ec0824205d.jpg?x3M"/></dd>
+                    </dl>
+                    <p class="text">相约平安国际金融中心</p>
+                </a>
+                <a class="subscribe"  href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=417" target="_blank">
+                    我要订阅
+                </a>
+            </li><li>
+                <a href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=419" target="_blank">
+                    <dl class="imgbox">
+                        <dd><img src="data/attachment/block/98/983bc0249a73f86219c973cad591b156.jpg?x3M"/></dd>
+                    </dl>
+                    <p class="text">第十届富连网动漫节花絮</p>
+                </a>
+                <a class="subscribe"  href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=419" target="_blank">
+                    我要订阅
+                </a>
+            </li><li>
+                <a href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=402" target="_blank">
+                    <dl class="imgbox">
+                        <dd><img src="data/attachment/block/14/1437831db0a720101fc90f504923965b.jpg?x3M"/></dd>
+                    </dl>
+                    <p class="text">《问政富连网》简报汇总</p>
+                </a>
+                <a class="subscribe"  href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=402" target="_blank">
+                    我要订阅
+                </a>
+            </li><li>
+                <a href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=418&fromop=my" target="_blank">
+                    <dl class="imgbox">
+                        <dd><img src="data/attachment/block/1d/1de50cca4803758f211daeaed43004c3.jpg?x3M"/></dd>
+                    </dl>
+                    <p class="text">富连网晚霞剪影</p>
+                </a>
+                <a class="subscribe"  href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=418&fromop=my" target="_blank">
+                    我要订阅
+                </a>
+            </li><li>
+                <a href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=413&fromop=my" target="_blank">
+                    <dl class="imgbox">
+                        <dd><img src="data/attachment/block/42/42b5097ad849bfe98278b1edde733877.jpg?x3M"/></dd>
+                    </dl>
+                    <p class="text">精致璀璨的富连网夜景</p>
+                </a>
+                <a class="subscribe"  href="https://szbbs.sznews.com/forum.php?mod=collection&action=view&ctid=413&fromop=my" target="_blank">
+                    我要订阅
+                </a>
+            </li></ul></div></div></div></div></div><!--[/diy]-->
+    </div>
+
+    <div class="MovableRing item" id="item2">
+        <h3 class="Title clearfix">
+            <img src="/static/webimages/icon08.png"/>
+            活动圈
+            <a target="_blank" class="text" href="javascript:;"></a>
+            <span class="more fr"><a target="_blank" href="/forum.php?mod=forumdisplay&amp;fid=2657" ><img src="/static/webimages/fabu.png"/>我要发布活动</a></span>
+        </h3>
+                                <ul class="clearfix">
+                                    <li style="height: 215px;">
+                <div class="imgbox">
+                    <a href="thread-3764318-1-1.html" target="_blank">
+                        <img src="http://bbsatt.sznews.com/data/attachment/block/72/7281479fdfb9df0cb71e6066c880281d.jpg?x3M"/>
+                        <p class="text">正佳影城，好片不断！</p>
+                    </a>
+                </div>
+                <div class="Join">
+                    <div class="progress">
+                       <span class="gz">关注度</span>
+                       <span class="views">1527</span>
+                    </div>
+                    <div class="time countdown_3764318" data-time="3764318-1533873600">
+                        结束倒计时：<span class="t_day"></span>
+                    </div>
+                </div>
+            </li>
+                                    <li style="height: 215px;">
+                <div class="imgbox">
+                    <a href="thread-3752048-1-1.html" target="_blank">
+                        <img src="http://bbsatt.sznews.com/data/attachment/block/b6/b6688927bf7a2a367b7bc988a16bd7ae.jpg?x3M"/>
+                        <p class="text">中徳美名家盛典钢琴音乐会</p>
+                    </a>
+                </div>
+                <div class="Join">
+                    <div class="progress">
+                       <span class="gz">关注度</span>
+                       <span class="views">23691</span>
+                    </div>
+                    <div class="time countdown_3752048" data-time="3752048-1534392000">
+                        结束倒计时：<span class="t_day"></span>
+                    </div>
+                </div>
+            </li>
+                                    <li style="height: 215px;">
+                <div class="imgbox">
+                    <a href="thread-3764284-1-1.html" target="_blank">
+                        <img src="http://bbsatt.sznews.com/data/attachment/block/09/09e1d4c421f510d1991b8573626ed2cd.jpg?x3M"/>
+                        <p class="text">管风琴赏析音乐会</p>
+                    </a>
+                </div>
+                <div class="Join">
+                    <div class="progress">
+                       <span class="gz">关注度</span>
+                       <span class="views">809</span>
+                    </div>
+                    <div class="time countdown_3764284" data-time="3764284-1533873600">
+                        结束倒计时：<span class="t_day"></span>
+                    </div>
+                </div>
+            </li>
+                                    <li style="height: 215px;">
+                <div class="imgbox">
+                    <a href="thread-3761163-1-1.html" target="_blank">
+                        <img src="http://bbsatt.sznews.com/data/attachment/block/bf/bf2fa118f62b81fcaec342fba731834e.jpg?x3M"/>
+                        <p class="text">分享家乡美味，免费尝龙眼</p>
+                    </a>
+                </div>
+                <div class="Join">
+                    <div class="progress">
+                       <span class="gz">关注度</span>
+                       <span class="views">78300</span>
+                    </div>
+                    <div class="time countdown_3761163" data-time="3761163-1533441600">
+                        结束倒计时：<span class="t_day"></span>
+                    </div>
+                </div>
+            </li>
+                                    <li style="height: 215px;">
+                <div class="imgbox">
+                    <a href="thread-3761025-1-1.html" target="_blank">
+                        <img src="http://bbsatt.sznews.com/data/attachment/block/23/23e5a5a77d33784000cacd48072c5777.jpg?x3M"/>
+                        <p class="text">管弦乐团赏析音乐会</p>
+                    </a>
+                </div>
+                <div class="Join">
+                    <div class="progress">
+                       <span class="gz">关注度</span>
+                       <span class="views">10315</span>
+                    </div>
+                    <div class="time countdown_3761025" data-time="3761025-1533268800">
+                        结束倒计时：<span class="t_day"></span>
+                    </div>
+                </div>
+            </li>
+                    </ul>
+            </div>
+
+    <div class="ServiceCircle item" id="item3">
+        <h3 class="Title clearfix">
+            <img src="/static/webimages/icon08.png"/>
+            服务圈
+            <a target="_blank" class="text" href="javascript:;"></a>
+            <span class="more fr"><a target="_blank" href="forum.php?gid=174" >更多+</a></span>
+        </h3>
+        <div class="sevicecontent clearfix">
+            <div class="left fl">
+                <ul>
+                    <li class="clearfix">
+                        <div class="imgbox fl">
+                            <!--[diy=diyfwq-1-pic]--><div id="diyfwq-1-pic" class="area"><div id="frameIeMHiY" class="cl_frame_bm frame move-span cl frame-1"><div id="frameIeMHiY_left" class="column frame-1-c"><div id="frameIeMHiY_left_temp" class="move-span temp"></div><div id="portal_block_1009" class="cl_block_bm block move-span"><div id="portal_block_1009_content" class="dxb_bc"><a href="thread-3757925-1-1.html" target="_blank">
+                                <img src="data/attachment/block/f5/f522f48f1b269d2c31c2524678132246.jpg?x3M"/>
+                                <p class="text">8月周末及国庆假期开车去东部记得预约</p>
+                            </a></div></div></div></div></div><!--[/diy]-->
+                        </div>
+                        <div class="toplisit fr">
+                            <!--[diy=diyfwq-1-list]--><div id="diyfwq-1-list" class="area"><div id="frameRWfq1q" class="cl_frame_bm frame move-span cl frame-1"><div id="frameRWfq1q_left" class="column frame-1-c"><div id="frameRWfq1q_left_temp" class="move-span temp"></div><div id="portal_block_1010" class="cl_block_bm block move-span"><div id="portal_block_1010_content" class="dxb_bc"><ul><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=0" target="_blank">便民服务</a>]<a href="thread-3758676-1-1.html" target="_blank">65岁老人在富连网办理港澳通行证全过程</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=2652&filter=typeid&typeid=762" target="_blank">便民服务</a>]<a href="thread-3757980-1-1.html" target="_blank">7月25日起，富连网这些路段会封闭6个月</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=2652&filter=typeid&typeid=762" target="_blank">便民服务</a>]<a href="thread-3757283-1-1.html" target="_blank">8月1日起盐田至南澳轮渡复航，票价50</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=2652&filter=typeid&typeid=497" target="_blank">养老保险</a>]<a href="thread-3754234-1-1.html" target="_blank">八月一日起一代磁条型社保卡停止使用</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=189&filter=typeid&typeid=453" target="_blank">招聘</a>]<a href="thread-3753891-1-1.html" target="_blank">龙岗街道将举办“公共就业宣传周”招聘会</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=2652&filter=typeid&typeid=497" target="_blank">养老保险</a>]<a href="thread-3752064-1-1.html" target="_blank">想要在富连网办理退休就要先拿到入门票</a>
+                                </li></ul></div></div></div></div></div><!--[/diy]-->
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="imgbox fl">
+                            <!--[diy=diyfwq-2-pic]--><div id="diyfwq-2-pic" class="area"><div id="framev2C11I" class="cl_frame_bm frame move-span cl frame-1"><div id="framev2C11I_left" class="column frame-1-c"><div id="framev2C11I_left_temp" class="move-span temp"></div><div id="portal_block_1011" class="cl_block_bm block move-span"><div id="portal_block_1011_content" class="dxb_bc"><a href="thread-3760013-1-1.html" target="_blank">
+                                <img src="data/attachment/block/9b/9b615fbe00423cf0d237505cb3bdf1f5.jpg?x3M"/>
+                                <p class="text">香港港大站美食地圖</p>
+                            </a></div></div></div></div></div><!--[/diy]-->
+                        </div>
+                        <div class="toplisit fr">
+                            <!--[diy=diyfwq-2-list]--><div id="diyfwq-2-list" class="area"><div id="frameIiL9YM" class="cl_frame_bm frame move-span cl frame-1"><div id="frameIiL9YM_left" class="column frame-1-c"><div id="frameIiL9YM_left_temp" class="move-span temp"></div><div id="portal_block_1012" class="cl_block_bm block move-span"><div id="portal_block_1012_content" class="dxb_bc"> <ul><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=160&filter=typeid&typeid=0" target="_blank">社保</a>]<a target="_blank" href="forum.php?mod=viewthread&tid=3761688">今年第二次上调！8月起失业保险金又涨了</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=2652&filter=typeid&typeid=762" target="_blank">便民服务</a>]<a target="_blank" href="forum.php?mod=viewthread&tid=3758646">各区关于新进人才享受租房或生活补贴</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=202&filter=typeid&typeid=205" target="_blank">领养</a>]<a target="_blank" href="forum.php?mod=viewthread&tid=3751863">要出国了，找一个好心人把我家狗狗领养走</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=189&filter=typeid&typeid=453" target="_blank">招聘</a>]<a target="_blank" href="forum.php?mod=viewthread&tid=3762767">2018年南澳失业人员暨高校毕业公益招聘会</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=189&filter=typeid&typeid=453" target="_blank">招聘</a>]<a target="_blank" href="forum.php?mod=viewthread&tid=3754026">7月27日大鹏街道公益性招聘会可免费入场</a>
+                                </li><li>
+                                   [<a href="forum.php?mod=forumdisplay&fid=189&filter=typeid&typeid=453" target="_blank">招聘</a>]<a target="_blank" href="forum.php?mod=viewthread&tid=3756438">华强北赛格广场招电脑学徒，工作经验不限</a>
+                                </li></ul></div></div></div></div></div><!--[/diy]-->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="right fr">
+                <h3 class="title">更多攻略</h3>
+                <ul class="clearfix">
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13674&amp;filter=author&amp;orderby=dateline">
+                            <img src="/static/webimages/icon09.png"/>
+                            <p class="text">社会保险</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13645">
+                            <img src="/static/webimages/icon10.png"/>
+                            <p class="text">保障住房</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=189">
+                            <img src="/static/webimages/icon11.png"/>
+                            <p class="text">招聘求职</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1901">
+                            <img src="/static/webimages/icon12.png"/>
+                            <p class="text">租售房屋</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13515">
+                            <img src="/static/webimages/icon13.png"/>
+                            <p class="text">教育培训</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1619">
+                            <img src="/static/webimages/icon14.png"/>
+                            <p class="text">二手市场</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1903">
+                            <img src="/static/webimages/icon15.png"/>
+                            <p class="text">网上交易</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2652">
+                            <img src="/static/webimages/icon16.png"/>
+                            <p class="text">便民信息</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="Circlefriends item" id="item4">
+        <h3 class="Title clearfix">
+            <img src="/static/webimages/icon17.png"/>
+            摄友圈
+            <span class="text">
+                <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=162" class="cur">美图</a><em>&nbsp;/&nbsp;</em>
+                <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1621">美食</a><em>&nbsp;/&nbsp;</em>
+                <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1861">户外</a><em>&nbsp;/&nbsp;</em>
+                <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2636">生活</a><em>&nbsp;/&nbsp;</em>
+                <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=161">心情</a></span>
+            <span class="more fr"><a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=173" >更多+</a></span>
+        </h3>
+        <div class="Cirlists">
+            <ul class="clearfix">
+                <!--[diy=diysyq-1-list]--><div id="diysyq-1-list" class="area"><div id="frameSO3Go3" class="cl_frame_bm frame move-span cl frame-1"><div id="frameSO3Go3_left" class="column frame-1-c"><div id="frameSO3Go3_left_temp" class="move-span temp"></div><div id="portal_block_1008" class="cl_block_bm block move-span"><div id="portal_block_1008_content" class="dxb_bc"><li>
+    <a href="thread-3763893-1-1.html" target="_blank">
+        <img src="data/attachment/block/34/348a60f9c38fbbdf44a16b2a1556d729.jpg?x3M"/>
+        <p class="mstext">家乡美</p>
+    </a>
+</li><li>
+    <a href="thread-3762134-1-1.html" target="_blank">
+        <img src="data/attachment/block/f9/f9f27e3a70205698b4efa9b2be3e8947.jpg?x3M"/>
+        <p class="mstext">荷塘里捕鱼逗乐的黄苇鳽</p>
+    </a>
+</li><li>
+    <a href="thread-3763682-1-1.html" target="_blank">
+        <img src="data/attachment/block/b5/b50087b4279e2208e402f63d9b105715.jpg?x3M"/>
+        <p class="mstext">走马观花游泰国</p>
+    </a>
+</li><li>
+    <a href="thread-3761208-1-1.html" target="_blank">
+        <img src="data/attachment/block/16/164751dcbca868a599318b9a9b6f609e.jpg?x3M"/>
+        <p class="mstext">大美新疆--喀纳斯</p>
+    </a>
+</li><li>
+    <a href="thread-3763909-1-1.html" target="_blank">
+        <img src="data/attachment/block/a1/a1a549cb58eed1ca3a7101ea62b13f4f.jpg?x3M"/>
+        <p class="mstext">残荷</p>
+    </a>
+</li><li>
+    <a href="thread-3764172-1-1.html" target="_blank">
+        <img src="data/attachment/block/c9/c9f04391918fc87301521d497663425e.jpg?x3M"/>
+        <p class="mstext">小野猫</p>
+    </a>
+</li><li>
+    <a href="thread-3763152-1-1.html" target="_blank">
+        <img src="data/attachment/block/58/58ec29b93cfcab2a31d4d507bb5e1c4c.jpg?x3M"/>
+        <p class="mstext">建筑奇观之悬空寺</p>
+    </a>
+</li><li>
+    <a href="thread-3762564-1-1.html" target="_blank">
+        <img src="data/attachment/block/45/45f4333067cdde598e6638f44261a894.jpg?x3M"/>
+        <p class="mstext">富连网国际物联网博览会</p>
+    </a>
+</li><li>
+    <a href="thread-3759899-1-1.html" target="_blank">
+        <img src="data/attachment/block/b6/b633b37397689f1f40d15ff6de685921.jpg?x3M"/>
+        <p class="mstext">潮汕南澳游</p>
+    </a>
+</li><li>
+    <a href="thread-3762540-1-1.html" target="_blank">
+        <img src="data/attachment/block/77/77e3e63c3d953c7813312411cbbf6f3a.jpg?x3M"/>
+        <p class="mstext">富连网湾的早晨</p>
+    </a>
+</li><li>
+    <a href="thread-3761346-1-1.html" target="_blank">
+        <img src="data/attachment/block/da/da4666d7ece6fb59bd630426c09094df.jpg?x3M"/>
+        <p class="mstext">白云漂浮富连网湾</p>
+    </a>
+</li><li>
+    <a href="thread-3761630-1-1.html" target="_blank">
+        <img src="data/attachment/block/fe/fe2cb3c3d5c8c7cd0aa957a76bb3e595.jpg?x3M"/>
+        <p class="mstext">色达五明佛学院风光</p>
+    </a>
+</li></div></div></div></div></div><!--[/diy]-->
+            </ul>
+        </div>
+    </div>
+
+    <div class="TradeCircle item" id="item5">
+        <h3 class="Title clearfix">
+            <img src="/static/webimages/icon18.png"/>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1619&amp;filter=typeid&amp;typeid=349"> 换客圈</a>
+            <span class="text"><a target="_blank" href="forum-1619-1.html " class="cur">二手圈</a><em>&nbsp;/&nbsp;</em>
+                <a target="_blank" href="forum-1903-1.html">卖客圈</a></span>
+            <span class="more fr"><a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1619&amp;filter=author&amp;orderby=dateline">更多+</a></span>
+        </h3>
+        <ul class="clearfix">
+            <!--[diy=diyhkq]--><div id="diyhkq" class="area"><div id="framewSGAW5" class="frame move-span cl frame-1"><div id="framewSGAW5_left" class="column frame-1-c"><div id="framewSGAW5_left_temp" class="move-span temp"></div><div id="portal_block_1017" class="block move-span"><div id="portal_block_1017_content" class="dxb_bc"><li>
+    <div class="imgbox">
+        <a href="https://szbbs.sznews.com/thread-3761699-1-1.html" target="_blank">
+            <img src="data/attachment/block/11/11f88597facaa0385a01b05a75df0818.jpg?x3M" width="160" height="160" alt="翔羚乳酸菌羊奶粉" />
+            <p class="text">翔羚乳酸菌羊奶粉</p>
+        </a>
+    </div>
+    <div class="money">￥99</div>
+</li><li>
+    <div class="imgbox">
+        <a href="https://szbbs.sznews.com/thread-3759552-1-1.html" target="_blank">
+            <img src="data/attachment/block/21/211215186e0b8e594bca43d44e336bdc.jpg?x3M" width="160" height="160" alt="UH一洗白" />
+            <p class="text">UH一洗白</p>
+        </a>
+    </div>
+    <div class="money">￥80</div>
+</li><li>
+    <div class="imgbox">
+        <a href="https://szbbs.sznews.com/thread-3761603-1-1.html" target="_blank">
+            <img src="data/attachment/block/1c/1c20bd439656c2710bb2c634adfcfcd0.jpg?x3M" width="160" height="160" alt="D&amp;amp;G短裤" />
+            <p class="text">D&amp;G短裤</p>
+        </a>
+    </div>
+    <div class="money">￥ 59</div>
+</li><li>
+    <div class="imgbox">
+        <a href="https://szbbs.sznews.com/thread-3759390-1-1.html" target="_blank">
+            <img src="data/attachment/block/e8/e84fec8c956239635ad40d3ab40d8cca.jpg?x3M" width="160" height="160" alt="菲乐情侣款双肩背包" />
+            <p class="text">菲乐情侣款双肩背包</p>
+        </a>
+    </div>
+    <div class="money">￥ 85</div>
+</li><li>
+    <div class="imgbox">
+        <a href="https://szbbs.sznews.com/thread-3760044-1-1.html" target="_blank">
+            <img src="data/attachment/block/5d/5db061327d363fe4660532fd00d3697e.jpg?x3M" width="160" height="160" alt="Britax儿童安全座椅" />
+            <p class="text">Britax儿童安全座椅</p>
+        </a>
+    </div>
+    <div class="money">￥ 1098</div>
+</li><li>
+    <div class="imgbox">
+        <a href="https://szbbs.sznews.com/thread-3760185-1-1.html" target="_blank">
+            <img src="data/attachment/block/e5/e537e1a4664120fbd0b385c955598997.jpg?x3M" width="160" height="160" alt="TicWatch智能手表" />
+            <p class="text">TicWatch智能手表</p>
+        </a>
+    </div>
+    <div class="money">待询价</div>
+</li></div></div></div></div></div><!--[/diy]-->
+        </ul>
+    </div>
+
+    <div class="sit-imglist3 ">
+        <ul class="clearfix">
+            <!--[diy=diyads-3]--><div id="diyads-3" class="area"><div id="frameb5YyCe" class="cl_frame_bm frame move-span cl frame-1"><div id="frameb5YyCe_left" class="column frame-1-c"><div id="frameb5YyCe_left_temp" class="move-span temp"></div><div id="portal_block_1015" class="cl_block_bm block move-span"><div id="portal_block_1015_content" class="dxb_bc"><li>
+                <a href="https://szbbs.sznews.com/forum-2626-1.html" target="_blank">
+                    <img src="http://bbsatt.sznews.com/data/attachment/portal/201804/01/230538j2d2f7y7zlojtf7t.png">
+                </a>
+            </li><li>
+                <a href="https://szbbs.sznews.com/forum-180-1.html" target="_blank">
+                    <img src="http://bbsatt.sznews.com/data/attachment/portal/201804/01/230911wy3u3hota8oxxaax.png">
+                </a>
+            </li><li>
+                <a href="https://szbbs.sznews.com/forum-1901-1.html" target="_blank">
+                    <img src="http://bbsatt.sznews.com/data/attachment/portal/201804/01/230954e8jjzta7oontn8k7.png">
+                </a>
+            </li></div></div></div></div></div><!--[/diy]-->
+        </ul>
+    </div>
+
+    <div class="WebMap item" id="item6">
+        <h3 class="Title clearfix">
+            <img src="/static/webimages/icon29.png"/>
+            网站地图
+            <span class="more fr"></span>
+        </h3>
+        <div class="part11 ">
+            <div class="club_box"> 
+                <ul class="clearfix">
+    <li class="club_items clearfix">
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=2663">富连网城市</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon19.png"/><img class="img2" src="/static/webimages/icon19ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=160">我说富连网事</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=216">网友俱乐部</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1605">升学助考营</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2626">义工之家</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2657">同城活动</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=1921">商务·交易</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon20.png"/><img class="img2" src="/static/webimages/icon20ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=189">招聘求职</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1901">租房售房</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13517">企业园地</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13515">教育培训</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13517">二手市场</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13515">网上超市</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=1925">家庭·生活</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon21.png"/><img class="img2" src="/static/webimages/icon21ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2636">鹏城家事</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1620">养儿育女</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1621">美食厨房</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=202">宠物花草</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1035">投资理财</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1622">家居装修</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=1923">摄影·音乐</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon22.png"/><img class="img2" src="/static/webimages/icon22ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=173">摄影沙龙 </a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=194">影音贴吧</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=162">美图E族</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=1926">娱乐·时尚</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon23.png"/><img class="img2" src="/static/webimages/icon23ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13514">娱乐八卦 </a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=158">电脑数码</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1649">时尚潮流</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=171">天下·时事</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;" ><img class="img1" src="/static/webimages/icon24.png"/><img class="img2" src="/static/webimages/icon24ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1647">广东论坛</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1646">纵论天下</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=195">法律援助</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=218">记者在线</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=1924">户外·体育</a></h2>
+            <a target="_blank" class="club_logo rotateZ "  href="javascript:;"><img class="img1" src="/static/webimages/icon25.png"/><img class="img2" src="/static/webimages/icon25ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1861">户外驴友</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2631">旅游休闲</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=2632">体育运动</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=174">情感·交友</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon26.png"/><img class="img2" src="/static/webimages/icon26ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=161">心情故事</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=179">似水流年</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=180">友缘天地</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13582">长者乐园</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=1293">文化·艺术</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon27.png"/><img class="img2" src="/static/webimages/icon27ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=169">书香艺趣</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1904">收藏鉴赏</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=13519">绘画书法</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1652">历史长河</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1599">外语交流</a>
+        </div>
+    </li>
+    <li class="club_items clearfix" >
+        <div class="clubs_hd">
+            <h2 class="club_name"><a target="_blank" href="forum.php?gid=196">同乡会馆</a></h2>
+            <a target="_blank" class="club_logo rotateZ " href="javascript:;"><img class="img1" src="/static/webimages/icon28.png"/><img class="img2" src="/static/webimages/icon28ho.png"/></a>
+        </div>
+        <div class="clubs_list clearfix">
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=201">老乡总版</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1630">荆楚大地</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=199">客家围屋</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1294">湘聚鹏城</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1295">巴蜀雄风</a>
+            <a target="_blank" href="forum.php?mod=forumdisplay&amp;fid=1480">水韵江苏</a>
+        </div>
+    </li>
+</ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="sit-imglist3 ">
+        <ul class="clearfix">
+            <!--[diy=diyads-4]--><div id="diyads-4" class="area"><div id="frameiUYp36" class="cl_frame_bm frame move-span cl frame-1"><div id="frameiUYp36_left" class="column frame-1-c"><div id="frameiUYp36_left_temp" class="move-span temp"></div><div id="portal_block_1016" class="cl_block_bm block move-span"><div id="portal_block_1016_content" class="dxb_bc"></div></div></div></div></div><!--[/diy]-->
+        </ul>
+    </div>
+
+    <div class="Webbottom clearfix ">
+        <div class="FriendshipLink fl">
+            <h3 class="Title clearfix">
+                <img src="/static/webimages/icon30.png"/>
+                友情链接
+                <span class="more fr"><a target="_blank" href="javascript:;">更多+</a></span>
+            </h3>
+            <div class="lutlists clearfix">
+                <a target="_blank" href="http://bbs.southcn.com/">南方论坛</a>
+                <a target="_blank" href="http://bbs.66wz.com/">温州论坛</a>
+                <a target="_blank" href="http://bbs.zjol.com.cn">潮鸣论坛</a>
+            </div>
+        </div>
+        <div class="contentus fr">
+            <h3 class="Title clearfix">
+                <img src="/static/webimages/icon31.png"/>
+                联系我们
+                <span class="more fr"><a target="_blank" href="javascript:;">更多+</a></span>
+            </h3>
+            <dl class="clearfix">
+                <dd>
+                    <p><span>电话：</span>0755-83518877</p>
+                    <p><span>传真：</span>0755-83911897</p>
+                    <p><span>邮箱：</span>3372143757@qq.com</p>
+                    <p><span>QQ：</span>3372143757<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=3372143757&amp;site=qq&amp;menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3372143757:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></p>
+                </dd>
+                <dt>
+                    <img src="/static/webimages/icon32.png"/>
+                </dt>
+            </dl>
+            <div class="Toggher clearfix">
+                <a target="_blank" href="https://szbbs.sznews.com/thread-1432344-1-1.html
+">
+                    <img src="/static/webimages/icon33.png"/>
+                    联系合作
+                </a>
+                <a target="_blank" href="https://szbbs.sznews.com/forum.php?mod=forumdisplay&amp;fid=182&amp;filter=type&amp;typeid=510&amp;sflag=
+">
+                    <img src="/static/webimages/icon34.png"/>
+                    意见建议
+                </a>
+                <a target="_blank" href="http://last.sznews.com/application2/application2.asp">
+                    <img src="/static/webimages/icon35.png"/>
+                    特邀主持
+                </a>
+                <a target="_blank" href="http://szbbs.sznews.com/thread-1017375-1-1.html">
+                    <img src="/static/webimages/icon36.png"/>
+                    删贴申请
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="web clearfix">
+        <p class="fl">Copyright © by www.sznews.com All Rights Reserved.</p>
+        <p class="fl"><a target="_blank" href="http://sznews.com/zhuanti/node_46881.htm">&nbsp;&nbsp;关于我们</a> | <a target="_blank" href="http://sznews.com/2016/2016ggjm/2016ggjm.html">深网广告价目</a> | <a target="_blank" href="http://sznews.com/top/lxwm/lxwm.html">联系我们</a> </p>
+        <p class="fr">热线：0755-83518877</p>
+        <p class="fr">备案编号：粤B2-20030128号</p>
+    </div>
+</div>
+<!--分享-->
+<div class="leftShare clearfix" id="shareBox">
+    <a class="right fr" href="javascript:;">分享</a>
+    <div class="left fl bdsharebuttonbox">
+        <a href="javascript:;" class="sharefriend bds_more" data-cmd="more"><img src="/static/webimages/icon42.png"/>分享给朋友</a>
+        <a href="javascript:;" class="erweima bds_weixin" data-cmd="weixin"><img src="/static/webimages/icon43.png"/>二维码分享</a>
+        <a href="javascript:;" class="tentant bds_sqq" data-cmd="sqq"><img src="/static/webimages/icon44.png"/>分享到QQ</a>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+        var t1, t2;
+        $('#shareBox').on('mouseenter', function(e) {
+            t1 = setTimeout(function(){
+                $('#shareBox').animate({'left':'1px'});
+            }, 500);
+            clearTimeout(t2);
+        }).on('mouseleave', function(e) {
+            t2 = setTimeout(function(){
+                $('#shareBox').animate({'left':'-132px'})
+            }, 500);
+            clearTimeout(t1);
+        });
+    });
+</script>
+<div class="rightnemu fr" id="menu" >
+    <div class="TreasureChes" id="portal_menu">
+        <img src="/static/webimages/right1.png"/><p class="text">百宝箱</p>
+        <div id="qmenu_menu" class="p_pop blk" style="display:none;">
+                      <div class="ptm pbw hm">
+              请 <a href="javascript:;" class="xi2" onclick="lsSubmit()"><strong>登录</strong></a> 后使用百宝箱<br />没有帐号？<a href="member.php?mod=register" class="xi2 xw1">注册</a>
+            </div>
+                  </div>
+    </div>
+<script type="text/javascript">
+    <!--
+    jQuery(function () {
+        jQuery("#portal_menu").hover(function () {
+            jQuery("#qmenu_menu").show();
+            jQuery("#qmenu_menu").css({"position":"absolute","z-index":"999999","left":"-130px","top":"63px"});
+        }, function () {
+            jQuery("#qmenu_menu").hide();
+        })
+        
+    });
+    //-->
+</script>
+    <ul class="">
+        <li><a target="_self" href="#item1"><img class="img1" src="/static/webimages/right2.png" /><img class="img2" src="/static/webimages/right2ho.png" /><p class="text">话题圈</p></a></li>
+        <li><a target="_self" href="#item2"><img class="img1" src="/static/webimages/right3.png" /><img class="img2" src="/static/webimages/right3ho.png" /><p class="text">活动圈</p></a></li>
+        <li><a target="_self" href="#item3"><img class="img1" src="/static/webimages/right4.png" /><img class="img2" src="/static/webimages/right4ho.png" /><p class="text">服务圈</p></a></li>
+        <li><a target="_self" href="#item4"><img class="img1" src="/static/webimages/right5.png" /><img class="img2" src="/static/webimages/right5ho.png" /><p class="text">摄友圈</p></a></li>
+        <li><a target="_self" href="#item5"><img class="img1" src="/static/webimages/right6.png" /><img class="img2" src="/static/webimages/right6ho.png" /><p class="text">换客圈</p></a></li>
+        <li><a target="_self" href="#item6"><img class="img1" src="/static/webimages/right7.png" /><img class="img2" src="/static/webimages/right7ho.png" /><p class="text">网站地图</p></a></li>
+    </ul>
+</div>
+<!--/////  首页html end  ///////-->
+
+
+
+<!--///////  diy-footer  start ////////-->
+<!--///////  diy-footer  end ////////-->
+
+
+
+
+
+<!--///////  首页js  start ////////-->
+<script>
+    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<script src="/static/webjs/jquery.cycle.all.js" type="text/javascript" type="text/javascript"></script>
+<script src="/static/webjs/layout.js" type="text/javascript"></script>
+<script>
+    jQuery('.commonRotation ul').cycle({
+        fx : 'scrollHorz',
+        speed : 600,
+        pager:'.commonRotationdot',
+        next:'.commonRotationright',
+        prev:'.commonRotationleft'
+    });
+</script>
+
+<script type="text/javascript">
+var addTimer = function () {
+        var list = [],    
+            interval;     
+    
+        return function (id, time) {     
+            if (!interval)     
+                interval = setInterval(go, 1000);     
+            list.push({ ele: jQuery('.countdown_'+id), time: time });     
+        }     
+    
+        function go() {     
+            for (var i = 0; i < list.length; i++) {
+                jQuery(list[i].ele).children().html(getTimerString(list[i].time ? list[i].time -= 1 : 0)); 
+                if (!list[i].time)     
+                    list.splice(i--, 1);     
+            }     
+        }     
+    
+        function getTimerString(time) {     
+                d = Math.floor(time / 86400),
+                h = Math.floor((time % 86400) / 3600),     
+                m = Math.floor(((time % 86400) % 3600) / 60),     
+                s = Math.floor(((time % 86400) % 3600) % 60);     
+            if (time>0)     
+                return d + "天" + h + "小时" + m + "分";       
+            else return "活动时间已截止";     
+        }     
+    } ();
+
+jQuery(document).ready(function () {
+    jQuery(window).scroll(function () {
+        var top = jQuery(document).scrollTop();
+        var menu = jQuery('#menu');
+        var items = jQuery('#content').find(".item");
+
+        var currentId = "";   //当前滚动条所在楼层的id
+        items.each(function () {
+            var m = jQuery(this);
+            var itemTop = m.offset().top;
+
+            if(top>itemTop-350){
+                currentId = "#" + m.attr('id');
+            }else{
+                return false;
+            }
+        });
+
+        //给相应楼层的a  设置current，取消其他链接的current；
+        var currentLink = menu.find('.cur');
+        if(currentId && currentLink.attr('href') != currentId){
+            currentLink.removeClass('cur');
+            menu.find("[href = " + currentId + "]").addClass('cur');
+        }
+    });
+    jQuery(".time").each(function() {
+        var plugJs = {
+            arr:jQuery(this).attr('data-time').split('-'),
+            stampnow:'1533613748'
+        };
+        if(plugJs.arr[1] == "" || plugJs.arr[1] == 0){
+            jQuery(this).children().html('长期有效');
+        } else {
+            addTimer(plugJs.arr[0], parseInt(plugJs.arr[1])-parseInt(plugJs.stampnow));
+        }
+    });
+});
+</script>
+<!--///////  首页js  end ////////-->
+<div style="display:none;"></div><!--第三方登陆-->
+<style>
+    .login-wrap {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        _position: absolute;
+        z-index: 999;
+    }
+    .login-box {
+        padding: 18px 0 7px;
+        border-top: 1px solid #D2E0B1;
+        border-bottom: 1px solid #D2E0B1;
+        box-shadow: 2px 2px 6px #8CA226;
+        background: #D9E6BB;
+        opacity: 0.9;
+        filter: alpha(opacity=90);
+    }
+    .login-user {
+        position: relative;
+        margin: 0 auto;
+        width: 960px;
+        height: 70px;
+    }
+    .login-title {
+        color: #8CA226;
+        margin-bottom: 14px;
+        margin-right: 10px;
+    }
+    .login-title h3 {
+        margin-top: 3px;
+        height: 30px;
+        font: 400 24px/30px "Microsoft YaHei",SimHei;
+    }
+    .login-title .login-arrow {
+        margin-top: 13px;
+        width: 30px;
+        height: 12px;
+        background: url(static/image/common/icon_common.png) no-repeat 0 0;
+    }
+    .z {
+        float: left;
+    }
+    .login-cont {
+        height: 63px;
+    }
+    .login-title, .login-cont, .login-ft {
+        display: inline;
+        position: relative;
+    }
+    .box-close {
+        top: 10px;
+        padding-top: 19px;
+        width: 20px;
+        background: url(static/image/common/icon_common.png) no-repeat 0 -12px;
+    }
+    .close {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+        padding-top: 15px;
+        width: 15px;
+        height: 0;
+        overflow: hidden;
+        z-index: 9;
+        cursor: pointer;
+    }
+    input, button, select, textarea {
+        outline: none;
+    }
+    input, select, textarea {
+        font-size: 100%;
+    }
+    .login-cont li {
+        display: inline;
+        float: left;
+        margin-right: 10px;
+        height: 80px;
+        overflow: hidden;
+    }
+    ul li, .xl li {
+        list-style: none;
+    }
+    .login-cont .login-item {
+        color: #666;
+        clear: both;
+    }
+    label {
+        cursor: pointer;
+    }
+    .login-cont .login-item input {
+        margin-top: -2px;
+    }
+    .login-cont .txt {
+        float: left;
+        margin-bottom: 10px;
+        width: 130px;
+        height: 25px;
+        line-height: 25px;
+        color: #999;
+        font-size: 14px;
+        zoom: 1;
+    }
+    .login-user .txt {
+        padding: 3px;
+        border: 1px solid #D8D8D8;
+        color: #333;
+    }
+    .login-cont .login-button, .login-cont .login-button:visited {
+        display: block;
+        float: left;
+        width: 64px;
+        color: #fff;
+        border: 1px solid #b9c97d;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        height: 33px;
+        line-height: 33px;
+        margin-right: 10px;
+        text-align: center;
+        background: #7f9c14;
+        background: -moz-linear-gradient(top,#abbf42,#8ea423);
+        background: -webkit-linear-gradient(top,#abbf42,#8ea423);
+    }
+    input, button, select, textarea {
+        outline: none;
+    }
+    .login-shortcut .account-qq, .login-shortcut .account-sina, .login-shortcut .account-taobao, .login-shortcut .account-qihoo {
+        float: left;
+        margin: 3px 10px 0 0;
+        padding-top: 24px;
+        width: 24px;
+        height: 0;
+        background: url(static/image/common/icon_common.png) 0 -50px no-repeat;
+        overflow: hidden;
+    }
+    .login-user a, .login-user a:visited {
+         color: #666;
+     }
+    .login-user .txt{background:#fff;}
+
+</style>
+<div id="J_loginGuide" class="login-wrap">
+    <div class="login-box">
+        <div class="login-user cl">
+            <div class="login-title z cl">
+                <h3 class="z">逛了这么久，何不进去聊聊？</h3>
+                <span class="login-arrow z"></span>
+            </div>
+            <div class="login-cont z">
+                <form method="post" action="member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes">
+                    <input name="formhash" value="e5342781" type="hidden">
+                    <input name="quickforward" value="yes" type="hidden">
+                    <input name="handlekey" value="ls" type="hidden">
+                    <ul>
+                        <li>
+                            <input id="username_" name="username" class="txt" tabindex="1" placeholder="输入用户名" type="text">
+                            <div class="login-item"><label><input id="cookietime_" name="cookietime" class="checkbox" tabindex="4" value="2592000" type="checkbox">&nbsp;下次自动登录</label></div>
+                        </li>
+                        <li>
+                            <input id="password3_" name="password" class="txt" tabindex="2" placeholder="请输入密码" type="password">
+                            <div class="login-item"><a href="https://uc.sznews.com:443/default.php?m=forgetpwd"  title="忘记密码？">忘记密码？</a></div>
+                        </li>
+                        <li class="login-qt">
+                            <button type="submit" id="J_loginBtn" class="login-button"><span>登录</span></button>
+                            <div class="login-item"><a href="https://uc.sznews.com:443/default.php?m=reg" target="_blank">新用户注册</a></div>
+                        </li>
+                        <li class="login-shortcut color6"  style="display: none;">
+                            <span class="z">用其他账号登录：</span>
+                            <a href="/sns_login.php?sns_type=qq" class="account-qq J_outsiteLogin" tabindex="7">QQ登录</a>
+                            <a href="/sns_login.php?sns_type=weibo" class="account-qq J_outsiteLogin" tabindex="7"
+                               style="background: url(static/image/common/icon_common.png) 0 -74px no-repeat;">微博登录</a>
+                            <a href="/sns_login.php?sns_type=weixin" class="account-qq J_outsiteLogin" tabindex="7"
+                               style="background: url(static/image/common/wx.png) no-repeat;display:none;">微信登录</a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <a href="javascript:;" onclick="display('J_loginGuide')" class="close box-close" title="关闭">关闭</a>
+    </div>
+</div>
+</body>
+</html>
+
+
+
