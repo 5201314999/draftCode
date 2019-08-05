@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>generator 语法练习</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+    // function* 表示一个generator girls() 返回一个迭代器，每次返回一个yield
+    function* girls(){
+        yield 'a';
+        yield 'b';
+        yield 'c';
+    }
+
+    for( let name of girls()){
+        console.log(name);
+    }
+
+    const girlIterator=girls();
+    let girl;
+    while(!(girl=girlIterator.next()).done){
+        console.log(girl.value);
+    }
+
+    //迭代嵌套迭代
+
+    function* persons(){
+        yield 'one',
+        yield 'two',
+        yield* cc(),
+        yield 'three'
+    }
+    function* cc(){
+        yield 'four',
+        yield 'five'
+    }
+    for(let person of persons()){
+        console.log(person);
+    }
+
+    //可以用无限循环，每次都挂起直到下次请求进来
+
+    function* idGenerator(){
+        let id=1000;
+        while(true){
+            yield id++;
+        }
+        return true;
+    }
+    const iterator=idGenerator();
+    for(let i=0;i<10;i++){
+        console.log(iterator.next().value);
+    }
+
+    
+    function* EventGenerator(){
+        let num=2;
+        while(num<20){
+            yield num;
+            num+=2;
+        }
+    }
+
+    let generator=EventGenerator();
+    console.log(generator.next().value);
+    console.log(generator.next().value);
+    console.log(EventGenerator().next().value);
+    console.log(generator.next().value);
+    console.log(EventGenerator().next().value);
+    for(let iterator of EventGenerator()){
+        console.log(iterator);
+    }
+    let generator2=EventGenerator();
+    while(!(item=generator2.next()).done){
+        console.log(item.value);
+    }
+    "use strict"
+    var oa={
+        whoAmI:()=>{
+            return this;
+        }
+    };
+    function Ob(){
+        this.whoAmI=oa.whoAmI;
+    }
+
+    console.log(new Ob().whoAmI()==oa);
+</script>   
+</head>
+<body>
+
+</body>
+</html>

@@ -41,6 +41,7 @@
       // 测试2
 
       // 测试3
+      console.log('-------------测试3-------------');
       let objA = {
         whoAmI: function() {
           return this;
@@ -50,11 +51,16 @@
       let objB = {
         whoAmI: objA.whoAmI
       };
-      console.log(`objB.whoAmI()===objB:${objA.whoAmI() === objA}`);
+      console.log(`objB.whoAmI()===objB:${objB.whoAmI() === objB}`);
+      let objc = {
+        whoAmI:()=>this
+      };
 
+      console.log(`objc.whoAmI()===window:${objc.whoAmI() === window}`);
       let identify = objB.whoAmI;
       console.log(`identify():${identify()}`);
       console.log(`objB.whoAmI.call(objA):${objB.whoAmI.call(objA) === objA}`);
+      console.log('-------------测试3-------------');
       // 测试3
 
       //测试4
