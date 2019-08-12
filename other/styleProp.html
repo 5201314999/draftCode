@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>.style 只能访问内置的属性，不能访问继承的属性/计算后的属性getComputedStyle()</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+    #dd{
+        font-size:51px
+    }
+</style>
+<script>
+    
+    document.addEventListener('DOMContentLoaded',()=>{
+        console.log(this);
+        const div=document.querySelector('div');get
+        console.log(div.style.fontSize);
+        const cc=getComputedStyle(div);
+        console.log();
+        div.addEventListener('click',function(){
+            console.log(this);
+        });
+        cc.getPropertyValue(color);
+    });
+
+</script>
+</head>
+<body>
+    <div id="dd" style="color:red">122</div>
+</body>
+</html>

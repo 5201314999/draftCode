@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>原型一些测试题</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+    function Ninja(){
+    }
+    Ninja.message='hello';
+    const obj=new Ninja();
+    console.log(obj.message); 
+
+    function Animal(){
+        this.color=['red','black'];
+    }
+    Animal.prototype.sayHelllo=()=>{
+        console.log('hello');
+    }
+    Animal.prototype.hony=['10','11'];
+    function Dog(){
+        Animal.apply(this);
+    }
+
+    console.log('测试1');
+    const dog=new Dog();
+    // console.log(dog instanceof Dog); //false
+    // console.log(dog instanceof Animal); //false
+    Dog.prototype=new Animal();
+    
+    console.log(dog instanceof Dog); //false
+    console.log(dog instanceof Animal); //false
+
+    const dog1=new Dog();
+    dog1.sayHelllo();
+    dog1.color.push('wihte');
+    dog1.hony.push('12');
+    const dog2=new Dog();
+    console.log(dog2.color);
+    console.log(dog2.hony);
+    console.log('测试1');
+
+    console.log('测试2');
+    Dog.prototype=Object.create(Animal);
+    const dogb=new Dog();
+    dogb.color.push('white');
+    const dogc=new Dog();
+    console.log(`dogc.color:${dogc.color}`);
+    console.log(dogb.constructor===Dog);    
+    console.log('测试2');
+
+    console.log();
+
+
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

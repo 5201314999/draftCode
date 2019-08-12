@@ -175,7 +175,7 @@ module.exports = {
       }
     })
   ],
-  //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgrop, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
+  //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgroup, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{
     sideEffects: false, //是否进行无效模块删除， npm 库可以在package.json 设置 说明该模块是否能被tree -shaking
     splitChunks:{

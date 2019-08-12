@@ -13,6 +13,7 @@
 
 <body>
     <script>
+        //函数调用
         function func() {
             this.name = '11';
             var a = {
@@ -22,7 +23,7 @@
             return a.copyname;
         }
 
-        //隐式绑定
+        //隐式绑定(方法使用)
         function func1(){
             function test() {
                 console.log(this.a)
@@ -48,7 +49,22 @@
           var obj=new Obj();
 
           console.log(obj.name);
+        
+          //箭头函数，定义时外面的作用域
 
+          function fun3(){
+              function A(){
+                  this.test=()=>{
+                      console.log(this);
+                  }             
+              }
+              var obj=new A();
+              var b={
+                  test:obj.test
+              };
+              console.log(b.test()==obj); //A
+          }
+          fun3();
     </script>
 </body>
 

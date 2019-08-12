@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>getter,setter,proxy 使用</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+    //字面量对象提供访问器，设置器
+    const person={
+        name:'jr',
+        get nickname(){
+            return this.name;
+        },
+        set nickname(val){
+            this.name=val;
+        },
+        set dd(val){
+            this.name=11;
+        }
+    };
+    person.nickname='Mr.Fan';
+    person.dd='Ms.Fan';
+    console.log(person);
+
+    //class 使用访问器，设置器
+    class Model{
+        constructor(){
+            this.size=10;
+        }
+        set Prop(val){
+            this.size=val;
+        }
+    }
+    const model=new Model();
+    model.Prop=21;
+    console.log(model.size);
+
+    //以上都不在同个作用域，不能算私有变量，Object.defineProperty
+
+    function TestB(){
+        let _age=20;
+        Object.defineProperty(this,'age',{
+            get(){
+                return this._age;
+            },
+            set(val){
+                this._age=val;
+            }
+        })
+    }
+
+    const c=new TestB();
+    c.age=1000;
+    console.log(c.age);
+
+    console.log('proxy');
+    const empertor={
+        name:'Komei'
+    };
+    //通过Proxy构造器创建代理对象，代理对象访问目标对象时执行指定的操作。
+    const representive=new Proxy(empertor,{
+        get:(target,key)=>{
+        //    return key in target ?target[key]:"don't bother the emperor";
+        return target[key];
+        },
+        set:(target,key,value)=>{
+            target[key]=value;
+        }
+    });
+    console.log(representive.age);
+    console.log(representive.name);
+
+    representive.ok='I am OK';
+    console.log(representive.name);
+
+    console.log(empertor.ok);
+
+    console.log('proxy');
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>
