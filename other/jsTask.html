@@ -40,19 +40,19 @@
     </table>
     <script>
       //耗性能的测试24万个节点
-    //   console.time('创建24万个节点');
-    //   const tbody = document.querySelector("tbody");
-    //   for (let i = 0; i < 20000; i++) {
-    //     const tr = document.createElement("tr");
-    //     for (let t = 0; t < 6; t++) {
-    //       const td = document.createElement("td");
-    //       td.appendChild(document.createTextNode(i + "," + t));
-    //       tr.appendChild(td);
-    //     }
-    //     tbody.appendChild(tr);
+      console.time('创建24万个节点');
+      const tbody = document.querySelector("tbody");
+      for (let i = 0; i < 20000; i++) {
+        const tr = document.createElement("tr");
+        for (let t = 0; t < 6; t++) {
+          const td = document.createElement("td");
+          td.appendChild(document.createTextNode(i + "," + t));
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
         
-    //   }
-    //   console.timeEnd('创建24万个节点');
+      }
+      console.timeEnd('创建24万个节点');
 
       //通过定时器分批次创建24万个节点，更多的进行页面渲染
       const tbody = document.querySelector("tbody");

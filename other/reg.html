@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>正则表达式实战 </title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div id="test" src="11111" href="212312313" style="color:red;">1212312313</div>
+    <pre></pre>
+    <script>
+        const dd=document.querySelector('pre');
+        function run(str){
+            dd.innerText=str.replace(/(<\/>\w*\s)\w*(\ssrc=\w*\s)(\shref=\w*\s)(\s+\/>|\s>\w*<\/\w+>)/,'$1$2$3$4');
+            console.log(dd.innerText);
+        }
+        const el=document.getElementById('test');
+        console.log(el.outerHTML);
+        run(el.outerHTML);
+        
+    </script>
+</body>
+</html>
