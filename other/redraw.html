@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>避免布局抖动，读写 频繁导致 频繁计算布局，重绘重排问题</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="就是使用不会导致浏览器重排的方式编写代码" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <style>
+        div{
+            border:1px solid red;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="ninja">I’m a ninja</div>
+    <div id="samurai">I’m a samurai</div>
+    <div id="ronin" style="border-width:2px">I’m a ronin</div>
+    <script>
+      const ninja = document.getElementById("ninja");
+      const samurai = document.getElementById("samurai");
+      const ronin = document.getElementById("ronin");
+      const ninjaWidth = ninja.clientWidth;
+      console.log("---------------ninjaWidth");
+      console.log(ninjaWidth);
+      ninja.style.width = ninjaWidth / 2 + "px";
+      console.log(
+        `ninjaWidth:${ninjaWidth}, ninja.style.width:${
+          ninja.style.width
+        },clientWidth:${ninja.clientWidth}`
+      );
+      console.log("---------------samuraiWidth");
+      const samuraiWidth = samurai.clientWidth;
+      console.log(samuraiWidth);
+      samurai.style.width = samuraiWidth / 2 + "px";
+      console.log(
+        `samuraiWidth:${samuraiWidth}, samurai.style.width:${
+          samurai.style.width
+        },clientWidth:${samurai.clientWidth}`
+      );
+      console.log("---------------ronin");
+      const roninWidth = ronin.clientWidth;
+      ronin.style.width = roninWidth / 2 + "px";
+      console.log(
+        `ronin:${roninWidth}, ronin.style.width:${
+          ronin.style.width
+        },clientWidth:${ronin.clientWidth}`
+      );
+      
+
+    </script>
+  </body>
+</html>

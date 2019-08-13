@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      1.按照60fps,16ms 一次渲染ui，js
+      操作是分为一个个任务来完成的，解析html，加载文档，js
+      主线程事件这些都是宏任务,promise 是微任务，掌握事件循环的知识
+      2.通过分组代码来解决耗时间操作（通用思路）
+    </title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script>
+      //3 5 2 6 1
+      setTimeout(() => {
+        console.log("1");
+      }, 0);
+      console.log("3");
+      Promise.resolve().then(() => {
+        console.log("2");
+      });
+      new Promise((resolve, reject) => {
+        console.log("5");
+        resolve();
+      }).then(() => {
+        console.log("6");
+      });
+    </script>
+  </head>
+
+  <body>
+    <table>
+      <tbody></tbody>
+    </table>
+    <script>
+      //耗性能的测试24万个节点
+    //   console.time('创建24万个节点');
+    //   const tbody = document.querySelector("tbody");
+    //   for (let i = 0; i < 20000; i++) {
+    //     const tr = document.createElement("tr");
+    //     for (let t = 0; t < 6; t++) {
+    //       const td = document.createElement("td");
+    //       td.appendChild(document.createTextNode(i + "," + t));
+    //       tr.appendChild(td);
+    //     }
+    //     tbody.appendChild(tr);
+        
+    //   }
+    //   console.timeEnd('创建24万个节点');
+
+      //通过定时器分批次创建24万个节点，更多的进行页面渲染
+      const tbody = document.querySelector("tbody");
+      let iterator = 0;
+      const rowNum = 20000;
+      function dd() {
+        console.time('测试'+iterator);
+        const base = iterator * 5000;
+        for (let i = base; i < base + 4000; i++) {
+          const tr = document.createElement("tr");
+          for (let t = 0; t < 6; t++) {
+            const td = document.createElement("td");
+            td.appendChild(document.createTextNode(i + "," + t));
+            tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+        }
+        console.timeEnd('测试'+iterator);
+        iterator++;
+        if(iterator<4){
+            setTimeout(dd, 0);
+        }
+      }
+      setTimeout(dd, 0);
+    </script>
+  </body>
+</html>
