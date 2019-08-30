@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Examples</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content">
+      <button id="test">点击</button>
+    </div>
+    <script>
+      function a() {
+        console.time('a');
+        for (let i = 0; i < 100000; i++) {
+          for (let j = 0; j < 100000; j++) {
+          }
+        }
+        console.timeEnd('a');
+        const e=document.createElement('a');
+        e.innerHTML="2";
+        requestAnimationFrame(()=>{
+            console.log('渲染完毕')
+        });
+        document.querySelector('.content').append(e)
+        console.time('b');
+        for (let i = 0; i < 200000; i++) {
+          for (let j = 0; j < 100000; j++) {
+          }
+        }
+        console.timeEnd('b');
+      }
+      a();
+    </script>
+  </body>
+  <style></style>
+</html>

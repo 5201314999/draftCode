@@ -8,6 +8,7 @@
     "example2": "npx webpack --config config/config2.js && http-server dist",
     "example3": "npx webpack --config config/config3.js && http-server dist",
     "example4": "npx webpack --config config/config4.js && http-server dist",
+    "example4:dev": "webpack-dev-server --config config/config4.js",
     "example5": "npx webpack --config config/config5.js && http-server dist"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "url-loader": "^2.0.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0",
     "webpack-spritesmith": "^1.0.1"
   },
   "browserslist": [

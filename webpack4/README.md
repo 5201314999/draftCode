@@ -35,7 +35,7 @@ yarn `example[number]`   for example, yarn example1
 
 遗留，雪碧图使用问题，可以合成，但是@import '~' 报错
 
-## example4 splitchunk 处理
+## example4 splitchunk 处理/模块热替换 配置
 
 1. js 编译 （babel、ts)
 2. 代码合并 （webpack 最初基础功能）
@@ -57,6 +57,8 @@ yarn `example[number]`   for example, yarn example1
 5. 压缩混淆 
 
 `注意`: 如何兼容不同模块规范,原生支持cjs，兼容AMD 和 ES HARMONY
+
+6. hot：true 同时需要 webpack.HotModuleReplacementPlugin ，默认是刷新页面
 
 ## example5 编写loader
 

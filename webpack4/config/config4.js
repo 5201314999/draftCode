@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //替代 3.0 ex
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
 
 const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插件
+const webpack=require('webpack');
+
 const path = require("path");
 
 //定义环境变量，实际应读取不同config 文件，
@@ -19,9 +21,14 @@ module.exports = {
     app: ['@babel/polyfill',path.resolve(__dirname, "../examples/example4/src/index.js")]
   },
   output: {
-    filename: "static/js/[name].[contenthash:8].js",
+    filename: "static/js/[name].[hash:8].js",
     path: path.resolve(__dirname, "../dist/example4"), //打包目录
     publicPath: "/example4/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/
+  },
+  devServer: {
+    contentBase: path.join(__dirname, '../dist/example4'),
+    compress: true,
+    port: 9000
   },
   resolve: {
     extensions: [".js", ".json"], //默认值 
@@ -163,7 +170,8 @@ module.exports = {
         algorithm: "top-down", //设置图标的排列方式
         padding: 4 //每张小图的补白,避免雪碧图中边界部分的bug
       }
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgrop, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{
