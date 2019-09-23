@@ -49,12 +49,28 @@
     const dogb=new Dog();
     dogb.color.push('white');
     const dogc=new Dog();
+    console.log(dogc);
     console.log(`dogc.color:${dogc.color}`);
     console.log(dogb.constructor===Dog);    
     console.log('测试2');
 
-    console.log();
+    console.log('测试3');
+        
+    function Animal(){
+        this.color=['red','black'];
+    }
+    function Dog(){
+        Animal.apply(this);
+    }
 
+    Dog.prototype=Object.create(Animal.prototype)
+    Dog.prototype.constructor=Dog
+
+    console.log('测试3')
+
+    var a={name:11};
+    Object.setPrototypeOf(a,null)
+    console.log(a.toString())
 
 
 </script>

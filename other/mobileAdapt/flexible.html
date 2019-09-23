@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>淘宝flexible 方案</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+
+<style>
+    .item{
+        display: flex;
+        border-bottom:1px solid red;
+        padding:5px;
+        position:relative;
+    }
+    .img{
+        width:150px;
+    }
+    .right{
+        flex:1;
+        padding:0 20px 0 10px
+    }
+    .goods-info{
+        font-size:30px;
+        color:#ccc;
+        word-wrap:break-word;
+    }
+    .price{
+        font-size:40px;
+        color:#ee1080;
+        vertical-align: middle;
+    }
+    .discount{
+        font-size:20px;
+        color:#ee1080;
+        vertical-align: middle;
+    }
+    .extra{
+        font-size:20px;
+        color:#aa844b;
+    }
+    .red-btn{
+        position: absolute;
+        bottom:10px;
+        right:10px;
+        color:#fff;
+        font-size:40px;
+        background-color:red;
+        padding:10px 20px;
+        border:none;
+        outline:none;
+    }
+</style>
+<!-- 直接使用rem 设置font-size 以及将单位转化成rem-->
+<!-- 引入lib-flexible -->
+</head>
+<body>
+    <div class="list">
+        <div class="item">
+            <div class="logo">
+                <img src="https://img.alicdn.com/tfscom/i1/28306811/TB2qvcteYwTMeJjSszfXXXbtFXa_!!28306811.jpg_180x180xzq90.jpg_.webp" alt="">
+            </div>
+            <div class="right">
+                <div class="goods-info">
+                    现货[送皮套+钢膜+耳机] Xiaomi/小米红米Note2手机note2
+                </div>
+                <div class="price-item">
+                    <span class="price">
+                        799.00
+                    </span>
+                    <span class="discount">
+                        (满300减150)
+                    </span>
+                </div>
+                <div class="extra">
+                    7833人正在疯抢
+                </div>
+            </div>
+            <Button class="btn red-btn">
+                    马上抢！
+             </Button>
+        </div>
+    </div>
+</body>
+</html>

@@ -24,7 +24,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname,'../examples/example3/src')
     },
-    modules:[path.resolve(__dirname,'../dist/examples/example3/static/ico')]
+    modules:[path.resolve(__dirname,'../node_modules'),path.resolve(__dirname,'../dist/examples/example3/static/ico')]
   },
   module: {
     rules: [
@@ -43,7 +43,7 @@ module.exports = {
               sourceMap: process.env.NODE_ENV==='development'?true:false,
             } 
           },
-          "postcss-loader", //autoprefixer 
+          'postcss-loader'
         ]
       },
       {
@@ -62,7 +62,13 @@ module.exports = {
               sourceMap: process.env.NODE_ENV==='development'?true:false,
             } 
           },
-          "postcss-loader", //autoprefixer 
+          {
+            loader: 'px2rem-loader',
+            options: {
+              remUnit: 75 // 设计稿的宽度/10
+            }
+          },
+          'postcss-loader', 
           "sass-loader"
         ]
       },
@@ -101,6 +107,7 @@ module.exports = {
       },
     ]
   },
+
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

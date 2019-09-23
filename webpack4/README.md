@@ -30,6 +30,7 @@ yarn `example[number]`   for example, yarn example1
 2. 雪碧图合成。 使用场景， 使用图标特别重复的，例如腾讯新闻，网易新闻，悬浮时样式切换
 3. svg 处 参照 `font/demo_index.html` 说明
 4. webpack resolve 和 import '~' 的关系
+5. px2rem-loader 实现px to rem
 
 `注意` ： webpack 不需要json-loader ，内部友好支持, json 不需要其他的loader ，esMoudle 引入还可以tree shaking.
 

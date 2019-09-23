@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>布局视口，13.0667rem,理想视口，视觉视口（缩放有关),rem 方案</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/> -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script>
+      // document.documentElement.clientWidth / (designWidth/htmlFontsize)*(elWidth/htmlFontsize)
+      document.documentElement.style.fontSize = `${document.documentElement.clientWidth / (750/75)}px`
+      console.log(`font-size:${document.documentElement.clientWidth / (750/75)}px`)
+    </script>
+    <style>
+      html{
+        font-size:1.3333rem;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      div {
+        font-size: 0.2667rem;
+      }
+      .left,
+      .right {
+        
+        float: left;
+        width: 10rem;
+        height: 4rem;
+      }
+      .left {
+        background-color: red;
+        border: 0.2rem solid green;
+      }
+      .right {
+        background-color: yellow;
+        word-break: break-all;
+      }
+      .clearfix::after {
+        content: "";
+        height: 0.0133rem;
+        display: block;
+        clear: both;
+        visibility: hidden;
+      }
+
+      .border-1 {
+        position: relative;
+        border:none;
+      }
+      .border-1::after {
+        content: "";
+        pointer-events:none;
+        box-sizing: border-box;
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        left: 0;
+        top: 0;
+        border-radius: 0.1067rem;
+        border:0.0133rem solid #999;
+        -webkit-transform-origin:0 0;
+        transform:scale(0.5);
+        transform-origin: 0 0;
+      }
+      .box-shadow{
+       box-shadow: 0rem 0rem 0.0133rem -0.2rem black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content clearfix">
+      <div class="left"></div>
+      <div class="right">
+        11111111111111111111111111111111111111111111111111111111111111111dafddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd4444444444444444444444444444444444444444444444466666666666666666666666666666666666666666666666666666666666
+      </div>
+    </div>
+    <div class="border-1" >
+      我是测试0.0133rem 解决方案的。
+    </div>
+
+    <div class="box-shadow" >
+        我是测试0.0133rem 解决方案2的。
+      </div>
+  </body>
+  <script>
+    console.log(document.documentElement.clientWidth);
+    console.log(document.querySelector(".left").clientWidth);
+    console.log(window.devicePixelRatio);
+    document.querySelector('.border-1').addEventListener('click',function(){
+        console.log('1')
+    })
+  </script>
+</html>

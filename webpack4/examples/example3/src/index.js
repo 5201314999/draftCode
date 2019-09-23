@@ -1,3 +1,4 @@
+import  'lib-flexible';
 import './style/main.scss';  //路径很重要，不要用 style/ 这种相对路径写法，会出问题
 
 import video from './assets/media/video.mp4';
@@ -5,6 +6,7 @@ import video from './assets/media/video.mp4';
 import user from './common/user.json';
 
 import './assets/font/iconfont.css';
+
 
 const e=document.createElement('div');
 e.id='example3';

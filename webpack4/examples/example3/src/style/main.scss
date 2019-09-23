@@ -1,5 +1,5 @@
 
-@import '~sprite.scss';   // 不知道错误解决方法。留待以后解决
+// @import '~sprite.scss';   // 不知道错误解决方法。留待以后解决
 
 body{
     display: flex;
@@ -15,7 +15,7 @@ body{
         height:300px;
     }
     #example5{
-        sprite($close);
+        // sprite($close);
     }
 }
 
