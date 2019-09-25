@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>原型一些测试题</title>
+<title>原型一些小测试题</title>
 <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -67,10 +67,20 @@
     Dog.prototype.constructor=Dog
 
     console.log('测试3')
-
+    console.log('测试4')
     var a={name:11};
     Object.setPrototypeOf(a,null)
-    console.log(a.toString())
+    a.toString?console.log('有toString'):console.log('没有toString')
+    console.log('测试4')
+
+    console.log('测试5 Foo 有无return的区别')
+        function Foo(){
+            // return Object.create(null)
+        }
+        const foo=new Foo()
+
+        console.log(foo instanceof Foo)
+    console.log('测试5')
 
 
 </script>
