@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>线上报错简单例子</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    这里是test.html
+    <script>
+        window.onerror=function(err){
+            console.log(err)
+            const image=new Image()
+            image.src=`http://127.0.0.1:3000/alarm?error=${err}`
+            image.onload=function(){
+                image=null
+            }
+        }
+
+        function run(){
+            const num=parseInt(Math.random()*100)
+            console.log(num)
+            if(num>50){
+                throw new Error(num)
+            }
+            sleep(300).then(run())
+        }
+
+        function sleep(time){
+            return new Promise((resolve,reject)=>{
+               setTimeout(()=>{
+                   resolve()
+               },time) 
+            })
+        }
+
+        run()
+    </script>
+</body>
+</html>
