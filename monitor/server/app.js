@@ -27,6 +27,6 @@ const webApp=new Koa()
 webApp.use(koaStatic(path.join(__dirname,'../html/')))
 console.log(__dirname)
 webApp.listen('8089',async ()=>{
-    console.log('webapp is starting at port 8089,http://127.0.0.1:8089');
+    console.log('webapp is starting at port 8089,http://127.0.0.1:8089')
 })
 
