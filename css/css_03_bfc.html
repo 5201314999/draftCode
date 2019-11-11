@@ -3,24 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>bfc 清除浮动方法与原理。会计算浮动元素。促发条件5种（根，postion：absolute,display:flex，oveflow:hidden,float:none)"</title>
+<title>bfc 清除浮动。会计算浮动元素。促发条件5种（根(用不到)，position：absolute,display:flex，oveflow:hidden,float:none)"</title>
 <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <style>
+    body{
+        position: relative;
+    }
     .wrapper{
-        /* position: absolute;
+        position: absolute;
         left:0px;
-        top:0px; */
-        border: 1px solid #0b0b96;
-        overflow: hidden;
+        top:0px;
+        background-color: #8bc34a;
+        /* overflow: hidden; */
     }
     .item{
         float: left;
         width:200px;
         height:300px;
-        border: 1px solid #6b1414 ;
+        background-color: #ff5722  ;
     }
 </style>
 </head>
