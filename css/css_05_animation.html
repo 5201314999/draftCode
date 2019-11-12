@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>css3 animation  为什么推荐css3 而不是js translation 不占用主线程 可以使用异步加速  </title>
+<title>动画为什么优先推荐css3 而不是js  不占用主线程,可以使用异步加速</title>
 <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -28,7 +28,7 @@
             top:20px;
         }
         50%{
-            background: blue;
+            background: #8bc34a;
             left:40px;
             top:200px;
         }
@@ -50,10 +50,37 @@
         height:500px;
     }
 
+    .test3{
+        animation: active 2s ;
+        width:100px;
+        height: 100px;
+        border-radius:50%;
+        margin-top:20px;
+        background-color:red;
+    }
+
+     @keyframes active{
+        0%{
+            background-color:#8bc34a;
+        }
+        50%{
+            width:200px;
+            height:200px;
+            background-color:#FFECA6;
+        }
+        100%{
+            width:100px;
+            width:100px;
+            background-color:red;
+        }
+
+     }
+
 </style>
 </head>
 <body>
     <div class="test"></div>
     <div class="test2"></div>
+    <div class="test3"></div>
 </body>
 </html>
