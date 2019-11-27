@@ -6,6 +6,8 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); /
 const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插件
 const path = require("path");
 
+const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 打包分析工具
+
 //定义环境变量，实际应读取不同config 文件，
 process.env.NODE_ENV = "development";
 
@@ -173,7 +175,8 @@ module.exports = {
         algorithm: "top-down", //设置图标的排列方式
         padding: 4 //每张小图的补白,避免雪碧图中边界部分的bug
       }
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgroup, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{
