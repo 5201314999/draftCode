@@ -61,13 +61,15 @@ yarn `example[number]`   for example, yarn example1
 
 6. hot：true 同时需要 webpack.HotModuleReplacementPlugin ，默认是刷新页面
 
+7. 生产模式默认没有 sourcemap ,无法在调试器看到源码, 开发模式默认有
+
 ## example5 编写loader
 
 loader支持链式调用，所以开发上需要严格遵循“单一职责”原则，即每个loader只负责自己需要负责的事情：将输入信息进行处理，并输出为下一个loader可识别的格式。
 
 初步写了一个 把tmpl.html 转成js 的loader， 转完之后不知道用来干嘛，从网上学习的，后面再说。汗！
 
-增加了打包插件配置，可以用于分析打包后各个文件的情况。
+* webpack-bundle-analyzer,增加了打包插件配置，可以用于分析打包后各个文件的情况。  
 
 
 ## example6 编写plugin

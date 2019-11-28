@@ -177,6 +177,7 @@ module.exports = {
       }
     }),
     new BundleAnalyzerPlugin()
+
   ],
   //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgroup, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{

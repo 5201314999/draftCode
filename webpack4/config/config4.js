@@ -23,9 +23,10 @@ module.exports = {
   output: {
     filename: "static/js/[name].[hash:8].js",
     path: path.resolve(__dirname, "../dist/example4"), //打包目录
-    publicPath: "/example4/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/
+    publicPath: "/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于更目录)
   },
   devServer: {
+    open:true,
     contentBase: path.join(__dirname, '../dist/example4'),
     compress: true,
     port: 9000
