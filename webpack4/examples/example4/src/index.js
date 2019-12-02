@@ -3,6 +3,7 @@ import {sum,generateUID} from './js/util';
 import {throttle} from 'throttle-debounce';
 import ipconfig from './js/ipconfig';
 const aa=generateUID('梦琪d',"霸绝天下1111");
+
 console.log(aa)
 //测试map es6语法
 const arr=['html','js','css'];
@@ -17,3 +18,6 @@ document.querySelector('#app').appendChild(p);
 document.body.addEventListener('mousemove',throttle(1000,()=>{
     console.log(performance.now());
 }));
+//测试能否成功加载全局模块
+const b=_.clone({name:'jr',age:25})
+console.log(b)

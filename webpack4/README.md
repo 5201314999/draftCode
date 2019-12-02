@@ -36,7 +36,7 @@ yarn `example[number]`   for example, yarn example1
 
 遗留，雪碧图使用问题，可以合成，但是@import '~' 报错
 
-## example4 splitchunk 处理/模块热替换 配置
+## example4 splitchunk 处理/模块热替换 配置，第三方库的配置引入方式webpack.ProvidePlugin,css treeshaking 实现，（purifycss-webpack purify-css）
 
 1. js 编译 （babel、ts)
 2. 代码合并 （webpack 最初基础功能）
@@ -75,4 +75,13 @@ loader支持链式调用，所以开发上需要严格遵循“单一职责”�
 ## example6 编写plugin
 
 插件能够 钩入（hook) webpack 触发的关键事件。让用户触及webpack 编译过程。
+
+
+
+
+## roadmap
+
+1. webpack基本配置搞懂，总结并梳理
+2. 进修项目：css 如何不打包未使用的样式(css treeshaking purifyCssPlugin)，contentHash 和 hash 的区别，sourcemap(css-loader 开启),treeshaking（依靠import），环境区分(静态文件最省事/动态文件灵活))，第三方库使用webpack 配置(ProvidePlugin)
+3. 攻克webpack4 代码分割，性能优化模块。
 

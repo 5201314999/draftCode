@@ -2,14 +2,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //替代 3.0 extract-text-webpack-plugin
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
-
 const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插件
+const PurifyCssPlugin=require('purifycss-webpack'); //css 过滤没用到样式
+
+const glob=require('glob-all');
+
 const webpack=require('webpack');
 
 const path = require("path");
 
 //定义环境变量，实际应读取不同config 文件，
-process.env.NODE_ENV = "development";
+process.env.NODE_ENV = "production";
 
 const resolve=(pathStr)=>{
     return path.resolve(__dirname,pathStr)
@@ -23,7 +26,7 @@ module.exports = {
   output: {
     filename: "static/js/[name].[hash:8].js",
     path: path.resolve(__dirname, "../dist/example4"), //打包目录
-    publicPath: "/" //所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于更目录)
+    publicPath: "/" //注意：所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于根目录)
   },
   devServer: {
     open:true,
@@ -144,11 +147,19 @@ module.exports = {
         removeAttributeQuotes: true
       }
     }),
+    // 实际上，项目中css,一般不使用分片,treeshaking  使用PurifyCssPlugin 插件
     new MiniCssExtractPlugin({
       filename: "static/css/[name].css", //基于output path
-      chunkFilename: "static/css/[id].css" //分片
+      chunkFilename: "static/css/[id].css", //分片
     }),
-    new OptimizeCssAssetsPlugin(), //mode:development 也会起作用
+    new PurifyCssPlugin({
+      //此路径是源码的路径
+      paths:glob.sync([
+          resolve('../examples/example4/public/*.html'),
+          resolve('../examples/example4/src/*.js')
+        ])
+    }),
+    new OptimizeCssAssetsPlugin(), //mode:development 也会起作用，其实配置到optimization.minizer 中就好了
     new SpritesmithPlugin({
       src: {
         cwd: path.resolve(__dirname, "../examples/example4/src/assets/ico"),
@@ -172,7 +183,13 @@ module.exports = {
         padding: 4 //每张小图的补白,避免雪碧图中边界部分的bug
       }
     }),
-    new webpack.HotModuleReplacementPlugin()
+    //热模块替换，配合devserver hot:true
+    new webpack.HotModuleReplacementPlugin(),
+    //全局配置引入第三方库loadash，webpack.ProviderPlugin()
+    new webpack.ProvidePlugin({
+        _:'lodash'
+    })
+
   ],
   //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgrop, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{

@@ -4,3 +4,8 @@ html,body{
 #test{
     color:green;
 }
+
+// 多余的css样式，打包后清除
+#ab{
+    font-size:100px;
+}
