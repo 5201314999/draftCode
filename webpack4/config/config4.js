@@ -6,6 +6,7 @@ const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插�
 const PurifyCssPlugin=require('purifycss-webpack'); //css 过滤没用到样式
 const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 打包分析工具
 const InlineManifestWebpackPlugin=require('inline-manifest-webpack-plugin'); // mainfest 放置到html 中
+const CompressionWebpackPlugin=require('compression-webpack-plugin'); // 开启gzip
 const glob=require('glob-all');
 
 const webpack=require('webpack');
@@ -199,7 +200,15 @@ module.exports = {
     // new webpack.ProvidePlugin({
     //     _:'lodash'
     // }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
+    //文件压缩
+    new CompressionWebpackPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css)$/,
+      threshold: 4096,
+      minRatio: 0.8
+    })
 
   ],
   //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgroup, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
