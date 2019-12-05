@@ -5,7 +5,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); /
 const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插件
 const PurifyCssPlugin=require('purifycss-webpack'); //css 过滤没用到样式
 const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 打包分析工具
-
+const InlineManifestWebpackPlugin=require('inline-manifest-webpack-plugin'); // mainfest 放置到html 中
 const glob=require('glob-all');
 
 const webpack=require('webpack');
@@ -13,7 +13,7 @@ const webpack=require('webpack');
 const path = require("path");
 
 //定义环境变量，实际应读取不同config 文件
-process.env.NODE_ENV = "development";
+process.env.NODE_ENV = "production";
 
 const resolve=(pathStr)=>{
     return path.resolve(__dirname,pathStr)
@@ -31,7 +31,7 @@ module.exports = {
     filename: "static/js/[name].[hash:8].js",
     chunkFilename:'static/js/[name].[chunkhash:10].js',
     path: path.resolve(__dirname, "../dist/example4"), //打包目录
-    publicPath: "/" //注意：所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于根目录)
+    publicPath: "/example4/" //注意：所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于根目录)
   },
   devServer: {
     open:true,
@@ -155,6 +155,8 @@ module.exports = {
         removeAttributeQuotes: true
       }
     }),
+    // manifest 嵌入到html 中
+    new InlineManifestWebpackPlugin('manifest'),
     // 实际上，项目中css,一般不使用分片,treeshaking  使用PurifyCssPlugin 插件
     new MiniCssExtractPlugin({
       filename: "static/css/[name].css", //基于output path
