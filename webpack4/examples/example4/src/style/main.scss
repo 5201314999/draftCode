@@ -1,8 +1,12 @@
+@import './mixin.scss';
+
 html,body{
     height:100%;
 }
 #test{
     color:green;
+    width:200px;
+    @include textoverflow;
 }
 
 // 多余的css样式，打包后清除

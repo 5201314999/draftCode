@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //替代 3.0 ex
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
 const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插件
 const PurifyCssPlugin=require('purifycss-webpack'); //css 过滤没用到样式
+const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 打包分析工具
 
 const glob=require('glob-all');
 
@@ -11,8 +12,8 @@ const webpack=require('webpack');
 
 const path = require("path");
 
-//定义环境变量，实际应读取不同config 文件，
-process.env.NODE_ENV = "production";
+//定义环境变量，实际应读取不同config 文件
+process.env.NODE_ENV = "development";
 
 const resolve=(pathStr)=>{
     return path.resolve(__dirname,pathStr)
@@ -23,8 +24,12 @@ module.exports = {
   entry: {
     app: ['@babel/polyfill',path.resolve(__dirname, "../examples/example4/src/index.js")]
   },
+  externals:{
+    'lodash':'_'
+  },
   output: {
     filename: "static/js/[name].[hash:8].js",
+    chunkFilename:'static/js/[name].[chunkhash:10].js',
     path: path.resolve(__dirname, "../dist/example4"), //打包目录
     publicPath: "/" //注意：所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于根目录)
   },
@@ -32,8 +37,10 @@ module.exports = {
     open:true,
     contentBase: path.join(__dirname, '../dist/example4'),
     compress: true,
-    port: 9000
+    port: 9000,
   },
+  //配置source-map
+  devtool:process.env.NODE_ENV==='production'?'hidden-source-map':'cheap-eval-source-map',
   resolve: {
     extensions: [".js", ".json"], //默认值 
     alias: {
@@ -94,7 +101,7 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 2000, //超出的图片默认用file-loader 处理，可以使用其他的loader处理
-              name: "[name].[hash:7].[ext]",
+              name: "[name].[contenthash:7].[ext]",
               outputPath: "static/images"
             }
           }
@@ -117,7 +124,7 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 8000,
-              name: "[name].[hash:7].[ext]",
+              name: "[name].[contenthash:7].[ext]",
               outputPath: "static/media"
             }
           }
@@ -136,6 +143,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      inject:true,
       filename: "index.html",
       template: path.resolve(
         __dirname,
@@ -186,17 +194,18 @@ module.exports = {
     //热模块替换，配合devserver hot:true
     new webpack.HotModuleReplacementPlugin(),
     //全局配置引入第三方库loadash，webpack.ProviderPlugin()
-    new webpack.ProvidePlugin({
-        _:'lodash'
-    })
+    // new webpack.ProvidePlugin({
+    //     _:'lodash'
+    // }),
+    new BundleAnalyzerPlugin()
 
   ],
-  //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgrop, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
+  //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgroup, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{
     sideEffects: false, //是否进行无效模块删除， npm 库可以在package.json 设置 说明该模块是否能被tree -shaking
     splitChunks:{
       chunks:'all', //'async' 只作用于异步模块 ，'initial' 对同步模块
-      minSize:30, //合并前模块文件的体积
+      minSize:300, //合并前模块文件的体积
       minChunks:1, //最少被引用次数
       maxAsyncRequests:5,
       maxInitialRequests: 3,
@@ -212,7 +221,7 @@ module.exports = {
           reuseExistingChunk: true
         }
       }
-    },
+    },  
     runtimeChunk:{
       name:'manifest'
     }

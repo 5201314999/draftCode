@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const{CleanWebpackPlugin}=require("clean-webapack-plugin");
+const{CleanWebpackPlugin}=require("clean-webpack-plugin");
 const path = require("path");
 
 console.log(__dirname);

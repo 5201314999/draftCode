@@ -36,7 +36,7 @@ yarn `example[number]`   for example, yarn example1
 
 遗留，雪碧图使用问题，可以合成，但是@import '~' 报错
 
-## example4 splitchunk 处理/模块热替换 配置，第三方库的配置引入方式webpack.ProvidePlugin,css treeshaking 实现，（purifycss-webpack purify-css）
+## example4 splitchunk 处理/模块热替换 配置，第三方库的配置引入方式webpack.ProvidePlugin,css treeshaking 实现，（purifycss-webpack purify-css）,js source-map
 
 1. js 编译 （babel、ts)
 2. 代码合并 （webpack 最初基础功能）
@@ -61,7 +61,24 @@ yarn `example[number]`   for example, yarn example1
 
 6. hot：true 同时需要 webpack.HotModuleReplacementPlugin ，默认是刷新页面
 
-7. 生产模式默认没有 sourcemap ,无法在调试器看到源码, 开发模式默认有
+7. 生产模式默认没有 sourcemap ,压缩，无法在调试器看到源码, 开发模式默认有
+
+8. js sourcemap 关键字的意义（影响构建速度，包大小，调试体验）
+
+9. 使用cdn 配置第三方库 config4.js externals, index.html  <script src='cdn'>
+```
+evel => rebuild
+inline => dataURI
+cheap => lines-only
+module => loader
+
+```
+
+开发：cheap-eval-source-map 测试：none
+
+9. hash， contenthash,chunkhash
+
+单入口项目可采用：contenthash 用于静态文件   chunkhash 用于js hash 用于入口文件
 
 ## example5 编写loader
 
@@ -71,17 +88,25 @@ loader支持链式调用，所以开发上需要严格遵循“单一职责”�
 
 * webpack-bundle-analyzer,增加了打包插件配置，可以用于分析打包后各个文件的情况。  
 
-
 ## example6 编写plugin
 
 插件能够 钩入（hook) webpack 触发的关键事件。让用户触及webpack 编译过程。
 
 
+## 强化roadmap
+
+1. webpack基本配置搞懂，总结并梳理(loader,plugins，opitimization)
+2. 进修项目：css 如何不打包未使用的样式(css treeshaking purifyCssPlugin)，contenthash 和 hash,chunkhash(依赖解析生成的hash，文件名修改会改变，这时达不到缓存效果) 的区别，sourcemap(css-loader 开启(测试好像没起作用),devtool),treeshaking（依靠import），环境区分(静态文件最省事/动态文件灵活))，第三方库使用webpack 配置(ProvidePlugin)，异步import(借助wepack import/require.ensure()写法),cdn 引入外部库 
+3. 攻克webpack4 代码分割，性能优化模块。 (参考)[https://webpack.js.org/plugins/split-chunks-plugin/#optimizationsplitchunks] ，打包速度，打包效果。
+ 
+总结：用时还是要查阅资料的
+
+打包体积,速度： devtool, exclude/include,gzip
+
+[https://segmentfault.com/a/1190000016623314](https://segmentfault.com/a/1190000016623314)
 
 
-## roadmap
 
-1. webpack基本配置搞懂，总结并梳理
-2. 进修项目：css 如何不打包未使用的样式(css treeshaking purifyCssPlugin)，contentHash 和 hash 的区别，sourcemap(css-loader 开启),treeshaking（依靠import），环境区分(静态文件最省事/动态文件灵活))，第三方库使用webpack 配置(ProvidePlugin)
-3. 攻克webpack4 代码分割，性能优化模块。
+
+
 

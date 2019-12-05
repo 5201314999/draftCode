@@ -3,6 +3,7 @@ import {sum,generateUID} from './js/util';
 import {throttle} from 'throttle-debounce';
 import ipconfig from './js/ipconfig';
 const aa=generateUID('梦琪d',"霸绝天下1111");
+import dd from 'lodash'
 
 console.log(aa)
 //测试map es6语法
@@ -19,5 +20,5 @@ document.body.addEventListener('mousemove',throttle(1000,()=>{
     console.log(performance.now());
 }));
 //测试能否成功加载全局模块
-const b=_.clone({name:'jr',age:25})
+const b=dd.clone({name:'jr',age:25})
 console.log(b)
