@@ -74,11 +74,13 @@ module => loader
 
 ```
 
-开发：cheap-eval-source-map 测试：none/hidden-source-map
+11. 开发：cheap-eval-source-map 测试：none/hidden-source-map
 
-9. hash， contenthash,chunkhash
+12. hash， contenthash,chunkhash
 
 单入口项目可采用：contenthash 用于静态文件   chunkhash 用于js hash 用于入口文件
+
+13. 使用 compression-webpack-plugin 开启gzip 压缩
 
 ## example5 编写loader
 
@@ -96,12 +98,13 @@ loader支持链式调用，所以开发上需要严格遵循“单一职责”�
 ## 强化roadmap
 
 1. webpack基本配置搞懂，总结并梳理(loader,plugins，opitimization)
-2. 进修项目：css 如何不打包未使用的样式(css treeshaking purifyCssPlugin)，contenthash 和 hash,chunkhash(依赖解析生成的hash，文件名修改会改变，这时达不到缓存效果) 的区别，sourcemap(css-loader 开启(测试好像没起作用),devtool),treeshaking（依靠import），环境区分(静态文件最省事/动态文件灵活))，第三方库使用webpack 配置(ProvidePlugin)，异步import(借助wepack import/require.ensure()写法),cdn 引入外部库，sideEffects , package.json 设置， 或者modules 中设置 false 表示标准export，无其他问题。 optimization.sideEffects 表示是否开启此选项功能。
+2. 进修项目：css 如何不打包未使用的样式(css treeshaking purifyCssPlugin)，contenthash 和 hash,chunkhash(依赖解析生成的hash，文件名修改会改变，这时达不到缓存效果) 的区别，sourcemap(css-loader 开启(测试好像没起作用),devtool),treeshaking（依靠import），环境区分(静态文件最省事/动态文件灵活))，第三方库使用webpack 配置(ProvidePlugin)，异步import(借助wepack import/require.ensure()写法),cdn 引入外部库，sideEffects , package.json 设置， 或者modules 中设置 false 表示标准export，无其他问题。 optimization.sideEffects 表示是否开启此选项功能。webpack UglifyPlugin 会剔除无用模块export代码
+
 3. 攻克webpack4 代码分割，性能优化模块。 (参考)[https://webpack.js.org/plugins/split-chunks-plugin/#optimizationsplitchunks] ，打包速度，打包效果。
 
 分包一开始是将应用代码与库代码分开，实现动静分离，有效利用缓存, 有cdn 的情况下甚至可以把一些较大的库直接外挂在cdn 服务，进一步提高性能。
 
-打包体积,速度： devtool, exclude/include,gzip,cdn 分割， css 抽离
+打包体积,速度： devtool, exclude/include,gzip,cdn 分割， css 抽离，treeshaking
 
 manifest 可借用inline-manifest-webpack-plugin 直接以script 内嵌到html,减少请求
 

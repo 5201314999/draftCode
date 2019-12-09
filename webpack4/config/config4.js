@@ -41,7 +41,7 @@ module.exports = {
     port: 9000,
   },
   //配置source-map
-  devtool:process.env.NODE_ENV==='production'?'hidden-source-map':'cheap-eval-source-map',
+  // devtool:process.env.NODE_ENV==='production'?'hidden-source-map':'cheap-eval-source-map',
   resolve: {
     extensions: [".js", ".json"], //默认值 
     alias: {
@@ -202,18 +202,18 @@ module.exports = {
     // }),
     new BundleAnalyzerPlugin(),
     //文件压缩
-    new CompressionWebpackPlugin({
-      filename: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.(js|css)$/,
-      threshold: 4096,
-      minRatio: 0.8
-    })
+    // new CompressionWebpackPlugin({
+    //   filename: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   test: /\.(js|css)$/,
+    //   threshold: 4096,
+    //   minRatio: 0.8
+    // })
 
   ],
   //webpack4 废弃了commonChunkPlugin（会引入多余模块,对异步模块支持不好，懂80%） ,使用 splitChunk（chunkgroup, 对于异步模块支持更好） 和 runtimeChunk（入口基本不变）
   optimization:{
-    sideEffects: false, //是否进行无效模块删除， npm 库可以在package.json 设置 说明该模块是否能被tree -shaking
+    sideEffects: false, //是否进行无效模块删除， npm 库可以在package.json 设置false说明该模块能被tree -shaking
     splitChunks:{
       chunks:'all', //'async' 只作用于异步模块 ，'initial' 对同步模块
       minSize:300, //合并前模块文件的体积
