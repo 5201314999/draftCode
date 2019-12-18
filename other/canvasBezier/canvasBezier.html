@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>canvas 绘制贝塞尔曲线</title>
+    <meta name='viewport'
+        content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="https://unpkg.com/konva@4.0.0/konva.min.js"></script>
+
+    <script>
+        window.onload = function () {
+            init()
+        }
+        function init() {
+            var stage = new Konva.Stage({
+                width: 500,
+                height: 800,
+                container: '#canvas' // or "#containerId" or ".containerClass"
+            });
+            
+            stage.add(new Konva.Circle({x: 100, y: 100, radius: 50, fill: 'red'}))
+        } 
+    </script>
+</head>
+
+<body>
+    <div id="canvas"></div>
+</body>
+
+</html>

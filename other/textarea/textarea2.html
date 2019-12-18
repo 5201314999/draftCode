@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .editor{
+            position: relative;
+        } 
+        .content{
+            width:500px;
+            box-sizing: border-box;
+            position:absolute;
+            top:0;
+            left:0;
+            height:100%;
+            background: transparent;
+            outline:0;
+            min-height:12px;
+            font-size: inherit;
+            color: inherit;
+            line-height: inherit;
+            text-indent: inherit;
+            letter-spacing: inherit;
+            /* resize:none; */
+            overflow:hidden;
+            border:1px solid red;
+        }  
+        .editor .pre {
+            box-sizing: border-box;
+            display:inline-block;
+            visibility:hidden;
+            border:1px solid yellow;
+        }
+ 
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div class="editor">
+            <span class="pre"></span>
+            <textarea class="content" placeholder="请输入内容" oninput="changeContent()" onclick="puck"></textarea>
+        </div>
+    </div>
+    <script>
+        function changeContent(){
+            var $textarea = document.getElementsByClassName('content');
+            var $pre = document.querySelector('.pre')
+            $pre.innerText = $textarea[0].value;       
+        }
+        function puck(){
+            console.log('click')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>textarea 特性检查，如何实现白板编辑器的需求，最好跟微信截图文字编辑一致</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+    textarea{
+        width:100px;
+        height:100px;
+    }
+</style>
+</head>
+<body>
+    <div id="content">
+       <textarea>
+            
+       </textarea>
+</div>
+<script>
+    //点击textarea 是否猝发
+    const el=document.querySelector('#content')
+    el.addEventListener('click',function(){
+        console.log('click')
+    })
+
+</script>
+</body>
+</html>

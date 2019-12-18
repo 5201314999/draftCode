@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>鼠标右键是否触发click 事件</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+    .content{
+        width:300px;
+        height:300px;
+        border:1px solid red;
+    }
+    
+</style>
+</head>
+<body>
+    <div class="content"></div>
+    <script>
+        const el=document.querySelector('.content') 
+        el.addEventListener('click',function(evt){
+            evt.stopPropagation()
+            console.log(evt)
+            alert('click')
+        })
+        document.body.addEventListener('click',function(evt){
+            alert('body click')
+        })
+    </script>
+</body>
+</html>
