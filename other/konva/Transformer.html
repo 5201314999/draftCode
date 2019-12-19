@@ -24,20 +24,21 @@
       var stage = new Konva.Stage({
         container: "container",
         width: width,
-        height: height
+        height: height,
+        draggable:true
+
       });
 
       var layer = new Konva.Layer();
       stage.add(layer);
 
-      var text = new Konva.Text({
-        x: 50,
-        y: 70,
-        fontSize: 30,
-        text: "Rotate me",
-        draggable: true
-      });
-      layer.add(text);
+      // var text = new Konva.Text({
+      //   x: 50,
+      //   y: 70,
+      //   fontSize: 30,
+      //   text: "Rotate me",
+      // });
+      // layer.add(text);
       var circle = new Konva.Circle({
         x: 100,
         y: 100,
@@ -48,15 +49,71 @@
       });
       layer.add(circle);
 
+      // var line = new Konva.Line({
+      //   points:[100,100,200,300],
+      //   stroke: "red",
+      //   strokeWidth: 20
+      // });
+      // layer.add(line);
+
+      // 用于删除
       var tr1 = new Konva.Transformer({
         node: circle,
         centeredScaling: true,
         rotationSnaps: [0, 90, 180, 270],
-        resizeEnabled: true
+        resizeEnabled: false,
+        rotateEnabled:false,
+        padding:40
       });
+
+      var label = new Konva.Label();
+
+      //增加一个删除按钮
+      label.add(new Konva.Tag({
+        fill: '#fff',
+        stroke: '#78c8f8',
+        shadowColor: 'black',
+        shadowBlur: 10,
+        shadowOffset: [10, 10],
+        shadowOpacity: 0.2,
+        lineJoin: 'round',
+        pointerDirection: 'none',
+        pointerWidth: 20,
+        pointerHeight: 20,
+        cornerRadius: 2
+      }));
+      var text2 = new Konva.Text({
+        fontSize: 30,
+        text: "x",
+        fill:'#333',
+      });
+      label.add(text2)
+      label.on('mouseover',function(evt){
+        label.getTag().fill('red')
+        label.getText().fill('#fff')
+        layer.draw()
+      })
+      label.on('mouseout',function(evt){
+        label.getTag().stroke('#78c8f8')
+        layer.draw()
+      })
+      label.on('click',function(evt){
+        label.remove()
+        tr1.destroy()
+        circle.remove()
+        layer.draw()
+      })
+      label.position({
+        x:tr1.position().x+tr1.width()+40-8,
+        y:tr1.position().y-40-15
+      })
+      layer.add(label)
+
       layer.add(tr1);
 
       layer.draw();
+
+
     </script>
   </body>
 </html>

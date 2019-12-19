@@ -14,13 +14,38 @@
         padding:0;
         margin:0;
     }
+    body{
+        position: relative;
+    }
+    button{
+        position: absolute;
+        left:20px;
+        top:100px;
+        z-index:100;
+    }
 </style>
 </head>
 <body>
+    <button class="download">下载</button>
     <div id="container">
+        
     </div>
 </body>
 <script>
+        document.querySelector('.download').onclick=function(){
+            
+            konvaImage.toCanvas().toImage({
+                callback(){
+                    //如何保存Image图片和区域对应的remarkLayer。
+                    const link=document.createElement('a')
+                    // link.style.display='none'    
+                    link.download=true
+                    document.body.append(link)
+                    link.click()
+                }
+            })
+          
+       }
       var stage = new Konva.Stage({
             container: "container",
             width: window.innerWidth,
@@ -34,24 +59,30 @@
       })
 
       var layer2=new Konva.Layer({
-          id:'bg_layer',
+          id:'remark_layer',
 
       })
 
       stage.add(layer1)
       var image=new Image()
       image.src='./1.jpg'
-      konvaImage=new Konva.Image({
+        var konvaImage=new Konva.Image({
           image:image,
           x:window.innerWidth/4,
+      
         //   width:window.innerWidth,
         //   height:window.innerHeight,
         })
       image.onload=function(){
-      
+        konvaImage=new Konva.Image({
+          image:image,
+        //   x:window.innerWidth/4,
+          width:800,
+          height:900
+        })
         var scale=image.width/window.innerWidth*2;
-        console.log(scale)
-        stage.scale({x:scale,y:scale})
+        // console.log(scale)
+        // stage.scale({x:scale,y:scale})
         layer1.add(konvaImage)
         // layer1.add(new Konva.Image({
         //   x:window.innerWidth/4,
@@ -69,14 +100,12 @@
       })
 
       layer2.add(circle)
-      layer2.draw()
       stage.add(layer2)
 
-      //如何保存Image图片区域。
-      console.log('')
 
-      setTimeout(() => {
-          stage.scale({x:0.3,y:0.3})
-      }, 3000);
+    //   setTimeout(() => {
+    //       stage.scale({x:0.3,y:0.3})
+    //   }, 5000);
+ 
 </script>
 </html>
