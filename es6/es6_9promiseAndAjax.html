@@ -68,8 +68,8 @@
 
     console.group('测试promise then，catch 连续使用')
         new Promise((resolve,reject)=>{
-            // return resolve('A')
-            return 'A';
+            return resolve('A')
+            // return 'A';
         }).then(data=>{
             console.log(data)
             return 'B'
