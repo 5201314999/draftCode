@@ -1,111 +1,153 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>测试konva使用一个layer 加载多个image（pdf 转图片）的demo, 测试konva 画布缩放特点，stage 外面容器不变，内部宽高自行缩放,如何实现多个文档，点击之后实现具体一个模板 </title>
-<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
-<script src="https://unpkg.com/konva@4.0.18/konva.min.js"></script>
-<style>
-    *{
-        padding:0;
-        margin:0;
-    }
-    body{
-        position: relative;
-    }
-    button{
-        position: absolute;
-        left:20px;
-        top:100px;
-        z-index:100;
-    }
-</style>
-</head>
-<body>
-    <button class="download">下载</button>
-    <div id="container">
-        
-    </div>
-</body>
-<script>
-        document.querySelector('.download').onclick=function(){
-            
-            konvaImage.toCanvas().toImage({
-                callback(){
-                    //如何保存Image图片和区域对应的remarkLayer。
-                    const link=document.createElement('a')
-                    // link.style.display='none'    
-                    link.download=true
-                    document.body.append(link)
-                    link.click()
-                }
-            })
-          
-       }
-      var stage = new Konva.Stage({
-            container: "container",
-            width: window.innerWidth,
-            height: window.innerHeight,
-            draggable:true
-      });
-
-      //layer 不可以加载layer
-      const layer1=new Konva.Layer({
-          id:'bg_layer',
-      })
-
-      var layer2=new Konva.Layer({
-          id:'remark_layer',
-
-      })
-
-      stage.add(layer1)
-      var image=new Image()
-      image.src='./1.jpg'
-        var konvaImage=new Konva.Image({
-          image:image,
-          x:window.innerWidth/4,
-      
-        //   width:window.innerWidth,
-        //   height:window.innerHeight,
-        })
-      image.onload=function(){
-        konvaImage=new Konva.Image({
-          image:image,
-        //   x:window.innerWidth/4,
-          width:800,
-          height:900
-        })
-        var scale=image.width/window.innerWidth*2;
-        // console.log(scale)
-        // stage.scale({x:scale,y:scale})
-        layer1.add(konvaImage)
-        // layer1.add(new Konva.Image({
-        //   x:window.innerWidth/4,
-        //   image:image
-        // }))
-
-        layer1.draw()
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      1.测试konva使用一个layer 加载多个image（pdf 转图片）的demo, 测试konva
+      2.画布缩放特点，stage
+      外面容器不变，内部宽高自行缩放,如何实现多个文档，点击之后实现具体一个模板
+      3. 将指定区域生成图片，可以使用一个看不到的stage,stage 的大小必须足够大，只有渲染的dom 才能生成图片。
+    </title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script src="https://unpkg.com/konva@4.0.18/konva.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
       }
+      body {
+        position: relative;
+        overflow:hidden;
+      }
+      button {
+        position: absolute;
+        left: 20px;
+        top: 100px;
+        z-index: 100;
+      }
+      #container{
+        position:relative;
+        z-index: 19;
+        background-color:#fff;
+      }
+      #buildImgStage{
+          position: absolute;
+          left:0;
+          top:0;
+          z-index:10;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="buildImgStage"></div>
+    <button class="download">下载</button>
+    <div id="container"></div>
+  </body>
+  <script>
+    
+    document.querySelector(".download").onclick = function() {
+      {
 
-      var circle=new Konva.Circle({
-          radius:400,
-          x:500,
-          y:500,
-          fill:'red',
-      })
+        //如何保存Image图片和区域对应的remarkLayer
+        const link = document.createElement("a");
+        // link.style.display='none'
+        link.download = true;
+        // 使用group 来下载图片
+        link.href = stage2.toDataURL();
+        document.body.append(link);
+        link.click();
+      }
+    };
 
-      layer2.add(circle)
-      stage.add(layer2)
+    var stage = new Konva.Stage({
+      container: "container",
+      width: window.innerWidth,
+      height: window.innerHeight,
+      draggable:true
+    });
 
+    var stage2=new Konva.Stage({
+        container:'buildImgStage',
+        width:5000,
+        height:5000
+    })
+
+    //layer 不可以加载layer
+    var layer1 = new Konva.Layer({
+      id: "bg_layer"
+    });
+
+    var layer2 = new Konva.Layer({
+      id: "remark_layer"
+    });
+
+    stage.add(layer1);
+    var image = new Image();
+    image.src = "./1.jpg";
+
+    var konvaImage = new Konva.Image({
+      image: image,
+      x: window.innerWidth / 4
+    });
+    image.onload = function() {
+      konvaImage = new Konva.Image({
+        image: image,
+        x:window.innerWidth/4
+      });
+      var konvaImage2 = new Konva.Image({
+        image: image,
+        x:window.innerWidth/4
+      });
+      var scale = (image.width / window.innerWidth) * 2;
+      console.log(scale)
+      stage.scale({x:scale,y:scale})
+      layer1.add(konvaImage);
+      // layer1.add(new Konva.Image({
+      //   x:window.innerWidth/4,
+      //   image:image
+      // }))   
+      layer1.draw();
+      layer21.add(konvaImage2,circle2)  
+      layer21.draw()  
+    };
+
+    var circle = new Konva.Circle({
+      radius: 400,
+      x: 500,
+      y: 500,
+      fill: "red"
+    });
+
+    
+    var circle2 = new Konva.Circle({
+      radius: 400,
+      x: 500,
+      y: 500,
+      fill: "red"
+    });
+
+    layer2.add(circle);
+    stage.add(layer2)
+
+
+    //浅克隆。
+    var layer21=new Konva.Layer()
+    
+    stage2.add(layer21)
+    
+    
 
     //   setTimeout(() => {
     //       stage.scale({x:0.3,y:0.3})
+    //       stage.draw();
     //   }, 5000);
- 
-</script>
+  </script>
 </html>
