@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
       1.测试konva使用一个layer 加载多个image（pdf 转图片）的demo, 测试konva
-      2.画布缩放特点，stage
+      2. 画布缩放特点，stage ，stage.scale
       外面容器不变，内部宽高自行缩放,如何实现多个文档，点击之后实现具体一个模板
       3. 将指定区域生成图片，可以使用一个看不到的stage,stage 的大小必须足够大，只有渲染的dom 才能生成图片。
+      4. 缩放时，拖拽的 坐标跟初始化坐标的关系
+      5. 笔的绘制效果的问题
+      6. 大小屏幕的显示同步问题
     </title>
     <meta
       name="viewport"
@@ -60,8 +63,13 @@
         const link = document.createElement("a");
         // link.style.display='none'
         link.download = true;
-        // 使用group 来下载图片
-        link.href = stage2.toDataURL();
+        // 使用指定区域下载图片
+        link.href = stage2.toDataURL({
+            x:window.innerWidth/4,
+            y:0,
+            width:image.width,
+            height:image.height
+        });
         document.body.append(link);
         link.click();
       }
@@ -138,14 +146,25 @@
     stage.add(layer2)
 
 
-    //浅克隆。
+    //截图直接截state 的区域
     var layer21=new Konva.Layer()
     
     stage2.add(layer21)
     
+    //测试转换后坐标关系   (old+拖拽的距离)/scale=now
+    stage.on('click',(evt)=>{
+        stage.to({
+            scaleX:1,
+            scaleY:1
+        })
+        console.log(evt)
+        console.log(`clientX:${evt.clientX},clientY:${evt.clientY}`)
+    })
+
+
     
 
-    //   setTimeout(() => {
+    //   setTimeout(() => {;
     //       stage.scale({x:0.3,y:0.3})
     //       stage.draw();
     //   }, 5000);

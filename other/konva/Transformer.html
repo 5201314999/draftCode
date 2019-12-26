@@ -26,7 +26,6 @@
         width: width,
         height: height,
         draggable:true
-
       });
 
       var layer = new Konva.Layer();
@@ -39,6 +38,7 @@
       //   text: "Rotate me",
       // });
       // layer.add(text);
+      
       var circle = new Konva.Circle({
         x: 100,
         y: 100,
@@ -87,7 +87,7 @@
         text: "x",
         fill:'#333',
       });
-      label.add(text2)
+      label.add(text2)  
       label.on('mouseover',function(evt){
         label.getTag().fill('red')
         label.getText().fill('#fff')
@@ -112,8 +112,6 @@
       layer.add(tr1);
 
       layer.draw();
-
-
     </script>
   </body>
 </html>
