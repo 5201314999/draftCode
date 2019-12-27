@@ -14,34 +14,42 @@
     <script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
     <style>
       #canvas {
-        display: flex;
-        margin: auto;
         border: 1px solid red;
       }
       #container {
-		border: 1px solid red;
-		display: inline-block;
-      }
+        border: 1px solid red;
+        display: inline-block;
+	  }
+	  button{
+		  vertical-align: top;
+	  }
     </style>
   </head>
 
   <body>
-    <canvas id="canvas" width="1000" height="800"></canvas>
-    <div id="container"></div>
-    <button>clear</button>
+    <p>
+      draw line in the second canvas and look the mirror in the first
+      canvas.they are not the same and tr can not be right if not assign the
+      width and height of shape.
+	</p>
+    <canvas id="canvas" width="500" height="500"></canvas>
+	<div id="container"></div>
+	<button id="clear">clear</button>
+    <button id="trans">add transformer</button>
+
     <script>
       //原生方案1
       // A,B,C,D,E,F  取 B,C 的中点B1,A 作为起点，B1 终点,B 控制点, 下次B1 作为起点，C,D 中间点c1作为终点，C 作为控制点
       var el = document.querySelector("#canvas");
       var ctx;
       function func1() {
-        el.width = 1000;
-        el.height = 800;
-		ctx = el.getContext("2d");
-		
+        el.width = 500;
+        el.height = 500;
+        ctx = el.getContext("2d");
+
         ctx.lineWidth = 20;
-		// ctx.strokeStyle = "#333";
-		ctx.strokeStyle='green';
+        // ctx.strokeStyle = "#333";
+        ctx.strokeStyle = "green";
         ctx.lineJoin = "round";
         ctx.lineCap = "round";
         // ctx.beginPath()
@@ -54,7 +62,7 @@
         function mmove(evt) {
           points.push({ x: evt.offsetX, y: evt.offsetY });
           if (points.length >= 3) {
-            addLine();
+            // addLine();
           }
         }
 
@@ -66,8 +74,8 @@
         function up() {
           el.removeEventListener("mousemove", mmove);
           if (points.length >= 3) {
-			addLine();
-			addLine2()
+            // addLine();
+            addLine2(points);
           }
           points = [];
           lastPoint = null;
@@ -85,137 +93,146 @@
           ctx.quadraticCurveTo(c.x, c.y, end.x, end.y);
           ctx.stroke();
           lastPoint = end;
-		}
-		//给所有点画
-		function addLine2(){
-			if(points.length>=3){
-				ctx.lineCap='round'
-				ctx.lineJoin='round'
-				ctx.lineWidth=20
-				ctx.strokeStyle='green'
-				let end
-				for(let i=1;i<points.length-1;i++){
-					ctx.beginPath()
-					end?ctx.moveTo(end.x,end.y):ctx.moveTo(points[0].x,points[0].y)
-					end= {
-						x: (points[i].x + points[i+1].x) / 2,
-						y: (points[i].y + points[i+1].y) / 2
-					};
-					const c=points[i]
-					ctx.quadraticCurveTo(c.x,c.y,end.x,end.y)
-					ctx.stroke()
-				}
-			}
-		}
+        }
+      }
+      //给所有点画
+      function addLine2(arr) {
+        if (arr.length >= 3) {
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.lineWidth = 10;
+          ctx.strokeStyle = "red";
+          let end;
+          for (let i = 1; i < arr.length - 1; i++) {
+            ctx.beginPath();
+            end ? ctx.moveTo(end.x, end.y) : ctx.moveTo(arr[0].x, arr[0].y);
+            end = {
+              x: (arr[i].x + arr[i + 1].x) / 2,
+              y: (arr[i].y + arr[i + 1].y) / 2
+            };
+            const c = arr[i];
+            ctx.quadraticCurveTo(c.x, c.y, end.x, end.y);
+            ctx.stroke();
+          }
+        }
       }
 
-      // knova 使用canvas api画线,同时可以使用konva 的事件
+      // knova 使用canvas api画线,同时可以使用konva 的事件,如何更新以及tr 无效
+      var stage;
+	  var line;
+	  var layer
       function func2() {
-        const stage = new Konva.Stage({
+        stage = new Konva.Stage({
           container: "container",
-          width: 1000,
-          height: 800
+          width: 500,
+          height: 500
         });
 
-        const layer = new Konva.Layer();
+         layer = new Konva.Layer();
+        var poi = [];
+        stage.on("mousedown", function({ evt }) {
+          poi.push({ x: evt.offsetX, y: evt.offsetY });
+          stage.on("mousemove", function({ evt }) {
+            poi.push({ x: evt.offsetX, y: evt.offsetY });
+          });
+          //清除事件
+          stage.on("mouseup", function() {
+            drawLine();
+            stage.off("mousemove");
+            stage.off("mouseup");
+            poi = [];
+            end = null;
+          });
+        });
+
+        //给一堆点华柔顺的线
+        function drawLine() {
+          addLine2(poi);
+          //   line&&layer.remove(line)
+          line = new Konva.Shape({
+			// a Konva.Canvas renderer is passed into the sceneFunc function
+			width:200,
+			height:200,
+            sceneFunc(context, shape) {
+              if (poi.length >= 3) {
+                context.lineCap = "round";
+                context.lineJoin = "round";
+                context.lineWidth = 10;
+                context.strokeStyle = "red";
+                let end;
+                for (let i = 1; i < poi.length - 1; i++) {
+                  context.beginPath();
+                  end
+                    ? context.moveTo(end.x, end.y)
+                    : context.moveTo(poi[0].x, poi[0].y);
+                  end = {
+                    x: (poi[i].x + poi[i + 1].x) / 2,
+                    y: (poi[i].y + poi[i + 1].y) / 2
+                  };
+                  const c = poi[i];
+                  context.quadraticCurveTo(c.x, c.y, end.x, end.y);
+                  context.stroke();
+                }
+                context.fillStrokeShape(shape);
+              }
+            },
+            draggable: true
+          });
+
+          layer.add(line);
+		  layer.draw()
+          // line.on("click", function() {
+          //   console.log("cl");
+          // })
+        }
 
         var rect = new Konva.Shape({
-          x: 10,
-          y: 20,
+          //   x: 10,
+          //   y: 20,
           fill: "#00D2FF",
-          width: 100,
-          height: 50,
+          //   width: 100,
+          //   height: 50,
           sceneFunc: function(context, shape) {
             context.beginPath();
             // don't need to set position of rect, Konva will handle it
-            context.rect(0, 0, shape.getAttr("width"), shape.getAttr("height"));
+            context.rect(0, 0, 100, 50);
+            // context.rect(0, 0, shape.getAttr("width"), shape.getAttr("height"));
             // (!) Konva specific method, it is very important
             // it will apply are required styles
             context.fillStrokeShape(shape);
-		  },
-		  draggable: true
-		});
-		layer.add(rect)
-		var poi=[]
-		stage.on('mousedown',function({evt}){
-			poi.push({x:evt.offsetX,y:evt.offsetY})
-			stage.on('mousemove',function({evt}){
-				poi.push({x:evt.offsetX,y:evt.offsetY})
-			})
-			//清除事件
-			stage.on('mouseup',function(){
-				drawLine()
-				stage.off('mousemove')
-				stage.off('mouseup')
-				poi=[]
-				end=null
-				line=null
-			})
-		})
-	
-
-		var line
-		//给一堆点华柔顺的线
-		function drawLine(){
-				
-		//   line&&layer.remove(line)
-		  line = new Konva.Shape({
-          // a Konva.Canvas renderer is passed into the sceneFunc function
-          sceneFunc(context, shape) {
-			if(poi.length>=3){
-				context.lineCap='round'
-				context.lineJoin='round'
-				context.lineWidth=15
-				context.strokeStyle='red'
-				let end
-				for(let i=1;i<poi.length-1;i++){
-					context.beginPath()
-					end?context.moveTo(end.x,end.y):context.moveTo(poi[0].x,poi[0].y)
-					end= {
-						x: (poi[i].x + poi[i+1].x) / 2,
-						y: (poi[i].y + poi[i+1].y) / 2
-					};
-					const c=poi[i]
-					context.quadraticCurveTo(c.x,c.y,end.x,end.y)
-					context.stroke()
-				}
-				context.fillStrokeShape(shape);
-			}
           },
           draggable: true
-		});
-		layer.add(line)
-		var tr1 = new Konva.Transformer({
-			node: line,
-			centeredScaling: true,
-			padding:40
-		});
-		layer.add(tr1)
-		layer.draw();
-		}
+        });
+        layer.add(rect);
 
-		rect.on('click',function(){
-		  console.log("cl");
-		})
-        // line.on("click", function() {
-        //   console.log("cl");
-		// });
-		
-        var tr1 = new Konva.Transformer({
-        	node: rect,
-        	centeredScaling: true,
-        	padding:40
+        rect.on("click", function() {
+          console.log("cl");
         });
 
-        layer.add(tr1)
-
+        var tr2 = new Konva.Transformer({
+          node: rect,
+          centeredScaling: true,
+          padding: 40
+        });
+        layer.add(tr2);
         stage.add(layer);
       }
-
-      document.querySelector("button").onclick = () => {
+      clear.onclick = () => {
         ctx.clearRect(0, 0, el.width, el.height);
+        stage.clear();
       };
-	  func1()
+      trans.onclick = () => {
+        console.log = line;
+        var tr = new Konva.Transformer({
+          node: line,
+          centeredScaling: true,
+          padding: 40
+        });
+        layer.add(tr);
+        layer.draw();
+      };
+
+      func1();
       func2();
     </script>
   </body>
