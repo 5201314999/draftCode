@@ -1,0 +1,11 @@
+{
+  "name": "typescriptdemo",
+  "version": "1.0.0",
+  "description": "> 本文件夹使用npm 初始化",
+  "main": "src/index.js",
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "author": "",
+  "license": "ISC"
+}

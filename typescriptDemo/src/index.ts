@@ -10,7 +10,17 @@ function greeter(person:Person){
 
 let user={
     firstName:'Jane',
-    lastName:12
+    lastName:'12'
 }
 
 greeter(user);
+// 基础类型
+
+// 数字
+let a:any;
+a=1;
+console.log(a++)
+
+
+
+
