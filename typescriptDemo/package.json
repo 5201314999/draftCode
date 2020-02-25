@@ -1,11 +1,40 @@
 {
   "name": "typescriptdemo",
   "version": "1.0.0",
-  "description": "> 本文件夹使用npm 初始化",
-  "main": "src/index.js",
+  "description": "typescript 项目",
   "scripts": {
-    "tsc": "tsc"
+    "checkType": "tsc",
+    "build": "npx webpack --config webpack.config.js",
+    "serve": "webpack-dev-server --config webpack.config.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.8.3",
+    "cache-loader": "^3.0.0",
+    "clean-webpack-plugin": "^2.0.1",
+    "css-loader": "1.0.0",
+    "file-loader": "^3.0.1",
+    "fork-ts-checker-webpack-plugin": "^4.0.4",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "glob-all": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "portfinder": "^1.0.20",
+    "postcss-safe-parser": "^4.0.1",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typings-for-css-modules-loader": "^1.7.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1"
+  }
 }

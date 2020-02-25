@@ -14,13 +14,15 @@ let user={
 }
 
 greeter(user);
-// 基础类型
 
-// 数字
-let a:any;
-a=1;
-console.log(a++)
+//模块导入
+import add from './add'
 
+console.log(`模块导入${add(3,4)}`)
+
+
+//基本类型
+let number='ab'
 
 
 
