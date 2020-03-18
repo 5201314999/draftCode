@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" conte。nt="IE=edge,chrome=1">
+  <title>表格宽度设置，第一列定宽，第2列最长的数字撑开，第3列，第4列保持固定比例(如何实现)，整个表格宽度自适应屏幕</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+  <style>
+    .cloumn-1 {
+      text-align: left;
+    }
+    .cloumn-2{
+      text-align:center;
+    }
+
+    section {
+      display: flex;
+    }
+    /* .col>div{
+      display:inline-block;
+    } */
+
+    .col1 {
+      width: 100px;
+    }
+
+    .col3 {
+      flex: 1;
+    }
+
+    .col4 {
+      flex: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 使用table，内容用div 实现，2，4 列怎么剩下分摊实现固定比例（比较麻烦） -->
+  <table width="100%" border="1" cellspacing="0">
+      <thead>
+        <th class="cloumn-1" width="100" >非数字定宽100</th>
+        <th class="cloumn-2">数字自适应，不换行</th>
+        <th class="cloumn-3">非数字，占比1</th>
+        <th class="cloumn-4">非数字，占比2</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>在多选模式下有效，选中某一项时触发</td>
+          <td>122222222222273873012</td>
+          <td>本列1</td>
+          <td>本列2</td>
+        </tr>
+        <tr>
+          <td>在多选模式下有效，选中某一项时触发</td>
+          <td>1222222222</td>
+          <td>本列1</td>
+          <td>本列2</td>
+        </tr>
+        <tr>
+          <td>在多选模式下有效，选中某一项时触发</td>
+          <td>1222222222222738730124444444444444444444444</td>
+          <td>本列1</td>
+          <td>本列2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 列容易实现宽度，但是高度会不一致，此方案不行 -->
+  <!-- <section>
+    <div class="col col1">
+      <div>
+        非数字定宽100
+      </div>
+      <div>
+        中文
+      </div>
+      <div>
+        查看此网页的中文翻译，请点击 翻译此页
+      </div>
+    </div>
+    <div class="col col2">
+      <div>
+        数字自适应，不换行
+      </div>
+      <div>
+        88483893434111111233333335
+      </div>
+      <div>
+        88483893434
+      </div>
+    </div>
+    <div class="col col3">
+      <div>
+        非数字，占比1
+      </div>
+      <div>
+        比例1占比1占比1占比1占比1占比1占比1
+      </div>
+      <div>
+        比例1占比1占比
+      </div>
+    </div>
+    <div class="col col4">
+      <div>
+        非数字，占比2
+      </div>
+      <div>
+        比例1222     比例1222     比例1222     比例1222     比例1222
+      </div>
+      <div>
+        比例122比例12233333333333333333333
+      </div>
+    </div>
+  </section> -->
+</body>
+
+</html>

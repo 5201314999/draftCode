@@ -1,20 +1,20 @@
+const webpack=require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //替代 3.0 extract-text-webpack-plugin
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
-const SpritesmithPlugin = require("webpack-spritesmith"); //雪碧图合成插件
-const PurgecssWebpackPlugin=require('purgecss-webpack-plugin'); //css 过滤没用到样式
-const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 打包分析工具
-const InlineManifestWebpackPlugin=require('inline-manifest-webpack-plugin'); // mainfest 放置到html 中
-const CompressionWebpackPlugin=require('compression-webpack-plugin'); // 开启gzip
-const glob=require('glob-all');
+const PurifyCssPlugin=require('purifycss-webpack'); //css 过滤没用到样式
+// const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 打包分析工具
+// const InlineManifestWebpackPlugin=require('inline-manifest-webpack-plugin'); // mainfest 放置到html 中
+// const CompressionWebpackPlugin=require('compression-webpack-plugin'); // 开启gzip
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'); //类型检查
 
-const webpack=require('webpack');
+const glob=require('glob-all');
 
 const path = require("path");
 
 //定义环境变量，实际应读取不同config 文件
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "development";
 
 const resolve=(pathStr)=>{
     return path.resolve(__dirname,pathStr)
@@ -23,38 +23,44 @@ const resolve=(pathStr)=>{
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    app: ['@babel/polyfill',path.resolve(__dirname, "../examples/example4/src/index.js")]
-  },
-  externals:{
-    'lodash':'_'
+    app: [path.resolve(__dirname, "./src/index.ts")]
   },
   output: {
     filename: "static/js/[name].[hash:8].js",
     chunkFilename:'static/js/[name].[chunkhash:10].js',
-    path: path.resolve(__dirname, "../dist/example4"), //打包目录
-    publicPath: "/example4/" //注意：所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于根目录)
+    path: path.resolve(__dirname, "./dist"), //打包目录
+    publicPath: "/" //注意：所有资源路径的base路径 ，项目打包放在根目录的话 用/, 放在非根目录的话/example4/ (dev-server 启动用'/' ，相当于根目录)
   },
   devServer: {
     open:true,
-    contentBase: path.join(__dirname, '../dist/example4'),
+    // contentBase: path.join(__dirname, './dist'),
     compress: true,
     port: 9000,
   },
   //配置source-map
-  // devtool:process.env.NODE_ENV==='production'?'hidden-source-map':'cheap-eval-source-map',
+  devtool:process.env.NODE_ENV==='production'?'hidden-source-map':'cheap-eval-source-map',
   resolve: {
     extensions: [".js", ".json"], //默认值 
     alias: {
-      "@": path.resolve(__dirname, "../examples/example4/src"),
-      "@css": path.resolve(__dirname, "../examples/example4/src/style")
+      "@": path.resolve(__dirname, "./src"),
     },
-    modules: [path.join(__dirname,'..','node_modules'),path.resolve(__dirname, "../dist/examples/example4/static/ico")]
+    modules: [path.join(__dirname,'..','node_modules')]
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        use: ["babel-loader"]
+      // {
+      //   test: /\.js$/,
+      //   use: ["babel-loader"]
+      // },
+      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+      { 
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        include:resolve('./src'),
+        options: {
+          // disable type checker - we will use it in fork plugin
+          transpileOnly: true 
+        }
       },
       {
         test: /\.css$/,
@@ -96,7 +102,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        exclude: path.resolve(__dirname, "../examples/example4/src/assets/ico"),
+        include: path.resolve(__dirname, "./src/assets/ico"),
         use: [
           {
             loader: "url-loader",
@@ -107,16 +113,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test:/\.svg$/,
-        include:resolve('../examples/example4/src/icons'),
-        use:{
-            loader:'svg-sprite-loader',
-            options:{
-                symbolId:'icon-[name]'
-            }
-        }
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -146,9 +142,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject:true,
       filename: "index.html",
+      title:'欢迎来到typescript 训练场',
       template: path.resolve(
         __dirname,
-        "../examples/example4/public/index.html"
+        "./public/index.html"
       ),
       minify: {
         removeComments: true,
@@ -157,48 +154,30 @@ module.exports = {
       }
     }),
     // manifest 嵌入到html 中
-    new InlineManifestWebpackPlugin('manifest'),
-    // 实际上，项目中css,一般不使用分片,treeshaking  使用PurifyCssPlugin 插件
+    // new InlineManifestWebpackPlugin('manifest'),
+    // 实际上，项目中css,一般不使用分片,treeshaking,使用PurifyCssPlugin 插件
     new MiniCssExtractPlugin({
       filename: "static/css/[name].css", //基于output path
       chunkFilename: "static/css/[id].css", //分片
     }),
-    //删除掉没有用到的插件
-    new PurgecssWebpackPlugin({
+    new PurifyCssPlugin({
       //此路径是源码的路径
-      paths:glob.sync(`${resolve('../examples/example4/src/*.js')}/**/*`,{nodir: true })
+      paths:glob.sync([
+          resolve('./public/*.html'),
+          resolve('./src/*.js')
+        ])
     }),
     new OptimizeCssAssetsPlugin(), //mode:development 也会起作用，其实配置到optimization.minizer 中就好了
-    new SpritesmithPlugin({
-      src: {
-        cwd: path.resolve(__dirname, "../examples/example4/src/assets/ico"),
-        glob: "*.png" //正则匹配，照着填即可
-      },
-      //设置导出的sprite图及对应的样式文件，必选项
-      target: {
-        image: path.resolve(
-          __dirname,
-          "../dist/example4/static/img/sprite.png"
-        ),
-        css: path.resolve(__dirname, "../dist/example4/static/img/sprite.scss")
-      },
-      //设置sprite.png的引用格式，会自己加入sprite.css的头部
-      apiOptions: {
-        cssImageRef: "./sprite.png" //cssImageRef为必选项
-      },
-      //配置spritesmith选项，非必选
-      spritesmithOptions: {
-        algorithm: "top-down", //设置图标的排列方式
-        padding: 4 //每张小图的补白,避免雪碧图中边界部分的bug
-      }
-    }),
     //热模块替换，配合devserver hot:true
     new webpack.HotModuleReplacementPlugin(),
     //全局配置引入第三方库loadash，webpack.ProviderPlugin()
     // new webpack.ProvidePlugin({
     //     _:'lodash'
     // }),
-    new BundleAnalyzerPlugin(),
+
+    // typescript 类型检查
+    new ForkTsCheckerWebpackPlugin(),
+    // new BundleAnalyzerPlugin(),
     //文件压缩
     // new CompressionWebpackPlugin({
     //   filename: '[path].gz[query]',
