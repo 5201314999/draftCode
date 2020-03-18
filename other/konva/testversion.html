@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Examples</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+  </body>
+  <script>
+    var width = window.innerWidth;
+    var height = window.innerHeight - 25;
+    var stage = new Konva.Stage({
+      container: "container",
+      width: width,
+      height: height
+    });
+
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    let isPainting = false;
+    let arrow;
+    let twoPois = [];
+    stage.on("mousedown touchstart", function() {
+      isPainting = true;
+      twoPois[0] = stage.getPointerPosition();
+    });
+    stage.on("mousemove touchmove", function() {
+      if (!isPainting) return;
+      twoPois[1] = stage.getPointerPosition();
+      const arrowConfig = {
+        pointerLength: 12,
+        pointerWidth: 12,
+        strokeWidth: 16,
+		fill: 'blue',
+		stroke:'blue',
+        points: [twoPois[0].x, twoPois[0].y, twoPois[1].x, twoPois[1].y]
+      };
+      if (arrow) {
+        arrow.points([twoPois[0].x, twoPois[0].y, twoPois[1].x, twoPois[1].y]);
+        layer.add(arrow);
+      } else {
+        arrow = new Konva.Arrow(arrowConfig);
+      }
+      layer.draw();
+    });
+    stage.on("mouseup touchend", function() {
+      isPainting = false;
+      twoPois = [];
+      arrow = null;
+    });
+  </script>
+</html>

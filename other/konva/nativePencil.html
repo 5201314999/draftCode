@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>使用canvas 转图片实现绘制,改装版</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+
+  <body>
+    Tool:
+    <select id="tool">
+      <option value="brush">Brush</option>
+      <option value="eraser">Eraser</option>
+    </select>
+    <button id="draw">画线</button>
+    <div id="container"></div>
+    <script>
+      var width = window.innerWidth;
+      var height = window.innerHeight - 25;
+
+      // first we need Konva core things: stage and layer
+      var stage = new Konva.Stage({
+        container: "container",
+        width: width,
+        height: height
+      });
+
+      var layer = new Konva.Layer();
+      stage.add(layer);
+
+      // then we are going to draw into special canvas element
+      var canvas = document.createElement("canvas");
+      canvas.width = stage.width();
+      canvas.height = stage.height();
+      // created canvas we can add to layer as "Konva.Image" element
+
+      stage.draw();
+
+      var candraw = true;
+      var id = 1;
+
+      // Good. Now we need to get access to context element
+      var context = canvas.getContext("2d");
+      context.strokeStyle = "#df4b26";
+	  context.lineJoin = "round";
+	  context.lineCap='round'
+      context.lineWidth = 20;
+
+      var isPaint = false;
+      var lastPointerPosition;
+      var mode = "brush";
+
+      var pois = [];
+      // now we need to bind some events
+      // we need to start drawing on mousedown
+      // and stop drawing on mouseup
+      stage.on("mousedown touchstart", function() {
+		if (!candraw) return;
+		
+		isPaint = true;
+		lastPoint = null;
+		pois = [];
+        lastPoint = {
+          x: stage.getPointerPosition().x,
+          y: stage.getPointerPosition().y
+		};
+		pois.push(lastPoint)
+		context.clearRect(0, 0, width, height);
+      });
+
+      // will it be better to listen move/end events on the window?
+
+      stage.on("mouseup touchend", function() {
+		if (!isPaint) {
+          return;
+        }
+        isPaint = false;
+
+		const rect = getSelfRect(pois);
+		console.log([rect.width,rect.height])
+        const image = new Konva.Image({
+          image: canvas,
+          x: rect.x,
+          y: rect.y,
+          width: rect.width,
+          height: rect.height
+        });
+        layer.add(image);
+		layer.draw();
+		
+	
+      });
+
+      // and core function - drawing
+      stage.on("mousemove touchmove", function() {
+        if (!isPaint) {
+          return;
+        }
+        const curPoi = stage.getPointerPosition();
+        pois.push({
+          x: curPoi.x,
+          y: curPoi.y
+        });
+
+        if (mode === "brush") {
+          context.globalCompositeOperation = "source-over";
+        }
+        if (mode === "eraser") {
+          context.globalCompositeOperation = "destination-out";
+        }
+        if (pois.length >= 3) {
+          addLine(pois);
+        }
+      });
+
+      var select = document.getElementById("tool");
+      select.addEventListener("change", function() {
+        mode = select.value;
+      });
+
+      stage.on("click tap", function(e) {
+        if (candraw) return;
+        console.log(e.attr.id);
+        // if click on empty area - remove all transformers
+        if (e.target === stage) {
+          stage.find("Transformer").destroy();
+          layer.draw();
+          return;
+        }
+        // do nothing if clicked NOT on our rectangles
+        // remove old transformers
+        // TODO: we can skip it if current rect is already selected
+        stage.find("Transformer").destroy();
+
+        // create new transformer
+        var tr = new Konva.Transformer();
+        layer.add(tr);
+        tr.attachTo(e.target);
+        layer.draw();
+      });
+
+      var lastPoint;
+      function addLine(points) {
+        lastPoint;
+        const end = {
+          x: (points[points.length - 1].x + points[points.length - 2].x) / 2,
+          y: (points[points.length - 1].y + points[points.length - 2].y) / 2
+        };
+        const c = points[points.length - 2];
+        context.beginPath();
+        context.moveTo(lastPoint.x, lastPoint.y);
+        context.quadraticCurveTo(c.x, c.y, end.x, end.y);
+        context.stroke();
+		lastPoint = end;
+      }
+      // 获取自身rect 数据
+      function getSelfRect(points) {
+        if (points.length < 3) {
+          return {
+            x: points[0] || 0,
+            y: points[1] || 0,
+            width: 0,
+            height: 0
+          };
+        }
+        var minX = points[0].x;
+        var maxX = points[0].x;
+        var minY = points[1].y;
+        var maxY = points[1].y;
+        var x, y;
+        for (var i = 0; i < points.length; i++) {
+          x = points[i].x;
+          y = points[i].y;
+          minX = Math.min(minX, x);
+          maxX = Math.max(maxX, x);
+          minY = Math.min(minY, y);
+          maxY = Math.max(maxY, y);
+        }
+        return {
+          x: Math.round(minX),
+          y: Math.round(minY),
+          width: Math.round(maxX - minX),
+          height: Math.round(maxY - minY)
+        };
+      }
+
+      draw.onclick = function() {
+        candraw = !candraw;
+        if (candraw) draw.innerText = "画线";
+        else draw.innerText = "选中";
+      };
+    </script>
+  </body>
+</html>

@@ -19,10 +19,10 @@
       #container {
         border: 1px solid red;
         display: inline-block;
-	  }
-	  button{
-		  vertical-align: top;
-	  }
+      }
+      button {
+        vertical-align: top;
+      }
     </style>
   </head>
 
@@ -31,10 +31,10 @@
       draw line in the second canvas and look the mirror in the first
       canvas.they are not the same and tr can not be right if not assign the
       width and height of shape.
-	</p>
+    </p>
     <canvas id="canvas" width="500" height="500"></canvas>
-	<div id="container"></div>
-	<button id="clear">clear</button>
+    <div id="container"></div>
+    <button id="clear">clear</button>
     <button id="trans">add transformer</button>
 
     <script>
@@ -117,10 +117,10 @@
         }
       }
 
-      // knova 使用canvas api画线,同时可以使用konva 的事件,如何更新以及tr 无效
+      // knova 使用canvas api画线,同时可以使用konva 的事件,如何更新以及tr 无效，shape 方案失败。 替代方案直接改造Konva 内部实现
       var stage;
-	  var line;
-	  var layer
+      var line;
+      var layer;
       function func2() {
         stage = new Konva.Stage({
           container: "container",
@@ -128,7 +128,7 @@
           height: 500
         });
 
-         layer = new Konva.Layer();
+        layer = new Konva.Layer();
         var poi = [];
         stage.on("mousedown", function({ evt }) {
           poi.push({ x: evt.offsetX, y: evt.offsetY });
@@ -150,9 +150,9 @@
           addLine2(poi);
           //   line&&layer.remove(line)
           line = new Konva.Shape({
-			// a Konva.Canvas renderer is passed into the sceneFunc function
-			width:200,
-			height:200,
+            // a Konva.Canvas renderer is passed into the sceneFunc function
+            width: 200,
+            height: 200,
             sceneFunc(context, shape) {
               if (poi.length >= 3) {
                 context.lineCap = "round";
@@ -160,8 +160,8 @@
                 context.lineWidth = 10;
                 context.strokeStyle = "red";
                 let end;
+                context.beginPath();
                 for (let i = 1; i < poi.length - 1; i++) {
-                  context.beginPath();
                   end
                     ? context.moveTo(end.x, end.y)
                     : context.moveTo(poi[0].x, poi[0].y);
@@ -171,16 +171,15 @@
                   };
                   const c = poi[i];
                   context.quadraticCurveTo(c.x, c.y, end.x, end.y);
-                  context.stroke();
                 }
-                context.fillStrokeShape(shape);
+                context.strokeShape(shape);
               }
             },
             draggable: true
           });
 
           layer.add(line);
-		  layer.draw()
+          layer.draw();
           // line.on("click", function() {
           //   console.log("cl");
           // })

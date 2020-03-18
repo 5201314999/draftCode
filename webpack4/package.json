@@ -9,7 +9,8 @@
     "example3": "npx webpack --config config/config3.js && http-server dist",
     "example4": "npx webpack --config config/config4.js && http-server dist",
     "example4:dev": "webpack-dev-server --config config/config4.js",
-    "example5": "npx webpack --config config/config5.js && http-server dist"
+    "example5": "npx webpack --config config/config5.js && http-server dist",
+    "example6": "npx webpack --config config/config6.js"
   },
   "dependencies": {
     "glob-all": "^3.1.0",

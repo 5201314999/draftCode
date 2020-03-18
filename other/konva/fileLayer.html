@@ -144,12 +144,15 @@
 
     layer2.add(circle);
     stage.add(layer2)
+    stage.scale({x:2,y:2})
+
 
 
     //截图直接截state 的区域
     var layer21=new Konva.Layer()
     
-    stage2.add(layer21)
+    // stage2.add(layer21)
+
     
     //测试转换后坐标关系   (old+拖拽的距离)/scale=now
     stage.on('click',(evt)=>{
