@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>手动实现一个深拷贝</title>
+<title>手动实现一个深拷贝,例子2 答案比较好</title>
 <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -13,8 +13,9 @@
     <script>
         function deepClone(obj){
             let deepObj
+            // 不可枚举的话
             if(obj===null&&typeof obj!=='object'){
-                return deepObj=obj
+                return obj
             }
             // 数组和对象分开处理
             if(Array.isArray(obj)){
@@ -53,6 +54,25 @@
         console.log(c.b)
         console.log(Object.keys(b.nums))
         console.log(`isArray：${Array.isArray(c.b.nums)}`)
+
+        function deepClone2(obj){
+            if(obj===null&&typeof obj!=='object'){
+                return obj
+            }
+            let copy=Array.isArray(obj)?[]:{}
+            Object.keys(obj).forEach(e=>{
+                copy[e]=deepClone2(obj[e])
+            })
+            return copy
+        }
+
+        console.group('例子2')
+        var d=deepClone2(a)
+        console.log(d.b===d.b)
+        console.log(c.b)
+        console.log(`isArray：${Array.isArray(d.b.nums)}`)
+
+        console.group('例子2')
     </script>
 </body>
 </html>
