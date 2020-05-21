@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Examples</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      const stage = new Konva.Stage({
+        container: "container",
+        width: 1000,
+        height: 800,
+      });
+      const layer=new Konva.Layer()
+      stage.add(layer)
+      var line=new Konva.Line({
+          points:[100,100,200,200],
+          fill:'black',
+          strokeWidth:20,
+          stroke:'black'
+      })
+
+      layer.add(line)
+      const tr = new Konva.Transformer({
+        node: line,
+        borderStrokeWidth: 2,
+        anchorStrokeWidth: 2,
+        padding: 5,
+        // enabledAnchors: ['bottom-right', 'top-right', 'bottom-left', 'top-left'],
+      })
+      layer.add(tr)
+   
+      const bgRect = new Konva.Rect({
+      fill: 'red',
+      opacity: 0.5,
+      x: 0,
+      y: 0,
+      width: tr.getWidth(),
+      height: tr.getHeight(),
+      draggable: true,
+    })
+    tr.add(bgRect)
+    layer.draw()
+
+    
+    // 旋转时计算不正确
+    bgRect.on('dragmove', function () {
+      console.log(`rect: ${bgRect.x()} ${bgRect.y()}`)
+      console.log(`line: ${line.x()} ${line.y()}`)
+      line.x(line.x() + bgRect.x())
+      line.y(line.y() + bgRect.y())
+    })
+
+    //单独操作，面=》 tr=》 m面， 会出现不一致的问题,(看似无解，多方影响面的位置)
+    // bgRect.on('dragend',function(){
+    //     bgRect.position({x:0,y:0})
+    //     layer.draw()
+    // })
+
+    tr.on('transform', () => {
+      console.log(`transform line: ${line.x()} ${line.y()}`)
+      console.log(`transform bgRect: ${bgRect.x()} ${bgRect.y()}`)
+      bgRect.size({
+        width: tr.getWidth(),
+        height: tr.getHeight(),
+      })
+    })
+    </script>
+  </body>
+</html>

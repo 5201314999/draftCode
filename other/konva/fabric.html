@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>fabric 的文字编辑功能（封装得比konva 要好）</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.6/fabric.min.js"></script>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      const card = new fabric.Canvas("canvas");
+      card.setWidth(350);
+      card.setHeight(200);
+      const textbox = new fabric.Textbox("这是一段文字", {
+        left: 50,
+        top: 50,
+        width: 150,
+        fontSize: 20, // 字体大小
+        fontWeight: 800, // 字体粗细
+        // fill: 'red', // 字体颜色
+        // fontStyle: 'italic',  // 斜体
+        // fontFamily: 'Delicious', // 设置字体
+        // stroke: 'green', // 描边颜色
+        // strokeWidth: 3, // 描边宽度
+        hasControls: false,
+        borderColor: "orange",
+        editingBorderColor: "blue" // 点击文字进入编辑状态时的边框颜色
+      });
+      // 添加文字后，如下图
+      card.add(textbox);
+    </script>
+  </body>
+</html>

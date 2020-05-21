@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>重难点：group.x() tr.x() 有什么区别，tr.x() 支持文字，不支持线条</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
+  </head>
+  <body>
+    <button onclick="clickButton()">draw to layer</button>
+    <div id="container"></div>
+    <script>
+      const stage = new Konva.Stage({
+        container: "container",
+        width: 1000,
+        height: 800,
+      });
+      const layer = new Konva.Layer();
+      stage.add(layer);
+
+      var group = new Konva.Group({
+        draggable: true,
+      });
+
+      var line = new Konva.Line({
+        points: [100, 200, 200, 100],
+        fill: "black",
+        strokeWidth: 20,
+        stroke: "black",
+        x:100,
+        y:100
+      });
+
+        // var line=new Konva.Text({
+        //     text:'122',
+        //     x:100,
+        //     y:100,
+        //     fontSize:30,
+        // })
+
+      var rect = line.getClientRect({
+        skipTransform: true,
+        skipShadow: true,
+        skipStroke: false,
+      });
+
+      var rotation = (line.rotation() * Math.PI) / 180;
+
+      var dx = rect.x * line.scaleX() - line.offsetX() * line.scaleX();
+      var dy = rect.y * line.scaleY() - line.offsetY() * line.scaleY();
+
+      var bgRect = new Konva.Rect({
+        fill: "red",
+        opacity: 0.5,
+        x: line.x() + dx * Math.cos(rotation) + dy * Math.sin(-rotation),
+        y: line.y() + dy * Math.cos(rotation) + dx * Math.sin(rotation),
+        width: rect.width * line.scaleX(),
+        height: rect.height * line.scaleY(),
+      });
+
+      group.add(line);
+      group.add(bgRect);
+      layer.add(group);
+
+
+      const tr = new Konva.Transformer({
+        node: group,
+        borderStrokeWidth: 2,
+        anchorStrokeWidth: 2,
+        // padding: 0,
+        // enabledAnchors: ['bottom-right', 'top-right', 'bottom-left', 'top-left'],
+      });
+
+      layer.add(tr);
+
+
+      var text=new Konva.Text({
+        text:'测试xy',
+        x:500,
+        y:500,
+        fontSize:30,
+      })
+
+      layer.add(text);
+
+      const tr2 = new Konva.Transformer({
+        node: text,
+        borderStrokeWidth: 2,
+        anchorStrokeWidth: 2,
+      });
+
+      layer.add(tr2);
+
+      var line3=new Konva.Line({
+        points: [300, 300, 400, 400],
+        fill: "black",
+        strokeWidth: 20,
+        stroke: "black",
+        // rotation:45,
+        // scale:{
+        //     x:2
+        // }
+        // x:-100,
+        // y:100
+        draggable:true
+      })
+
+  
+
+      const tr3 = new Konva.Transformer({
+        node: line3,
+        borderStrokeWidth: 2,
+        anchorStrokeWidth: 2,
+      });
+
+      layer.add(line3);
+      layer.add(tr3)
+
+      layer.draw()
+      tr2.on('transform',()=>{
+          console.log({...text.getAttrs()})
+          console.log(tr2.getX())
+      })
+
+      tr3.on('transform',()=>{
+          console.log({...line3.getAttrs()})
+            console.log(`${line3.x()} ${line3.y()}`)
+        //   console.log(tr3.getX())
+        //   console.log(line3.getAttrs())
+      })
+
+      line3.on('dragmove',()=>{
+        console.log({...line3.getAttrs()})
+        console.log(`${line3.x()} ${line3.y()}`)
+      })
+      
+      // finished
+
+      tr.on('transform',()=>{
+          console.log({...group.getAttrs()})
+          console.log(tr.getX())
+          console.log(tr.getNode().x())
+      })
+      function clickButton(){
+
+        // const target=group.getChildren(function(node){
+        //     return node.className==='Text'
+        // })
+
+        
+        // console.log(target[0].getAttrs())
+        console.log(group.x())
+        console.log(tr.getX())
+
+        // console.log({...target.getAttrs()})
+          
+          line.setAttrs({
+            scale:group.scale(),
+            rotation:group.rotation(),
+            position:{
+                x:tr.getX(),
+                y:tr.getY()
+            }
+          })
+
+          text.setAttrs({
+            position:{
+                x:text.x(),
+                y:text.y(),
+            }
+          })
+
+          layer.add(line)
+        
+          group.destroy()
+          tr.destroy()
+          tr2.destroy()
+          layer.draw()
+      }
+
+    </script>
+  </body>
+</html>

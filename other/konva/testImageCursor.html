@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>测试自定义圆圈划过缓慢的问题,demo 并没有这个问题。难道是？</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+    <script src="https://unpkg.com/konva@4.2.2/konva.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      function writeMessage(message) {
+        text.text(message);
+        layer.draw();
+      }
+      function loadImages(sources, callback) {
+        const image = new Image();
+        image.src = sources;
+        image.onload = () => {
+          callback(image);
+        };
+      }
+      function buildStage(image) {
+        var lion = new Konva.Image({
+          draggable: true,
+          image: image,
+          x: 280,
+          y: 30
+        });
+
+        // lion.on("mouseover", function() {
+        //   writeMessage("mouseover lion");
+        // });
+
+        // lion.on("mouseout", function() {
+        //   writeMessage("");
+        // });
+  
+        layer.add(lion);
+        lion.cache()
+        layer.add(text);
+        layer.draw();
+      }
+      var stage = new Konva.Stage({
+        container: "container",
+        width: 1000,
+        height: 800
+      });
+
+      var layer = new Konva.Layer({
+        zIndex: 1
+      });
+
+      stage.add(layer);
+
+      var text = new Konva.Text({
+        x: 10,
+        y: 10,
+        fontFamily: "Calibri",
+        fontSize: 24,
+        text: "",
+        fill: "black"
+      });
+
+      var sources = {
+        lion: "./fu.jpg"
+      };
+
+      loadImages("./fu.jpg", buildStage);
+      var layer2 = new Konva.Layer({
+        zIndex: 2
+      });
+      const circle = new Konva.Circle({
+        radius: 10,
+        x: -1,
+        y: -1,
+        fill: "#000"
+      });
+      layer2.add(circle);
+      stage.add(layer2);
+
+      stage.on("mousemove.cursor touchmove.cursor wheel.cursor", () => {
+        const poi = stage.getPointerPosition();
+        circle.position(poi);
+        layer2.draw()
+      });
+    </script>
+  </body>
+</html>

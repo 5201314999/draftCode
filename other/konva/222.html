@@ -3,54 +3,76 @@
   <head>
     <meta name="description" content="Konva demo" />
     <!-- <script src="https://unpkg.com/konva@^3/konva.min.js"></script> -->
-	<script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
-	<meta charset="utf-8" />
+    <script src="https://unpkg.com/konva@4.1.0/konva.min.js"></script>
+    <meta charset="utf-8" />
   </head>
   <body>
-	<div id="container"></div>
-	<script>
-			const stage = new Konva.Stage({
-			  container: "container",
-			  width: window.innerWidth,
-			  height: window.innerHeight
-			});
-	  
-			const layer = new Konva.Layer();
-			stage.add(layer);
-	  
-			const group = new Konva.Group({
-			  x: stage.width() / 2,
-			  y: stage.height() / 2,
-			  draggable: true
-			});
-			layer.add(group);
-	  
-			const circle1 = new Konva.Circle({
-			  x: -25,
-			  radius: 50,
-			  fill: "green",
-			});
-			group.add(circle1);
-	  
-			const circle2 = new Konva.Circle({
-			  y: 25,
-			  radius: 50,
-			  fill: "red",
-		
-			});
-			group.add(circle2);
-	  
-			const tr = new Konva.Transformer({
-			  node: group
-			});
-			layer.add(tr);
-	  
-			group.on("click", e => {
-			  tr.setNode(e.target);
-			  layer.draw();
-			});
-	  
-			layer.draw();
-		  </script>
+    <div id="container"></div>
+    <script>
+      const stage = new Konva.Stage({
+        container: "container",
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+
+      const layer = new Konva.Layer();
+      stage.add(layer);
+
+      const group = new Konva.Group({
+        x: stage.width() / 2,
+        y: stage.height() / 2,
+        draggable: true
+      });
+      layer.add(group);
+
+      const circle1 = new Konva.Circle({
+        x: -25,
+        radius: 50,
+        fill: "green"
+      });
+      group.add(circle1);
+
+      const circle2 = new Konva.Circle({
+        y: 25,
+        radius: 50,
+        fill: "red"
+      });
+      group.add(circle2);
+
+      const tr = new Konva.Transformer({
+        node: group
+      });
+      layer.add(tr);
+
+      group.on("click", e => {
+        tr.setNode(e.target);
+        layer.draw();
+      });
+
+      var customShape = new Konva.Shape({
+        x: 5,
+        y: 10,
+        fill: "red",
+        draggable: true,
+        // a Konva.Canvas renderer is passed into the sceneFunc function
+        sceneFunc(context, shape) {
+          context.fillRect(20, 20, 40, 40);
+          // Konva specific method
+          context.fillStrokeShape(shape);
+        }
+      });
+      layer.add(customShape);
+      layer.add(
+        new Konva.Text({
+          id: "k89zc5ac_22u_733_31u",
+          fontSize: 30,
+          fill: "rgb(216,30,6)",
+          x: 971.4978448275862,
+          y: 50.9547413793103,
+          text:'ook333333333333333333333'
+        })
+      );
+      layer.draw();
+    </script>
   </body>
 </html>
