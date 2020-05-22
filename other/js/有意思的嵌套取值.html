@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>有意思的嵌套取值</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    // 有个对象
+    // a={
+    //     name:{
+    //         age:{
+    //             name:'jr',
+    //             age:26
+    //         }
+    //     }
+    // }
+    // 例如 path=['name','age'] 则取 a.name.age   [] 则取 a
+
+    const a={
+        name:{
+            age:{
+                name:'jr',
+                age:26
+            }
+        }
+    }
+    // reduce 解法
+    function get(path,root){
+        return path.reduce((module,key)=>{
+            return module[key]
+        },root)   
+    }
+
+    console.log(get(['name','age'],a))
+
+    // 普通解法
+    function get2(path,root){
+        let res=root
+        for(let i=0;i<path.length;i++){
+            res=res[path[i]]
+        }
+        return res
+    }
+
+    console.log(get(['name','age'],a))
+
+
+
+    </script>
+    
+
+</body>
+</html>

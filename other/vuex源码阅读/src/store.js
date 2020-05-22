@@ -46,7 +46,7 @@ export class Store {
     const store = this
     const { dispatch, commit } = this
 
-    // 绑定this，（不绑定会怎么样呢）
+    // 绑定this，（这里是module 没指定命名空间时使用，指定时使用下方？ 要等以后再回来看了）
     this.dispatch = function boundDispatch (type, payload) {
       return dispatch.call(store, type, payload)
     }
@@ -287,6 +287,7 @@ function resetStore (store, hot) {
   resetStoreVM(store, state, hot)
 }
 
+// 重设Store vm
 function resetStoreVM (store, state, hot) {
   const oldVm = store._vm
 
@@ -349,7 +350,7 @@ function installModule (store, rootState, path, module, hot) {
     store._modulesNamespaceMap[namespace] = module
   }
 
-  // set state
+  // set state hot 不是很明白
   if (!isRoot && !hot) {
     const parentState = getNestedState(rootState, path.slice(0, -1))
     const moduleName = path[path.length - 1]
@@ -361,11 +362,12 @@ function installModule (store, rootState, path, module, hot) {
           )
         }
       }
-      // 把数据设置到了父模块的state 中
+      // 把数据设置到了store.state 上
       Vue.set(parentState, moduleName, module.state)
     })
   }
 
+  // 设置module 的上下文（没有指定命名空间就用store的 ，否则
   const local = module.context = makeLocalContext(store, namespace, path)
 
   module.forEachMutation((mutation, key) => {
@@ -393,6 +395,7 @@ function installModule (store, rootState, path, module, hot) {
  * make localized dispatch, commit, getters and state
  * if there is no namespace, just use root ones
  */
+// 这里不太理解
 function makeLocalContext (store, namespace, path) {
   const noNamespace = namespace === ''
 
@@ -511,6 +514,7 @@ function registerGetter (store, type, rawGetter, local) {
     return
   }
   store._wrappedGetters[type] = function wrappedGetter (store) {
+    // 如果是namedSpaced=true， 传参可以传4个，api 日常一个即可
     return rawGetter(
       local.state, // local state
       local.getters, // local getters
