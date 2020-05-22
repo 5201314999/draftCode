@@ -1,6 +1,14 @@
 import Module from './module'
 import { assert, forEachValue } from '../util'
 
+// 模块的集合管理
+// 数据结构为: 对应了一个path 
+// root:{
+//   _children:{
+//     'moduleA':moduleA,
+//     'moudleB':moduleB
+//   }
+// }
 export default class ModuleCollection {
   constructor (rawRootModule) {
     // register root module (Vuex.Store options)
@@ -24,7 +32,7 @@ export default class ModuleCollection {
   update (rawRootModule) {
     update([], this.root, rawRootModule)
   }
-
+  // runtime 是区分动态的注册，（非编译文件中配置）
   register (path, rawModule, runtime = true) {
     if (__DEV__) {
       assertRawModule(path, rawModule)
@@ -38,14 +46,14 @@ export default class ModuleCollection {
       parent.addChild(path[path.length - 1], newModule)
     }
 
-    // register nested modules
+    // register nested modules  递归注册子模块
     if (rawModule.modules) {
       forEachValue(rawModule.modules, (rawChildModule, key) => {
         this.register(path.concat(key), rawChildModule, runtime)
       })
     }
   }
-
+  // 只能卸载动态模块
   unregister (path) {
     const parent = this.get(path.slice(0, -1))
     const key = path[path.length - 1]

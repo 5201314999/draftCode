@@ -1,6 +1,7 @@
 import { forEachValue } from '../util'
 
 // Base data struct for store's module, package with some attribute and method
+// 基于模块配置创建模块 ，提供了写属性和方法
 export default class Module {
   constructor (rawModule, runtime) {
     this.runtime = runtime

@@ -28,10 +28,14 @@ export class Store {
 
     // store internal state
     this._committing = false
+    // 存放所有的actions 函数
     this._actions = Object.create(null)
+    // 暂时不清楚
     this._actionSubscribers = []
     this._mutations = Object.create(null)
+    // 存放所有的getters
     this._wrappedGetters = Object.create(null)
+    // 顾名思义，模块集合,递归注册完了所有静态模块
     this._modules = new ModuleCollection(options)
     this._modulesNamespaceMap = Object.create(null)
     this._subscribers = []
@@ -42,7 +46,7 @@ export class Store {
     const store = this
     const { dispatch, commit } = this
 
-    // 这写法是出于何种目的，常规call(this) 直接this.dispatch 即可,组织代码的方式有点出人意料？
+    // 绑定this，（不绑定会怎么样呢）
     this.dispatch = function boundDispatch (type, payload) {
       return dispatch.call(store, type, payload)
     }
@@ -56,8 +60,8 @@ export class Store {
     const state = this._modules.root.state
 
     // init root module.
-    // this also recursively registers all sub-modules
-    // and collects all module getters inside this._wrappedGetters
+    // this also recursively（递归地） registers all sub-modules
+    // and collects all module getters inside this._wrappedGetters（放置所有的getters）
     installModule(this, state, [], this._modules.root)
 
     // initialize the store vm, which is responsible for the reactivity
@@ -82,7 +86,7 @@ export class Store {
       assert(false, `use store.replaceState() to explicit replace store state.`)
     }
   }
-
+  
   commit (_type, _payload, _options) {
     // check object-style commit
     const {
@@ -100,13 +104,14 @@ export class Store {
       return
     }
     this._withCommit(() => {
+      //commitIterator 这里写了函数名更多的是提高可阅读性
       entry.forEach(function commitIterator (handler) {
         handler(payload)
       })
     })
-
+    // 通知订阅者 执行
     this._subscribers
-      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe （有些会调用unsubscribe，所以不能直接改原来的吧）
       .forEach(sub => sub(mutation, this.state))
 
     if (
@@ -247,6 +252,7 @@ export class Store {
     resetStore(this, true)
   }
 
+  // committing 正在commiting，commiting 完还原（一开始为什么不直接设成false 呢）
   _withCommit (fn) {
     const committing = this._committing
     this._committing = true
@@ -335,7 +341,7 @@ function installModule (store, rootState, path, module, hot) {
   const isRoot = !path.length
   const namespace = store._modules.getNamespace(path)
 
-  // register in namespace map
+  // register in namespace map 
   if (module.namespaced) {
     if (store._modulesNamespaceMap[namespace] && __DEV__) {
       console.error(`[vuex] duplicate namespace ${namespace} for the namespaced module ${path.join('/')}`)
@@ -355,6 +361,7 @@ function installModule (store, rootState, path, module, hot) {
           )
         }
       }
+      // 把数据设置到了父模块的state 中
       Vue.set(parentState, moduleName, module.state)
     })
   }
@@ -525,6 +532,7 @@ function getNestedState (state, path) {
   return path.reduce((state, key) => state[key], state)
 }
 
+// 对象合成（格式处理）把type 放进payload对象中时需要做下处理
 function unifyObjectStyle (type, payload, options) {
   if (isObject(type) && type.type) {
     options = payload
