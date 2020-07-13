@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>JSONP ,使用script 请求发出，后端把约定得方法立即执行</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+        const script=document.createElmenent('script')
+        script.type="text/javascript"
+        script.src=`http://www.domain/jsonp?cb=${cb}`
+        var cb=(res)=>{
+          console.log(res.data)
+        }
+    </script>
+</body>
+</html>
