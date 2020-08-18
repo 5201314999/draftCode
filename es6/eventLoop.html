@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>事件循环理解测试</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+</head>
+
+<body>
+  <script>
+    // start>end>1>start settimeout 1>promise 1>promise 2>2>3>inner setTimeout
+    console.log('start');
+    setTimeout(_ => {
+      console.log('start settimeout 1');
+      Promise.resolve().then(_ => {
+        console.log('promise 1');
+        setTimeout(_ => {
+          console.log('inner setTimeout')
+        }, 0)
+
+      }).then(_ => {
+        console.log('promise 2');
+      })
+    }, 0)
+    console.log('end');
+
+    let p = new Promise(resolve => {
+      console.log(1);
+      setTimeout(_ => {
+        console.log(2);
+        resolve(1);
+      })
+    });
+
+    p.then(_ => {
+      console.log(3)
+    })
+
+  </script>
+</body>
+
+</html>

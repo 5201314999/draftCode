@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>手写promise 原理</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+</head>
+
+<body>
+  <script>
+    //  实现一个构造函数，一个then api , 链式调用。then 的返回也是一个promise
+    function MyPromise(excetor) {
+      let _this = this;
+      _this.$$state = 'pending';
+      _this.successCb = undefined;
+      _this.failCb = undefined;
+
+
+      excetor(this.resolve.bind(_this), this.reject.bind(_this))
+
+    }
+    MyPromise.prototype.resolve = function (params) {
+      if (this.$$state === 'pending') {
+        this.$$state = 'fullfilled'
+        if (!this.successCb) return;
+        const result = this.successCb(params)
+        if (result && result instanceof MyPromise) {
+          result.then(this.suceessDefer, this.failDefer);
+          return ''
+        }
+        this.suceessDefer(result)
+      }
+    }
+    MyPromise.prototype.reject = function (params) {
+      if (this.$$state === 'pending') {
+        this.$$state = 'failed'
+        if (!this.failCb) return;
+        const result = this.failCb(params);
+        if (result && result instanceof MyPromise) {
+          result.then(this.suceessDefer, this.failDefer);
+        }
+        this.failDefer(result)
+      }
+
+    }
+    MyPromise.prototype.then = function (onFullfilled, onReject) {
+      this.successCb = onFullfilled;
+      this.failCb = onReject;
+
+      const newPromis = new MyPromise(() => {})
+      this.suceessDefer = newPromis.resolve.bind(newPromis);
+      this.failDefer = newPromis.reject.bind(newPromis);
+      return newPromis;
+
+    }
+
+
+
+
+
+
+    function test() {
+      new MyPromise((resolve, reject) => {
+        setTimeout(() => resolve(30), 4000)
+      }).then((res) => {
+        console.log(res)
+        return 2;
+      }).then(res => {
+        console.log(res);
+      })
+    }
+
+    test()
+
+
+    class MiniPromise {
+
+      constructor(fn) {
+        fn(MiniPromise.resolve, MiniPromise.reject);
+        this.state;
+        this.onFullfillCbs = []
+        this.onRejectCbs = [];
+        MiniPromise.that = this;
+      }
+
+      static resolve(value) {
+        const that = MiniPromise.that;
+        const isInstance = MiniPromise.that instanceof MiniPromise
+        that.value = value
+        if (isInstance && that.state === 'pending') {
+          that.onFullfillCbs.map(cb =>(that.value=cb(value)))
+          that.state = 'fullfill'
+        }
+        // 静态类使用
+        if (!f) {
+          const obj = new MiniPromise()
+          return object.assign(obj, {
+            state: 'fullfilled',
+            value: value
+          })
+        }
+      }
+
+      static reject(value) {
+        const that = MiniPromise.that;
+        const isInstance = MiniPromise.that instanceof MiniPromise
+        that.value = value
+        if (isInstance && that.state === 'pending') {
+          that.onRejectCbs.map(cb =>(that.value=cb(value)))
+          that.state = 'rejected'
+        }
+        // 静态类使用
+        if (!f) {
+          const obj = new MiniPromise()
+          return object.assign(obj, {
+            state: 'rejected',
+            value: value
+          })
+        }
+      }
+
+      then(onFullfilled, onRejected) {
+        const f = typeof onFullfilled === 'function' ? onFullfilled : c => c;
+        const r = typeof onRejected === 'function' ? onRejected : c => {
+          throw c
+        };
+
+        switch (this.state) {
+          case 'pending':
+            this.onFullfillCbs.push(f);
+            this.onRejectCbs.push(r);
+            break;
+          case 'fullfilled':
+            this.value = f(this.value);
+            break;
+          case 'rejected':
+            this.value = r(this.value);
+            break;
+        }
+
+        return this;
+      }
+    }
+
+    MiniPromise.resolve('success').then((e) => {
+      console.log(e);
+      return e + 1
+    }).then(res => {
+      console.log(res);
+    })
+    new MiniPromise(resolve => {
+        setTimeout(() => {
+          resolve(1);
+        }, 2000);
+      })
+      .then(res1 => {
+        console.log(res1);
+        return 2;
+      })
+      .then(res2 => console.log(res2));
+  </script>
+</body>
+
+</html>
