@@ -15,7 +15,7 @@
   "dependencies": {
     "glob-all": "^3.1.0",
     "lib-flexible": "^0.3.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "throttle-debounce": "^2.1.0"
   },
   "devDependencies": {
